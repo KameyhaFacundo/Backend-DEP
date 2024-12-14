@@ -1,4 +1,6 @@
 * Una vez realizado el restore, ejecutar el idConceto.sql para generar dicha función.
 
+Si no le funciona, pueden ejecutar el Script. Donde ya tienen las inserciones a la base de datos.
+
 
 * Mover la carpeta archivos a wampserver en la carpeta www.
