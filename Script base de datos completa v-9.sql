@@ -330,3 +330,8 @@ INSERT INTO public."Articulos" ("IdArticulo", "IdRubro", "IdConcepto", "Articulo
 INSERT INTO public."Articulos" ("IdArticulo", "IdRubro", "IdConcepto", "Articulo") VALUES (15, 3, '03015', 'Alcohol líquido');
 INSERT INTO public."Articulos" ("IdArticulo", "IdRubro", "IdConcepto", "Articulo") VALUES (16, 3, '03016', 'Guantes de látex para limpieza');
 
+
+
+
+
+-- 
