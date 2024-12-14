@@ -220,7 +220,7 @@ INSERT INTO public."Rubros" ("IdRubro", "Rubro") VALUES (3, 'Limpieza');
 
 INSERT INTO public."Usuarios" ("IdUsuario", "IdRol", "Usuario", "Password") 
 VALUES 
-(5, 1, 'administrador', MD5('administrador123')),
+(5, 1, 'admin', MD5('admin123')),
 (6, 2, 'usuario', MD5('usuario123')),
 (7, 3, 'lector', MD5('lector123'));
 
