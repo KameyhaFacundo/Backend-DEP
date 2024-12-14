@@ -1,0 +1,4 @@
+* Una vez realizado el restore, ejecutar el idConceto.sql para generar dicha función.
+
+
+* Mover la carpeta archivos a wampserver en la carpeta www.
