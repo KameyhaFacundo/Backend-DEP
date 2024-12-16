@@ -1,6 +1,6 @@
 ﻿-- Eliminar secuencias si existen (usando CASCADE para eliminar dependencias)
 DROP SEQUENCE IF EXISTS public."Acciones_IdAccion_seq" CASCADE;
-DROP SEQUENCE IF EXISTS public."Cargas_IdCargas_seq" CASCADE;
+DROP SEQUENCE IF EXISTS public."Movimientos_IdMovimientos_seq" CASCADE;
 DROP SEQUENCE IF EXISTS public."Centros_idcentro_seq" CASCADE;
 DROP SEQUENCE IF EXISTS public."Roles_IdRol_seq" CASCADE;
 DROP SEQUENCE IF EXISTS public."Usuarios_IdRol_seq" CASCADE;
@@ -26,7 +26,7 @@ CREATE SEQUENCE public."Acciones_IdAccion_seq"
     MAXVALUE 32767
     CACHE 1;
 
-CREATE SEQUENCE public."Cargas_IdCargas_seq"
+CREATE SEQUENCE public."Movimientos_IdMovimientos_seq"
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -197,11 +197,9 @@ DELETE FROM public."Centros";
 
 
 -- Resetear secuencias a 1
-ALTER SEQUENCE public."oficinas_idoficina_seq" RESTART WITH 1;
-ALTER SEQUENCE public."centros_idcentro_seq" RESTART WITH 1;
+ALTER SEQUENCE public."Centros_idcentro_seq" RESTART WITH 1;
 ALTER SEQUENCE public."Movimientos_IdMovimientos_seq" RESTART WITH 1;
 ALTER SEQUENCE public."Acciones_IdAccion_seq" RESTART WITH 1;
-ALTER SEQUENCE public."Cargas_IdCargas_seq" RESTART WITH 1;
 ALTER SEQUENCE public."Centros_idcentro_seq" RESTART WITH 1;
 ALTER SEQUENCE public."Roles_IdRol_seq" RESTART WITH 1;
 ALTER SEQUENCE public."Usuarios_IdRol_seq" RESTART WITH 1;
