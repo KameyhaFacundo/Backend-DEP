@@ -1,12 +1,23 @@
 <?php
-header('Access-Control-Allow-Origin: http://localhost:5173');
+// Lista de orígenes permitidos
+$allowedOrigins = ['http://localhost:5173', 'http://localhost:5174'];
+
+// Verifica si el origen de la solicitud está en la lista permitida
+if (isset($_SERVER['HTTP_ORIGIN']) && in_array($_SERVER['HTTP_ORIGIN'], $allowedOrigins)) {
+    header('Access-Control-Allow-Origin: ' . $_SERVER['HTTP_ORIGIN']);
+} else {
+    header('Access-Control-Allow-Origin: null'); // Bloquea solicitudes no permitidas
+}
+
 header('Content-Type: application/json');
 header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
 
+// Manejo de preflight
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
-    exit(0);
+    exit(0); // Respuesta vacía para solicitudes OPTIONS
 }
+
 
 try {
     include 'conexion.php';
