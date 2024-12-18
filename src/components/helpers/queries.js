@@ -5,7 +5,7 @@ export const login = async (user) => {
     const response = await fetch(
       "http://localhost/archivos/depStock/login.php",
       {
-        method: "POST",
+        method: "POST", 
         headers: {
           "Content-Type": "application/json",
         },

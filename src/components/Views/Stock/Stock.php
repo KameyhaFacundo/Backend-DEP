@@ -3,7 +3,7 @@
       $ruta1 = '../../../styles';
       $ruta2= 'Stock';
       require_once("../../common/header.php");
-      require ("../../../../Backend/archivos/depStock/obtenerStock.php");
+      require ("../../../Backend/obtenerStock.php");
       require ("funcionesStock.php");
 
 ?>
