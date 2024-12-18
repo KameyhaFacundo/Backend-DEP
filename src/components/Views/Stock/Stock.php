@@ -2,7 +2,8 @@
 <?php
       $ruta1 = '../../../styles';
       $ruta2= 'Stock';
-      require_once("../../common/header.php");
+      $rutaFooter="../../common/";
+      require("../../common/header.php");
       require ("../../../Backend/obtenerStock.php");
       require ("funcionesStock.php");
 
@@ -47,8 +48,6 @@
 
 
 <?php
-echo '
-</body>
-</html>
-'
-          ?>
+
+require_once  $rutaFooter."footer.php"
+?>
