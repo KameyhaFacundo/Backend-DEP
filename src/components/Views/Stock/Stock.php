@@ -1,6 +1,6 @@
 
 <?php
-      $ruta = '../../../styles';
+      $ruta1 = '../../../styles';
       $ruta2= 'Stock';
       require_once("../../common/header.php");
       require ("../../../../Backend/archivos/depStock/obtenerStock.php");
