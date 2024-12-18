@@ -1,0 +1,217 @@
+.productos-container {
+  margin: 40px 40px;
+  padding: 20px;
+  max-width: 90%;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.productos-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.productos-header h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0 auto;
+}
+
+.productos-header button {
+  background-color: #404041;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.productos-header button:hover {
+  background-color: #1a1b1d;
+}
+.productos-header button:active {
+  background-color: #1a1b1d;
+  background: none;
+}
+.productos-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.productos-table th,
+.productos-table td {
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #ddd;
+}
+
+.productos-table th {
+  background-color: #f1f1f1;
+  font-weight: bold;
+}
+
+.productos-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.productos-table tr:hover {
+  background-color: #f2f2f2;
+}
+
+.modal-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+}
+
+@media (min-width: 768px) {
+  .modal-form {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .form-group.double {
+    grid-column: span 2;
+  }
+  
+}
+
+.modal-form label {
+  display: block;
+  font-weight: bold;
+}
+
+.modal-form input,
+.modal-form select,
+.modal-form textarea {
+  width: 100%;
+  padding: 0.4rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 0.85rem;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.8rem;
+}
+
+button {
+  padding: 0.6rem 1rem;
+  font-size: 0.8rem;
+  border-radius: 5px;
+}
+
+button[type="submit"] {
+  background-color: #4d84c2;
+  color: rgb(12, 11, 11);
+  border: none;
+}
+
+button[type="button"] {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+}
+
+.modal-dialog {
+  max-width: 550px;
+  margin: auto;
+}
+
+.table {
+  margin-top: 0.4rem;
+}
+
+.table th,
+.table td {
+  padding: 0.1rem;
+  text-align: center;
+}
+
+.table th {
+  font-weight: bold;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f9f9f9;
+}
+
+.table-striped tbody tr:hover {
+  background-color: #e9ecef;
+}
+
+.app {
+  padding: 1rem;
+}
+
+h2 {
+  font-size: 0.8rem;
+}
+
+.productos-table .btn {
+  padding: 0.2rem 0.4rem;
+  font-size: 1.2rem;
+  display: inline-block;
+}
+
+.productos-table .fa-edit,
+.productos-table .fa-trash {
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.productos-table .fa-edit:hover {
+  color: #007bff;
+}
+
+.productos-table .fa-trash:hover {
+  color: #dc3545;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.pagination-btn {
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.pagination span {
+  margin: 0 10px;
+  font-size: 1rem;
+}
+
+/* Para pantallas chicas */
+@media (max-width: 460px) {
+
+  .productos-container {
+    width: 100%;
+    margin: 0;
+    margin: 0 auto
+  }
+
+  .productos-table{
+    width: 100%
+  }
+  
+}
