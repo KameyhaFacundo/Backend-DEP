@@ -8,6 +8,8 @@
     <title>DEP</title>
     <!-- Enlace dinamico al bootstrap -->
     <link rel="stylesheet" href="<?php echo $ruta ?>/css/bootstrap.min.css">
+    <!-- Enlace dinamico al css propio -->
+    <link rel="stylesheet" href="<?php echo $ruta2?>.css">
 </head>
 <body class="container-fluid">
     
