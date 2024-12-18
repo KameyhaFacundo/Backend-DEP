@@ -1,5 +1,6 @@
 <?php
     $ruta = 'src/styles';
+    $ruta2= 'src/index';
     require("src/components/common/header.php");
 
 ?>
