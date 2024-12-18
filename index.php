@@ -1,17 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="./src/assets/img/logo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dirección Estadística de la Provincia</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
-</html>
+<?php
+    $ruta = 'src/styles';
+    require("src/components/common/header.php");
+
+?>
+<main class="d-flex justify-content-center align-items-center">
+        <section class="text-center">
+            <header>
+                <h1 class="mb-4">Iniciar Sesión</h1>
+            </header>
+
+            <form action="php/logueo.php" method="POST" class="p-4 rounded">
+                <label for="username" class="form-label">Nombre de usuario</label>
+                <input type="text" id="username" name="username" class="form-control mb-3" required>
+
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" id="password" name="password" class="form-control mb-4" required>
+
+                <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+            </form>
+        </section>
+    </main>
+<?php
+    // require("php/footer.php");
+?>
