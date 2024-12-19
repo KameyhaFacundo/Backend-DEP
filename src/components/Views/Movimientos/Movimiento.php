@@ -7,7 +7,19 @@ $articulos = getArticulos();
 $centros = getCentros();
 
 $fechaMov = isset($_GET['fechaMov']) ? $_GET['fechaMov'] : null;
-$movimientos = filtrarPorFecha($fechaMov);
+$movimientosFiltrados = filtrarPorFecha($fechaMov);
+
+// Si hay un filtro, se deben usar los movimientos filtrados en lugar de los originales
+$movimientos = $movimientosFiltrados;
+
+$items_per_page = 10;
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+// Ahora pasamos los tres parámetros a la función de paginación
+$pagination = getPaginatedMovimientos($page, $items_per_page, $movimientos);
+$movimientos = $pagination['movimientos'];
+$total_pages = $pagination['total_pages'];
+$current_page = $pagination['current_page'];
 
 ?>
 <!DOCTYPE html>
@@ -34,18 +46,17 @@ $movimientos = filtrarPorFecha($fechaMov);
             <div class="filter-container mb-3">
                 <div class="row">
                     <!-- Formulario de filtro por fecha -->
-                    <div class="col-md-6">
                         <form method="GET" action="">
                             <div class="form-row">
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <input type="date" id="fechaMov" name="fechaMov" class="form-control" value="<?= isset($_GET['fechaMov']) ? $_GET['fechaMov'] : '' ?>">
                                 </div>
-                                <div class="col-md-6 d-flex align-items-center">
-                                    <button type="submit style-button" class="general-button btn-sm">Filtrar</button>
-                                </div>
+                                <div class="col-md-4 d-flex align-items-center">
+                                <button type="submit" class="btn-sm">Filtrar</button>
                             </div>
+                        </div>
                         </form>
-                    </div>
+
 
                     <!-- Formulario de búsqueda de artículo -->
                     <div class="col-md-6">
@@ -110,7 +121,7 @@ $movimientos = filtrarPorFecha($fechaMov);
                                     <!-- Formulario de eliminación -->
                                     <form method="POST" action="../../../Backend/eliminarMovimiento.php" style="display:inline;">
                                         <input type="hidden" name="id" value="<?= $movimiento['IdMovimiento'] ?>">
-                                        <button type="submit style-button" class="btn btn-sm eliminar-style-button" onclick="return confirm('¿Estás seguro de que deseas eliminar este movimiento?');">
+                                        <button type="submit" class=" style-button btn btn-sm eliminar-style-button" onclick="return confirm('¿Estás seguro de que deseas eliminar este movimiento?');">
                                             <i class="fas trasp fa-trash"></i>
                                         </button>
                                     </form>
@@ -120,6 +131,33 @@ $movimientos = filtrarPorFecha($fechaMov);
                     </tbody>
                 </table>
             </div>
+       <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        <?php if ($page > 1): ?>
+            <li class="page-item">
+                <a class="page-link" href="?page=<?= $page - 1 ?>" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+        <?php endif; ?>
+
+        <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+            <li class="page-item <?= $i == $page ? 'active' : '' ?>">
+                <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+            </li>
+        <?php endfor; ?>
+
+        <?php if ($page < $total_pages): ?>
+            <li class="page-item">
+                <a class="page-link" href="?page=<?= $page + 1 ?>" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        <?php endif; ?>
+    </ul>
+</nav>
+
+
         <?php else: ?>
             <p class="no-records">No hay movimientos registrados.</p>
         <?php endif; ?>
@@ -204,7 +242,7 @@ $movimientos = filtrarPorFecha($fechaMov);
                         <!-- Botones -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="submit style-button" class="btn btn-primary">Guardar</button>
+                            <button type="submit " class="style-button btn btn-primary">Guardar</button>
                         </div>
                     </form>
                 </div>
@@ -289,7 +327,7 @@ $movimientos = filtrarPorFecha($fechaMov);
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="submit style-button" class="btn btn-primary">Guardar cambios</button>
+                            <button type="submit" class=" style-button btn btn-primary">Guardar cambios</button>
                         </div>
                     </form>
                 </div>
