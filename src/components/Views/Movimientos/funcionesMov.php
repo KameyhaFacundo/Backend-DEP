@@ -84,8 +84,22 @@ function filtrarPorAccion($accion) {
     return $movimientosFiltrados;
 }
 
+function filtrarPorArticulo($articulo) {
+  $movimientos = getMovimientos();
 
-function getPaginatedMovimientos($page, $items_per_page, $movimientos, $fechaMov = null, $accion = null) {
+  if(!$articulo){
+    return $movimientos;
+  }
+
+  $movimientosFiltrados = array_filter($movimientos, function($movimiento) use ($articulo) {
+    return $movimiento['Articulo'] === $articulo;
+  });
+  // echo json_encode($movimientosFiltrados);
+  return $movimientosFiltrados;
+}
+
+
+function getPaginatedMovimientos($page, $items_per_page, $movimientos, $fechaMov = null, $accion = null, $articulo=null) {
 
   if ($fechaMov) {
     $movimientos = filtrarPorFecha($fechaMov);
@@ -93,6 +107,9 @@ function getPaginatedMovimientos($page, $items_per_page, $movimientos, $fechaMov
 
   if ($accion) {
     $movimientos = filtrarPorAccion($accion,$movimientos);
+  }
+    if ($articulo) {
+    $movimientos = filtrarPorArticulo($articulo,$movimientos);
   }
 
   $total_movements = count($movimientos);

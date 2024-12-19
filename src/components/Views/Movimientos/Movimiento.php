@@ -16,6 +16,11 @@ if ($accion) {
     $movimientos = filtrarPorAccion($accion);
 }
 
+$articulo = isset($_GET['articulo']) ? $_GET['articulo'] : null;
+if ($articulo) {
+    $movimientos = filtrarPorArticulo($articulo);
+}
+
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $items_per_page = 10;
 
@@ -25,7 +30,8 @@ $pagination = getPaginatedMovimientos(
     $items_per_page, 
     $movimientos, 
     $fechaMov, 
-    $accion    
+    $accion,
+    $articulo 
 );
 
 $movimientos = $pagination['movimientos'];
@@ -74,18 +80,24 @@ $current_page = $pagination['current_page'];
                     <!-- Formulario de búsqueda de artículo -->
                     <div class="col-sm-4 col-md-4 col-lg-4 mb-2">
                         <form id="filterForm" method="GET" action="">
-                            <div class="form-row">
-                                <div class="col-8">
-                                    <input type="text" id="articulo" name="query" class="form-control" placeholder="Buscar artículo...">
-                                </div>
-                                <div class="col-4 d-flex align-items-center">
-                                    <button type="submit" class="btn btn-sm btn-primary">Filtrar</button>
-                                </div>
+                            <div class="form-row position-relative">
+                            <div class="col-8">
+                                <input
+                                type="text"
+                                id="articulo"
+                                name="articulo"
+                                class="form-control"
+                                placeholder="Buscar artículo..."
+                                autocomplete="off"
+                                />
+                                <div id="articulos-results" class="list-group"></div>
                             </div>
-                            <div id="articulos-results" class="list-group"></div>
+                            <div class="col-4 d-flex align-items-center">
+                                <button type="submit" class="btn btn-sm btn-primary">Filtrar</button>
+                            </div>
+                            </div>
                         </form>
                     </div>
-
                     <!-- Formulario de filtro por acción -->
                     <div class="col-sm-4 col-md-4 col-lg-4 mb-2">
                         <form method="GET" action="">
@@ -394,6 +406,50 @@ $current_page = $pagination['current_page'];
             $('#editDescripUnidad').val(descripunidad);
             $('#editMotivo').val(motivo);
         });
+    </script>
+
+    <!-- Autocompletar articulos -->
+     <script>
+    document.getElementById("articulo").addEventListener("input", function () {
+        const articulo = this.value;
+
+        // Si no hay texto, limpiar resultados y no realizar petición.
+        if (articulo.trim() === "") {
+            document.getElementById("articulos-results").innerHTML = "";
+            return;
+        }
+
+        // Realizar petición a `buscarArticulos.php` con el texto parcial.
+        fetch("../../../Backend/buscarArticulos.php?query=" + encodeURIComponent(articulo))
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Error en la respuesta del servidor");
+                }
+                return response.json();
+            })
+            .then(data => {
+                const resultsContainer = document.getElementById("articulos-results");
+                resultsContainer.innerHTML = ""; // Limpiar resultados previos.
+
+                // Generar la lista de resultados.
+                data.forEach(item => {
+                    const listItem = document.createElement("a");
+                    listItem.href = "#"; // Puedes ajustar esto para que seleccione el artículo.
+                    listItem.className = "list-group-item list-group-item-action";
+                    listItem.textContent = item.Articulo;
+
+                    // Agregar evento de clic para seleccionar el artículo.
+                    listItem.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        document.getElementById("articulo").value = item.Articulo;
+                        resultsContainer.innerHTML = ""; // Limpiar resultados.
+                    });
+
+                    resultsContainer.appendChild(listItem);
+                });
+            })
+            .catch(error => console.error("Error en la solicitud:", error));
+    });
     </script>
 
 </body>
