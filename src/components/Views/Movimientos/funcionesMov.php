@@ -69,17 +69,43 @@ function filtrarPorFecha($fechaMov) {
     });
 }
 
-function getPaginatedMovimientos($page, $items_per_page, $movimientos) {
-    // Función que realiza la paginación
-    $total_movimientos = count($movimientos);
-    $total_pages = ceil($total_movimientos / $items_per_page);
-    $start = ($page - 1) * $items_per_page;
-    $paginated_movimientos = array_slice($movimientos, $start, $items_per_page);
+function filtrarPorAccion($accion) {
+    $movimientos = getMovimientos(); 
 
-    return [
-        'movimientos' => $paginated_movimientos,
-        'total_pages' => $total_pages,
-        'current_page' => $page
+    if (!$accion) {
+      echo json_encode($movimientos);
+        return $movimientos;
+    }
+
+    $movimientosFiltrados = array_filter($movimientos, function($movimiento) use ($accion) {
+        return $movimiento['Accion'] === $accion; 
+    });
+
+    return $movimientosFiltrados;
+}
+
+
+function getPaginatedMovimientos($page, $items_per_page, $movimientos, $fechaMov = null, $accion = null) {
+
+  if ($fechaMov) {
+    $movimientos = filtrarPorFecha($fechaMov);
+  }
+
+  if ($accion) {
+    $movimientos = filtrarPorAccion($accion,$movimientos);
+  }
+
+  $total_movements = count($movimientos);
+  $total_pages = ceil($total_movements / $items_per_page);
+  $current_page = min($page, $total_pages);
+
+  $offset = ($current_page - 1) * $items_per_page;
+  $paginated_movimientos = array_slice($movimientos, $offset, $items_per_page);
+
+  return [
+    'movimientos' => $paginated_movimientos,
+    'total_pages' => $total_pages,
+    'current_page' => $current_page
     ];
 }
 

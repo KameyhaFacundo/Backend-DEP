@@ -7,21 +7,33 @@ $articulos = getArticulos();
 $centros = getCentros();
 
 $fechaMov = isset($_GET['fechaMov']) ? $_GET['fechaMov'] : null;
-$movimientosFiltrados = filtrarPorFecha($fechaMov);
+if ($fechaMov) {
+    $movimientos = filtrarPorFecha($fechaMov);
+}
 
-// Si hay un filtro, se deben usar los movimientos filtrados en lugar de los originales
-$movimientos = $movimientosFiltrados;
+$accion = isset($_GET['accion']) ? $_GET['accion'] : null;
+if ($accion) {
+    $movimientos = filtrarPorAccion($accion);
+}
 
-$items_per_page = 10;
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$items_per_page = 10;
 
-// Ahora pasamos los tres parámetros a la función de paginación
-$pagination = getPaginatedMovimientos($page, $items_per_page, $movimientos);
+// Obtener los movimientos filtrados y paginados
+$pagination = getPaginatedMovimientos(
+    $page, 
+    $items_per_page, 
+    $movimientos, 
+    $fechaMov, 
+    $accion    
+);
+
 $movimientos = $pagination['movimientos'];
 $total_pages = $pagination['total_pages'];
 $current_page = $pagination['current_page'];
 
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -46,35 +58,53 @@ $current_page = $pagination['current_page'];
             <div class="filter-container mb-3">
                 <div class="row">
                     <!-- Formulario de filtro por fecha -->
+                    <div class="col-sm-4 col-md-4 col-lg-4 mb-2">
                         <form method="GET" action="">
                             <div class="form-row">
-                                <div class="col-md-8">
+                                <div class="col-8">
                                     <input type="date" id="fechaMov" name="fechaMov" class="form-control" value="<?= isset($_GET['fechaMov']) ? $_GET['fechaMov'] : '' ?>">
                                 </div>
-                                <div class="col-md-4 d-flex align-items-center">
-                                <button type="submit" class="btn-sm">Filtrar</button>
+                                <div class="col-4 d-flex align-items-center">
+                                    <button type="submit" class="btn btn-sm btn-primary">Filtrar</button>
+                                </div>
                             </div>
-                        </div>
                         </form>
-
+                    </div>
 
                     <!-- Formulario de búsqueda de artículo -->
-                    <div class="col-md-6">
+                    <div class="col-sm-4 col-md-4 col-lg-4 mb-2">
                         <form id="filterForm" method="GET" action="">
                             <div class="form-row">
-                                <div class="col-md-8">
+                                <div class="col-8">
                                     <input type="text" id="articulo" name="query" class="form-control" placeholder="Buscar artículo...">
                                 </div>
-                                <div class="col-md-4 d-flex align-items-center">
-                                    <button type="submit" class="btn btn-primary btn-sm">Filtrar</button>
+                                <div class="col-4 d-flex align-items-center">
+                                    <button type="submit" class="btn btn-sm btn-primary">Filtrar</button>
                                 </div>
                             </div>
                             <div id="articulos-results" class="list-group"></div>
                         </form>
                     </div>
+
+                    <!-- Formulario de filtro por acción -->
+                    <div class="col-sm-4 col-md-4 col-lg-4 mb-2">
+                        <form method="GET" action="">
+                            <div class="form-row">
+                                <div class="col-8">
+                                    <select name="accion" class="form-control">
+                                        <option value="">Seleccionar acción</option>
+                                        <option value="Entrada" <?= isset($_GET['accion']) && $_GET['accion'] == 'Entrada' ? 'selected' : '' ?>>Entrada</option>
+                                        <option value="Salida" <?= isset($_GET['accion']) && $_GET['accion'] == 'Salida' ? 'selected' : '' ?>>Salida</option> 
+                                    </select>
+                                </div>
+                                <div class="col-4 d-flex align-items-center">
+                                    <button type="submit" class="btn btn-sm btn-primary">Filtrar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-            
             <div class="table-responsive">
                 <table class="movimientos-table">
                     <thead>
@@ -131,40 +161,40 @@ $current_page = $pagination['current_page'];
                     </tbody>
                 </table>
             </div>
-       <nav aria-label="Page navigation">
-    <ul class="pagination justify-content-center">
-        <?php if ($page > 1): ?>
-            <li class="page-item">
-                <a class="page-link" href="?page=<?= $page - 1 ?>" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-        <?php endif; ?>
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    <?php if ($page > 1): ?>
+                        <li class="page-item">
+                            <a class="page-link" href="?page=<?= $page - 1 ?>&fechaMov=<?= urlencode($_GET['fechaMov'] ?? '') ?>&accion=<?= urlencode($_GET['accion'] ?? '') ?>" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    <?php endif; ?>
 
-        <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-            <li class="page-item <?= $i == $page ? 'active' : '' ?>">
-                <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
-            </li>
-        <?php endfor; ?>
+                    <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                        <li class="page-item <?= $i == $page ? 'active' : '' ?>">
+                            <a class="page-link" href="?page=<?= $i ?>&fechaMov=<?= urlencode($_GET['fechaMov'] ?? '') ?>&accion=<?= urlencode($_GET['accion'] ?? '') ?>">
+                                <?= $i ?>
+                            </a>
+                        </li>
+                    <?php endfor; ?>
 
-        <?php if ($page < $total_pages): ?>
-            <li class="page-item">
-                <a class="page-link" href="?page=<?= $page + 1 ?>" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        <?php endif; ?>
-    </ul>
-</nav>
-
-
+                    <?php if ($page < $total_pages): ?>
+                        <li class="page-item">
+                            <a class="page-link" href="?page=<?= $page + 1 ?>&fechaMov=<?= urlencode($_GET['fechaMov'] ?? '') ?>&accion=<?= urlencode($_GET['accion'] ?? '') ?>" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    <?php endif; ?>
+                </ul>
+            </nav>
         <?php else: ?>
             <p class="no-records">No hay movimientos registrados.</p>
         <?php endif; ?>
     </div>
     
 
-        <!-- Modal de agregar movimiento -->
+    <!-- Modal de agregar movimiento -->
     <div id="addMovementModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addMovementModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document"> <!-- modal-lg para hacerlo más pequeño -->
             <div class="modal-content">
@@ -338,6 +368,8 @@ $current_page = $pagination['current_page'];
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Editar Movimiento -->
     <script>
         $('#editMovementModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
