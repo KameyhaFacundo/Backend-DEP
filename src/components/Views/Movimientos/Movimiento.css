@@ -280,3 +280,56 @@ page-item.active .page-link {
     padding: 6px 12px;
   }
 }
+
+/* Estilo para el modal de eliminacion*/
+.modal-content {
+  border: 1px solid #dee2e6;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  font-family: "Arial", sans-serif;
+}
+
+.modal-header.bg-primary {
+  background-color: #234469;
+  color: #fff;
+}
+
+.modal-header .close {
+  font-size: 1.4rem;
+  color: #fff;
+  opacity: 0.8;
+}
+.modal-header .close:hover {
+  opacity: 1;
+}
+
+.modal-body p.lead {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+.modal-body p.text-muted {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.btn-cancelar {
+  color: #6c757d;
+  background-color: #f8f9fa;
+  border: 1px solid #6c757d;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.btn-cancelar:hover {
+  background-color: #e2e6ea;
+  border-color: #5a6268;
+}
+
+.btn-danger {
+  font-weight: 600;
+  background-color: #dc3545;
+  border: none;
+  transition: all 0.3s ease;
+}
+.btn-danger:hover {
+  background-color: #c82333;
+}

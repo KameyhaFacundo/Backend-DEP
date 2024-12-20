@@ -177,12 +177,10 @@ $current_page = $pagination['current_page'];
                                     data-motivo="<?= $movimiento['Motivo'] ?>">
                                     <i class="fas fa-pencil-alt"></i>
                                     </a>
-                                    <form method="POST" action="../../../Backend/eliminarMovimiento.php" style="display:inline;">
-                                        <input type="hidden" name="id" value="<?= $movimiento['IdMovimiento'] ?>">
-                                        <button type="submit" class="style-button btn btn-sm eliminar-style-button" onclick="return confirm('¿Estás seguro de que deseas eliminar este movimiento?');">
-                                            <i class="fas trasp fa-trash"></i>
-                                        </button>
-                                    </form>
+                                    <a href="#" class="btn btn-sm eliminar-style-button" data-toggle="modal" data-target="#deleteModal" 
+                                        data-id="<?= $movimiento['IdMovimiento'] ?>">
+                                        <i class="fas trasp fa-trash"></i>
+                                    </a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -195,6 +193,7 @@ $current_page = $pagination['current_page'];
             </table>
         </div>
 
+        <!-- Paginado -->
         <?php if (is_array($movimientos) && count($movimientos) > 0): ?>
             <nav aria-label="Page navigation">
                 <ul class="pagination justify-content-center">
@@ -300,11 +299,52 @@ $current_page = $pagination['current_page'];
                 </div>
             </div>
         </div>
+
+           <!-- Modal para confirmar eliminación -->
+        <div id="deleteModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="deleteModalLabel">Confirmar Eliminación</h5>
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <p class="lead">¿Estás seguro de que deseas eliminar este movimiento?</p>
+                        <p class="text-muted">Esta acción no se puede deshacer.</p>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <form id="deleteForm" method="POST" action="../../../Backend/eliminarMovimiento.php">
+                            <input type="hidden" name="id" id="deleteId">
+                            <button type="button" class="btn btn-outline-secondary btn-cancelar" data-dismiss="modal">
+                                Cancelar
+                            </button>
+                            <button type="submit" class="btn btn-danger">
+                                Eliminar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Script para manejar el modal -->
+    <script>
+        // Configura el modal de eliminación con los datos del movimiento
+        $('#deleteModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Botón que activó el modal
+            var id = button.data('id'); // Obtiene el ID del movimiento
+
+            var modal = $(this);
+            modal.find('#deleteId').val(id); // Asigna el ID al campo oculto en el formulario
+        });
+    </script>
 
     <!-- Modificar o agregar movimientos -->
     <script>
