@@ -12,4 +12,8 @@
     <link rel="stylesheet" href="<?php echo $ruta2?>.css">
 </head>
 <body class="container-fluid">
+    <?php 
+        include 'cabecera.php';
+        echo cabecera();
     
+    ?>
