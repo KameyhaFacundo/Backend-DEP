@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="<?php echo $ruta1 ?>/css/bootstrap.min.css">
     <!-- Enlace dinamico al css propio -->
     <link rel="stylesheet" href="<?php echo $ruta2?>.css">
+    <!-- Enlace al css del footer  -->
+    <link rel="stylesheet" href="<?php echo $rutaFooter?>footer.css">
 </head>
 <body class="container-fluid">
     <?php 

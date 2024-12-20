@@ -1,6 +1,7 @@
 <?php
     $ruta1 = 'src/styles';
     $ruta2= 'src/index';
+    $rutaFooter="src/components/common/";
     require("src/components/common/header.php");
 
 ?>
@@ -57,6 +58,5 @@
             </div>
         </div>
     </main>
-<?php
-    // require("php/footer.php");
-?>
+</body>
+</html>
