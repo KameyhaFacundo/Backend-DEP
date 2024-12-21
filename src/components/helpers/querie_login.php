@@ -40,7 +40,7 @@ if($_SERVER['REQUEST_METHOD']==='POST')
             'id' => $result['idusuario'],
             'username'=>$result['usuario']
         ];
-        header('Location: ../../home.php');
+        header('Location: ../Views/Stock/Stock.php'); //Esto lo podemos modificar para que se vean los movimientos
         exit;
     }else
     {
