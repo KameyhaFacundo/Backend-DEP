@@ -1,4 +1,5 @@
 <?php
+    require_once 'config.php';
     $ruta1 = 'src/styles';
     $ruta2= 'src/index';
     $rutaFooter="src/components/common/";
