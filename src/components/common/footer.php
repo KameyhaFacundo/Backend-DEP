@@ -1,4 +1,5 @@
 <?php
+  // defino las url para el css del footer y el
   $rutaFooter= $rutaFooter;
   $rutaImgs = $rutaFooter.'../../assets/sitiosImg/';
 ?>
@@ -130,6 +131,7 @@
         </section>
     </Section>
     </footer>
+    <script src="../../../styles/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
