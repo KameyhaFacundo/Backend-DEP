@@ -16,8 +16,15 @@
     <!-- {/* Tabla de productos */} -->
     <section class="productos-container">
       <section class="productos-header">
-        <h2>Productos Registrados</h2>
-      </section>
+        <h2>Stock</h2>
+        
+        <!-- Modal para agregar un articulo nuevo -->
+        <?php
+          require "agregarArticulo.php";
+
+        ?>
+
+    </section>
 
       <table class=" table table-striped table-hover table-bordered">
         <thead>
@@ -31,7 +38,7 @@
         </thead>
         <tbody >
         <?php 
-          foreach ($productos as $producto) 
+          foreach ($productos as $producto)
           {
             echo'<tr>
               <td>'.$producto["IdConcepto"].'</td>
@@ -39,10 +46,9 @@
               <td>'.$producto["Rubro"].'</td>
               <td>'.$producto["ExistenciasTotales"].'</td>
               <td>'.calcularDisponible($producto,$movimientos).'</td>
-
             </tr>';
           }                  
-          // ?>
+          ?>
         </tbody>
       </table>
   </section>  
