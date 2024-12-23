@@ -7,6 +7,10 @@
     include 'funcionesMov.php';
     require (MENU_URL);
 
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    
     $movimientos = getMovimientos();
     $acciones = getAcciones();
     $articulos = getArticulos();
@@ -42,6 +46,8 @@
     $movimientos = $pagination['movimientos'];
     $total_pages = $pagination['total_pages'];
     $current_page = $pagination['current_page'];
+
+    $usuarioPermitido = isset($_SESSION['user']) && ($_SESSION['user']['username'] == 'admin' || $_SESSION['user']['username'] == 'usuario');
 ?>
 
 <!DOCTYPE html>
@@ -60,9 +66,11 @@
     <div class="movimientos-container">
         <div class="movimientos-header">
             <h2>Movimientos Registrados</h2>
+        <?php if ($usuarioPermitido): ?>
             <button type="button" class="general-button" data-toggle="modal" data-target="#movementModal" data-action="add">
                 Agregar Movimiento
             </button>
+        <?php endif; ?>
         </div>
 
         <div class="filter-container mb-3">
@@ -125,7 +133,7 @@
             </div>
         </div>
 
-        <div class="table-responsive">
+        <!-- <div class="table-responsive">
             <table class="movimientos-table">
                 <thead>
                     <?php if (is_array($movimientos) && count($movimientos) > 0): ?>
@@ -133,13 +141,13 @@
                             <th>Código</th>
                             <th class="px-5">Fecha</th> 
                             <th class="px-5">Artículo</th> 
-                            <th>Centro</th>
+                            <th class="px-5">Centro</th>
                             <th>Acción</th>
                             <th>Cantidad</th>
                             <th>Unidad</th>
-                            <th>Descripción Unidad</th>
+                            <th class="px-4">Descripción Unidad</th>
                             <th>Motivo</th>
-                            <th></th>
+                            <th class="px-5"></th>
                         </tr>
                     <?php else: ?>
                         <tr>
@@ -170,6 +178,7 @@
                                 <td><?= $movimiento['DescripUnidad'] ?></td>
                                 <td><?= $movimiento['Motivo'] ?></td>
                                 <td>
+                                <?php if ($usuarioPermitido): ?>
                                     <a href="#" class="btn trasp btn-sm" data-toggle="modal" data-target="#movementModal"
                                     data-action="edit"
                                     data-id="<?= $movimiento['IdMovimiento'] ?>"
@@ -187,6 +196,7 @@
                                         data-id="<?= $movimiento['IdMovimiento'] ?>">
                                         <i class="fas trasp fa-trash"></i>
                                     </a>
+                                    <?php endif; ?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -197,6 +207,68 @@
                     <?php endif; ?>
                 </tbody>
             </table>
+        </div> -->
+        <div class="table-responsive">
+            <div class="container">
+                <table class="table table-striped table-bordered movimientos-table">
+                    <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th class="px-5">Fecha</th> 
+                                <th class="px-5">Artículo</th> 
+                                <th class="px-4">Centro</th>
+                                <th class="px-3">Acción</th>
+                                <th class="pc-3">Cantidad</th>
+                                <th class="px-2">Unidad</th>
+                                <th class="px-5">DescripUnidad</th>
+                                <th class="px-">Motivo</th>
+                                <th class="px-5"></th>
+                            </tr>
+                    </thead>
+                    <tbody>
+                        <?php if (is_array($movimientos) && count($movimientos) > 0): ?>
+                            <?php foreach ($movimientos as $movimiento): ?>
+                                <tr>
+                                    <td><?= $movimiento['IdConcepto'] ?></td>
+                                    <td class="px-0"><?= $movimiento['FechaMov'] ?></td>
+                                    <td><?= $movimiento['Articulo'] ?></td>
+                                    <td><?= $movimiento['Centro'] ?></td>
+                                    <td><?= $movimiento['Accion'] ?></td>
+                                    <td><?= $movimiento['Cantidad'] ?></td>
+                                    <td><?= $movimiento['Unidad'] ?></td>
+                                    <td><?= $movimiento['DescripUnidad'] ?></td>
+                                    <td><?= $movimiento['Motivo'] ?></td>
+                                    <td>
+                                        <?php if ($usuarioPermitido): ?>
+                                            <a href="#" class="btn trasp btn-sm" data-toggle="modal" data-target="#movementModal"
+                                            data-action="edit"
+                                            data-id="<?= $movimiento['IdMovimiento'] ?>"
+                                            data-fecha="<?= $movimiento['FechaMov'] ?>"
+                                            data-accion="<?= $movimiento['Accion'] ?>"
+                                            data-articulo="<?= $movimiento['Articulo'] ?>"
+                                            data-centro="<?= $movimiento['Centro'] ?>"
+                                            data-cantidad="<?= $movimiento['Cantidad'] ?>"
+                                            data-unidad="<?= $movimiento['Unidad'] ?>"
+                                            data-descripunidad="<?= $movimiento['DescripUnidad'] ?>"
+                                            data-motivo="<?= $movimiento['Motivo'] ?>">
+                                                <i class="fas fa-pencil-alt"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-sm eliminar-style-button" data-toggle="modal" data-target="#deleteModal" 
+                                            data-id="<?= $movimiento['IdMovimiento'] ?>">
+                                                <i class="fas trasp fa-trash"></i>
+                                            </a>
+                                        <?php endif; ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="10" class="py-5 text-center">No hay movimientos registrados.</td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <!-- Paginado -->

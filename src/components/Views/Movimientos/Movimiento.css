@@ -50,14 +50,12 @@ body {
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: block;
-  overflow-x: auto;
 }
 
 .movimientos-table th,
 .movimientos-table td {
   text-align: center;
-  padding: 3px 16px;
+  padding: 8px 16px;  /* Ajuste del padding para una visualización más consistente */
   border: 1px solid #ddd;
 }
 
@@ -74,6 +72,11 @@ body {
   background-color: #f2f2f2;
 }
 
+.table-responsive {
+  overflow-x: auto;  
+  -webkit-overflow-scrolling: touch;
+}
+
 /* Estilo del formulario */
 .form-row {
   margin-bottom: 20px;
@@ -85,20 +88,6 @@ body {
   border-radius: 5px;
   width: 100%;
   box-sizing: border-box;
-}
-
-/* Contenedor de resultados */
-#articulos-results {
-  position: absolute;
-  z-index: 10;
-  background-color: white;
-  width: calc(100% - 10px); /* Alinear con el ancho del input */
-  max-height: 200px;
-  overflow-y: auto;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  margin-top: 5px;
-  padding: 0;
-  border-radius: 5px;
 }
 
 /* Estilo de los elementos de la lista */
@@ -121,58 +110,15 @@ body {
   margin-top: 5px;
 }
 
-/* Estilos del formulario modal */
-.modal-form {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.6rem;
-}
-
-@media (min-width: 768px) {
-  .modal-form {
-    grid-template-columns: 1fr 1fr;
+/* Adaptación para dispositivos móviles */
+@media (max-width: 576px) {
+  .pagination {
+    font-size: 14px;
   }
-}
 
-.modal-form label {
-  display: block;
-  font-weight: bold;
-}
-
-.modal-form input,
-.modal-form select,
-.modal-form textarea {
-  width: 100%;
-  padding: 0.4rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 0.85rem;
-}
-
-.modal-footer {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 0.8rem;
-}
-
-button {
-  padding: 0.6rem 1rem;
-}
-
-.style-button {
-  background-color: #234469;
-  border: none;
-}
-
-button[type="button"] {
-  background-color: #6c757d;
-  color: white;
-  border: none;
-}
-
-.modal-dialog {
-  max-width: 550px;
-  margin: auto;
+  .pagination .page-link {
+    padding: 6px 12px;
+  }
 }
 
 /* Estilos para el contenedor de filtros */
@@ -204,132 +150,4 @@ button[type="button"] {
 
 .eliminar-style-button {
   background-color: transparent;
-}
-
-/* Paginación */
-
-page-item.active .page-link {
-  z-index: 1;
-  color: black;
-  background-color: #6c757d;
-  border-color: #6c757d;
-}
-.pagination {
-  margin: 20px 0;
-  font-size: 16px;
-}
-
-.pagination .page-item {
-  margin: 0 5px;
-}
-
-.pagination .page-link {
-  padding: 8px 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  color: black;
-  background-color: #fff;
-  text-decoration: none;
-}
-
-.pagination .page-link:hover {
-  color: #fff;
-  background-color: #6c757d;
-  border-color: #6c757d;
-}
-
-.pagination .page-item.active .page-link {
-  color: #fff;
-  background-color: #6c757d;
-  border-color: #6c757d;
-}
-
-.pagination .page-item.disabled .page-link {
-  color: black;
-  background-color: #fff;
-  border-color: #ddd;
-  pointer-events: none;
-}
-
-.pagination .page-item a {
-  color: black;
-  text-decoration: none;
-}
-
-.pagination .page-item a:hover {
-  color: #989494;
-}
-
-.pagination .page-item:first-child .page-link {
-  border-top-left-radius: 50%;
-  border-bottom-left-radius: 50%;
-}
-
-.pagination .page-item:last-child .page-link {
-  border-top-right-radius: 50%;
-  border-bottom-right-radius: 50%;
-}
-
-/* Adaptación para dispositivos móviles */
-@media (max-width: 576px) {
-  .pagination {
-    font-size: 14px;
-  }
-
-  .pagination .page-link {
-    padding: 6px 12px;
-  }
-}
-
-/* Estilo para el modal de eliminacion*/
-.modal-content {
-  border: 1px solid #dee2e6;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  font-family: "Arial", sans-serif;
-}
-
-.modal-header.bg-primary {
-  background-color: #234469;
-  color: #fff;
-}
-
-.modal-header .close {
-  font-size: 1.4rem;
-  color: #fff;
-  opacity: 0.8;
-}
-.modal-header .close:hover {
-  opacity: 1;
-}
-
-.modal-body p.lead {
-  font-size: 1.2rem;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-}
-.modal-body p.text-muted {
-  font-size: 0.9rem;
-  color: #6c757d;
-}
-
-.btn-cancelar {
-  color: #6c757d;
-  background-color: #f8f9fa;
-  border: 1px solid #6c757d;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-.btn-cancelar:hover {
-  background-color: #e2e6ea;
-  border-color: #5a6268;
-}
-
-.btn-danger {
-  font-weight: 600;
-  background-color: #dc3545;
-  border: none;
-  transition: all 0.3s ease;
-}
-.btn-danger:hover {
-  background-color: #c82333;
 }
