@@ -8,6 +8,7 @@
       require ("../../../Backend/obtenerStock.php");
       require ("funcionesStock.php");
       require(MENU_URL);
+
 ?>
   <main class='mainSection'>
     
