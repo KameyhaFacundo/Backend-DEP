@@ -16,8 +16,8 @@ try {
     $query2 = 'SELECT "IdConcepto",SUM("Cantidad") as "ExistenciasTotales" 
     FROM "Movimientos"
     JOIN "Acciones"  USING ("IdAccion")
-    GROUP BY "IdConcepto"
-    ORDER BY "IdConcepto"';
+    WHERE "Accion" = \'Entrada\'
+    GROUP BY "IdConcepto"';
     
     $stmt2 = $pdo->query($query2);
     $existencias = $stmt2->fetchAll(PDO::FETCH_ASSOC);

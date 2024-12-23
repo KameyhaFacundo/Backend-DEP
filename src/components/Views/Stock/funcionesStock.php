@@ -6,7 +6,7 @@
                 if ($movimiento["IdConcepto"] == $articulo["IdConcepto"] ) 
                 {
                     if ($movimiento["Accion"] == "Salida") {
-                        $disponibles -= $movimiento["Cantidad"]*2 ; 
+                        $disponibles -= $movimiento["Cantidad"] ; 
                         if ($disponibles<0) {
                             $disponibles=0;
                         }
