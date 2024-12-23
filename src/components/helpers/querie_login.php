@@ -32,7 +32,15 @@ if($_SERVER['REQUEST_METHOD']==='POST')
     //Decodifica la respuesta del backend
     $result=json_decode($response,true);
 
-    echo "<script>console.log('".$result."')</script>";
+    if(curl_errno($solicitud))
+    {
+        //Error en la solicitud
+        $errorMessage = curl_error($solicitud);
+        header('Location: ../../../index.php?error='.urlencode($errorMessage));
+        exit;
+    }
+
+    curl_close($solicitud);
 
     if($httpCode===200 && isset($result['success']) && $result['success']===true)
     {
