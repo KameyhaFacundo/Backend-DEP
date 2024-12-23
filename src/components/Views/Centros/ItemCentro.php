@@ -1,13 +1,20 @@
 <?php
+    require 'ModalMovimientoCentro.php';
 
     function ItemCertro($centro){
-        $html = "<tr>";
-        $html .= "<td class='p-3'>".$centro['IdCentro']."</td>";
-        $html .= "<td class='p-3'>".$centro['Centro']."</td>";
-        $html .= "<td class='p-3'>";
-        $html .= "<a href='Movimientos.php?id=".$centro['IdCentro']."' class='btn btn-danger'>Movimientos</a>";
-        $html .= "</td>";
-        $html .= "</tr>";
-        return $html;
+        ob_start();
+        ?>
+        <tr>
+            <td><?php echo $centro['IdCentro']; ?></td>
+            <td><?php echo $centro['Centro']; ?></td>
+            <td>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalMovimientosCentro<?php echo $centro['IdCentro']; ?>">
+                    Movimientos
+                </button>
+                <?php MostrarModalMovimientosCentro($centro['IdCentro']); ?>
+            </td>
+        </tr>
+        <?php
+        return ob_get_clean();
     }
 ?>
