@@ -36,7 +36,7 @@
                     </section>
 
                     <section>
-                        <input id="btnAgregar" class="btn btn-primary" value="Agregar">
+                        <input type="submit" id="btnAgregar" class="btn btn-primary" value="Agregar">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                     </section>
             </form>
