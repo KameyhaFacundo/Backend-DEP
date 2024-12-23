@@ -3,10 +3,10 @@
 try {
     include 'conexion.php';
 
-    if (!empty($_POST['nombre']) && !empty($_POST['rubro']) && !empty($_POST['cantidad'])) {
+    if (!empty($_POST['nombre']) && !empty($_POST['rubro'])) {
         $nombre = trim($_POST['nombre']);
         $rubro = $_POST['rubro'];
-        $cantidad = (int)$_POST['cantidad'];
+        // $cantidad = (int)$_POST['cantidad'];
 
         // ----------------QUERY PARA OBTENER IDARTICULO E IDRUBRO ---------
         $queryIdArt = 'SELECT "IdArticulo", "IdRubro"
@@ -43,7 +43,7 @@ try {
         // $productos = $stmtInsert->fetchAll(PDO::FETCH_ASSOC); 
         
         if ($stmtInsert->execute()) {
-            header('Location: '.BASE_URL.'components/Views/Stock/Stock.php');
+            header('Location: ../components/Views/Stock/Stock.php');
             exit();
             // echo '<p>Insercion exitosa</p>';
         } else {

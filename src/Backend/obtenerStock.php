@@ -31,7 +31,7 @@ try {
     // ----------------QUERY OBTENER RUBROS  ---------
     $query4 = 'SELECT "Rubro"
     FROM "Rubros"';
-    $stmt4 = $pdo->query($query3);
+    $stmt4 = $pdo->query($query4);
     $rubros = $stmt4->fetchAll(PDO::FETCH_ASSOC);
 
 } catch (PDOException $e) {

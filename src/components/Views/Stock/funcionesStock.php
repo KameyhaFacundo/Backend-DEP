@@ -9,8 +9,8 @@
                    if ($disponibles<0) {
                       $disponibles=0;
                    }
+                   return $disponibles;
                 } 
-                return $disponibles;
         }
     }
 
