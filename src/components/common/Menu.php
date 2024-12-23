@@ -1,8 +1,4 @@
-
-
 <?php
-// Inicia la sesión para verificar el estado del usuario
-session_start();
 
 // Lógica para cerrar sesión
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
