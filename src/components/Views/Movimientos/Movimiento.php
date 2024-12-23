@@ -212,33 +212,18 @@
             <div class="container">
                 <table class="table table-striped table-bordered movimientos-table">
                     <thead>
-                        <?php if (is_array($movimientos) && count($movimientos) > 0): ?>
                             <tr>
                                 <th>Código</th>
                                 <th class="px-5">Fecha</th> 
                                 <th class="px-5">Artículo</th> 
-                                <th class="px-5">Centro</th>
-                                <th>Acción</th>
-                                <th>Cantidad</th>
-                                <th>Unidad</th>
-                                <th class="px-4">Descripción Unidad</th>
-                                <th>Motivo</th>
-                                <th class="px-5"></th>
-                            </tr>
-                        <?php else: ?>
-                            <tr>
-                                <th>Código</th>
-                                <th>Fecha</th>
-                                <th class="px-4">Artículo</th> 
                                 <th class="px-4">Centro</th>
-                                <th class="px-4">Acción</th>
-                                <th class="px-5">Cantidad</th>
-                                <th class="px-5">Unidad</th>
-                                <th class="px-5">Descripción Unidad</th>
-                                <th class="px-5">Motivo</th>
+                                <th class="px-3">Acción</th>
+                                <th class="pc-3">Cantidad</th>
+                                <th class="px-2">Unidad</th>
+                                <th class="px-5">DescripUnidad</th>
+                                <th class="px-">Motivo</th>
                                 <th class="px-5"></th>
                             </tr>
-                        <?php endif; ?>
                     </thead>
                     <tbody>
                         <?php if (is_array($movimientos) && count($movimientos) > 0): ?>
