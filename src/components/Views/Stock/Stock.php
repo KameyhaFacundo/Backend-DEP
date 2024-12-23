@@ -8,7 +8,8 @@
       require ("../../../Backend/obtenerStock.php");
       require ("funcionesStock.php");
       require(MENU_URL);
-
+      $usuarioPermitido = ($_SESSION['user']['rol'] == 'administrador' || $_SESSION['user']['rol'] == 'usuario');
+      // var_dump($_SESSION);
 ?>
   <main class='mainSection'>
     
@@ -18,12 +19,13 @@
         <h2>Stock</h2>
         
         <!-- Boton para activar el modal para agregar articulo -->
-
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregar">
-    Agregar Artículo
-    </button>
-        <!-- Modal para agregar un articulo nuevo -->
-
+    <?php
+    if ($usuarioPermitido) {
+      echo '<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregar">
+      Agregar Artículo
+      </button>';
+    }
+    ?>
 
     </section>
 
@@ -55,7 +57,7 @@
         </tbody>
       </table>
   </section>  
-  <!-- Incluyo modulo para el modal -->
+  <!-- Incluyo modulo para el modal para agregar un articulo nuevo -->
   <?php
     require "agregarArticulo.php";
   ?>

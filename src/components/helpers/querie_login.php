@@ -46,7 +46,8 @@ if($_SERVER['REQUEST_METHOD']==='POST')
     {
         $_SESSION['user']=[
             'id' => $result['idusuario'],
-            'username'=>$result['usuario']
+            'username'=>$result['usuario'],
+            'rol'=>$result['rol']
         ];
         header('Location: ../Views/Movimientos/Movimiento.php'); //Esto lo podemos modificar para que se vean los movimientos
         exit;

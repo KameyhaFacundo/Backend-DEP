@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $error = '';
     try {
         // Consulta preparada para buscar el usuario
-        $query = $pdo->prepare('SELECT * FROM "Usuarios" u WHERE "Usuario" = :username');
+        $query = $pdo->prepare('SELECT * FROM "Usuarios" u INNER JOIN "Roles" Using ("IdRol") WHERE "Usuario" = :username');
         $query->bindParam(':username', $username, PDO::PARAM_STR);
         $query->execute();
 
@@ -30,7 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo json_encode([
                     'success' => true,
                     'usuario' => $user['Usuario'],
-                    'idusuario' => $user['IdUsuario']
+                    'idusuario' => $user['IdUsuario'],
+                    'rol' => $user['Rol'] //devuelve tambien rol  
                 ]);
             } else {
                 echo json_encode(['success' => false, 'message' => 'Contraseña incorrecta.']);
