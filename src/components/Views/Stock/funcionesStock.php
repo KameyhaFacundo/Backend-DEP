@@ -3,14 +3,19 @@
     {
         $disponibles=$existencias;
         foreach ($movimientos as $movimiento) {
-                if ($movimiento["IdConcepto"] == $articulo["IdConcepto"] && $movimiento["Accion"] == "Salida") 
+                if ($movimiento["IdConcepto"] == $articulo["IdConcepto"] ) 
                 {
-                   $disponibles -= $movimiento["Cantidad"]*2 ; 
-                   if ($disponibles<0) {
-                      $disponibles=0;
+                    if ($movimiento["Accion"] == "Salida") {
+                        $disponibles -= $movimiento["Cantidad"] ; 
+                        if ($disponibles<0) {
+                            $disponibles=0;
+                        }
+                        return $disponibles;
                    }
-                   return $disponibles;
                 } 
+                else {
+                    return 0;
+                }
         }
     }
 
