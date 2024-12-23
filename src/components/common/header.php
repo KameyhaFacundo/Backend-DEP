@@ -1,5 +1,8 @@
 <?php
    require_once dirname(__DIR__, 3) . '/config.php';
+   require dirname(__DIR__, 2).'/components/Routes/ProteccionRutas.php';
+   verificarUsuarioLogueado();
+   //var_dump($_SESSION);
 ?>
 <!DOCTYPE html>
 <html lang="es">

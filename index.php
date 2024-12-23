@@ -3,10 +3,27 @@
     $ruta1 = 'src/styles';
     $ruta2= 'src/index';
     $rutaFooter="src/components/common/";
-    require("src/components/common/header.php");
+    //require("src/components/common/header.php");
 
 ?>
-<main class="d-flex justify-content-center align-items-center">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="T">
+    <meta name="author" content="">
+    <title>DEP</title>
+    <!-- Enlace dinamico al bootstrap -->
+    <link rel="stylesheet" href="<?php echo $ruta1 ?>/css/bootstrap.min.css">
+    <!-- Enlace dinamico al css propio -->
+    <link rel="stylesheet" href="<?php echo $ruta2?>.css">
+    <!-- Enlace al css del footer  -->
+    <link rel="stylesheet" href="<?php echo $rutaFooter?>footer.css">
+</head>
+<body class="container-fluid">
+
+<main class="d-flex justify-content-center align-items-center mt-5 pt-5">
 <div class="container text-center mb-5">
             <div class="title m-4">
                 <h2><strong>DEP-Stock Management - Dirección Estadística de Tucumán</strong></h2>
