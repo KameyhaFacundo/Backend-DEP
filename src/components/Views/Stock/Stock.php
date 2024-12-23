@@ -24,11 +24,7 @@
     Agregar Artículo
     </button>
         <!-- Modal para agregar un articulo nuevo -->
-        <?php
 
-          require "agregarArticulo.php";
-
-        ?>
 
     </section>
 
@@ -58,6 +54,10 @@
         </tbody>
       </table>
   </section>  
+  <!-- Incluyo modulo para el modal -->
+  <?php
+    require "agregarArticulo.php";
+  ?>
 </main>
 
 

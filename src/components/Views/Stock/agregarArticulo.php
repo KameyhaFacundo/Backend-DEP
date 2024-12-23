@@ -1,5 +1,5 @@
 <?php
-require ("../../../Backend/insertarArticulo.php");
+// require ("../../../Backend/insertarArticulo.php");
 ?>
 
 <!-- Boton para activar el modal para agregar articulo -->
@@ -13,7 +13,7 @@ require ("../../../Backend/insertarArticulo.php");
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </header>
         <section class="modal-body">
-            <form class="row border rounded " id="stockForm" method="POST">
+            <form action="<?php echo BASE_URL."Backend/insertarArticulo.php"?>" class="row border rounded " id="stockForm" method="GET">
                 <!-- <fieldset> -->
                     <section class="row mb-3">
                         <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
@@ -44,7 +44,7 @@ require ("../../../Backend/insertarArticulo.php");
                     </section>
 
                     <section>
-                        <button type="submit" class="btn btn-primary">Agregar</button>
+                        <input type="submit" class="btn btn-primary" value="Agregar">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                     </section>
             </form>
@@ -52,3 +52,4 @@ require ("../../../Backend/insertarArticulo.php");
     </article>
     </section>
 </section>
+

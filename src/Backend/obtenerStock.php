@@ -21,7 +21,12 @@ try {
     $stmt2 = $pdo->query($query2);
     $movimientos = $stmt2->fetchAll(PDO::FETCH_ASSOC);
     
-    
+    // ----------------QUERY OBTENER RUBROS  ---------
+    $query3 = 'SELECT "Rubro"
+    FROM "Rubros"';
+    $stmt3 = $pdo->query($query3);
+    $rubros = $stmt3->fetchAll(PDO::FETCH_ASSOC);
+
 } catch (PDOException $e) {
         'Error al obtener productos: ' . $e->getMessage();
 }
