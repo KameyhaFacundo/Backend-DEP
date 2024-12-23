@@ -18,8 +18,14 @@
       <section class="productos-header">
         <h2>Stock</h2>
         
+        <!-- Boton para activar el modal para agregar articulo -->
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregar">
+    Agregar Artículo
+    </button>
         <!-- Modal para agregar un articulo nuevo -->
         <?php
+
           require "agregarArticulo.php";
 
         ?>
