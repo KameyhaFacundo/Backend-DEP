@@ -9,7 +9,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
 }
 ?>
 
-<header>
   <nav class="navbar navbar-expand-lg navbar-light bg-light mt-2">
     <section class="container-fluid">
       <section class="collapse navbar-collapse" id="navbarNavDarkDropdown">
@@ -35,5 +34,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
       </section>
     </section>
   </nav>
-</header>
-

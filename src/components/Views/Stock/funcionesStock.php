@@ -30,4 +30,11 @@
         }
         return $existenciasTotales;
     }
+
+
+    function filtrarArticulos($articulos){
+        $articulosFiltrados = array_filter($articulos, function($movimiento) use ($articulo) {
+            return $movimiento['Articulo'] === $articulo;
+          });
+    }
 ?>
