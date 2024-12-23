@@ -21,32 +21,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 try {
     include 'conexion.php';
 
-    // Verifica que se haya enviado una solicitud POST
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Obtiene los datos del cuerpo de la solicitud
-        $data = json_decode(file_get_contents("php://input"), true);
-        $idMovimiento = $data['IdMovimiento'];
+    // Verifica que se haya recibido un ID válido
+    $idMovimiento = isset($_POST['id']) ? (int) $_POST['id'] : 0;
 
-        if (isset($idMovimiento) && !empty($idMovimiento)) {
-            // Consulta para eliminar el movimiento
-            $query = "DELETE FROM public.\"Movimientos\"  WHERE \"IdMovimiento\" = :idMovimiento";
+    if ($idMovimiento > 0) {
 
-            // Prepara la consulta
-            $stmt = $pdo->prepare($query);
+        $query = "DELETE FROM public.\"Movimientos\" WHERE \"IdMovimiento\" = :idMovimiento";
+        
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(':idMovimiento', $idMovimiento, PDO::PARAM_INT);
 
-            // Enlaza el parámetro y ejecuta la consulta
-            $stmt->bindParam(':idMovimiento', $idMovimiento, PDO::PARAM_INT);
-            if ($stmt->execute()) {
-                echo json_encode(['message' => 'Movimiento eliminado correctamente.']);
+        if ($stmt->execute()) {
+                header('Location: ../components/Views/Movimientos/Movimiento.php');
+                exit();
             } else {
-                echo json_encode(['message' => 'Error al eliminar el movimiento.']);
+                echo "Error al guardar el movimiento.";
             }
-        } else {
-            // Si no se ha proporcionado el idMovimiento
-            echo json_encode(['message' => 'ID de movimiento no proporcionado.']);
-        }
+    
     } else {
-        echo json_encode(['message' => 'Método no permitido.']);
+        echo json_encode(['message' => 'ID de movimiento no válido.']);
     }
 } catch (PDOException $e) {
     echo json_encode(['message' => 'Error: ' . $e->getMessage()]);
