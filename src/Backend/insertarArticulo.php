@@ -40,7 +40,6 @@ try {
         $stmtInsert->bindParam(':idRubro', $idRub, PDO::PARAM_INT);
         $stmtInsert->bindParam(':idConcepto', $idConcepto, PDO::PARAM_STR);
         $stmtInsert->bindParam(':articulo', $nombre, PDO::PARAM_STR);
-        // $productos = $stmtInsert->fetchAll(PDO::FETCH_ASSOC); 
         
         if ($stmtInsert->execute()) {
             header('Location: ../components/Views/Stock/Stock.php');

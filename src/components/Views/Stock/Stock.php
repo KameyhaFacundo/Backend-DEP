@@ -41,15 +41,15 @@
         <tbody >
         <?php 
           $existenciasTotales=0;
-          foreach ($productos as $producto)
+          foreach ($articulos as $articulo)
           {
-            $existenciasTotales=obtenerExistencias($producto,$existencias);
+            $existenciasTotales=obtenerExistencias($articulo,$existencias);
             echo'<tr>
-              <td>'.$producto["IdConcepto"].'</td>
-              <td>'.$producto["Articulo"].'</td>
-              <td>'.$producto["Rubro"].'</td>
+              <td>'.$articulo["IdConcepto"].'</td>
+              <td>'.$articulo["Articulo"].'</td>
+              <td>'.$articulo["Rubro"].'</td>
               <td>'.$existenciasTotales.'</td> 
-              <td>'.calcularDisponible($producto,$movimientos,$existenciasTotales).'</td>
+              <td>'.calcularDisponible($articulo,$movimientos,$existenciasTotales).'</td>
             </tr>';
           }                  
           ?>

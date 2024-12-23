@@ -9,7 +9,7 @@ try {
     ORDER BY "IdConcepto" ';
     
     $stmt1 = $pdo->query($query1);
-    $productos = $stmt1->fetchAll(PDO::FETCH_ASSOC);
+    $articulos = $stmt1->fetchAll(PDO::FETCH_ASSOC);
     // ----------------QUERY Obtener stock ---------
     $query2 = 'SELECT "IdConcepto",SUM("Cantidad") as "ExistenciasTotales" 
     FROM "Movimientos" 
