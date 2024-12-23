@@ -47,7 +47,7 @@
     $total_pages = $pagination['total_pages'];
     $current_page = $pagination['current_page'];
 
-    $usuarioPermitido = isset($_SESSION['user']) && ($_SESSION['user']['username'] == 'admin' || $_SESSION['user']['username'] == 'usuario');
+    $usuarioPermitido = isset($_SESSION['user']) && ($_SESSION['user']['rol'] == 'administrador' || $_SESSION['user']['rol'] == 'usuario');
 ?>
 
 <!DOCTYPE html>
