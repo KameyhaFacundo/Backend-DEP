@@ -1,5 +1,4 @@
 <?php
-// require ("../../../Backend/insertarArticulo.php");
 ?>
 
 <!-- Boton para activar el modal para agregar articulo -->
@@ -13,7 +12,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </header>
         <section class="modal-body">
-            <form action="<?php echo BASE_URL."Backend/insertarArticulo.php"?>" class="row border rounded " id="stockForm" method="GET">
+            <form action="<?php echo BASE_URL."Backend/insertarArticulo.php"?>" class="row border rounded " id="stockForm" method="POST">
                 <!-- <fieldset> -->
                     <section class="row mb-3">
                         <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
@@ -33,13 +32,6 @@
                                 }                            
                                 ?> 
                             </select>
-                        </section>
-                    </section>
-
-                    <section class="row mb-3">
-                        <label for="cantidad" class="col-sm-2 col-form-label">Cantidad </label> 
-                        <section class="col-sm-10">
-                            <input type="number" name="cantidad" class="form-control mb-3" id="cant" min="1" value ="1">
                         </section>
                     </section>
 

@@ -40,14 +40,16 @@
         </thead>
         <tbody >
         <?php 
+          $existenciasTotales=0;
           foreach ($productos as $producto)
           {
+            $existenciasTotales=obtenerExistencias($producto,$existencias);
             echo'<tr>
               <td>'.$producto["IdConcepto"].'</td>
               <td>'.$producto["Articulo"].'</td>
               <td>'.$producto["Rubro"].'</td>
-              <td>'.$producto["ExistenciasTotales"].'</td>
-              <td>'.calcularDisponible($producto,$movimientos).'</td>
+              <td>'.$existenciasTotales.'</td> 
+              <td>'.calcularDisponible($producto,$movimientos,$existenciasTotales).'</td>
             </tr>';
           }                  
           ?>

@@ -1,9 +1,8 @@
 <?php 
-    function calcularDisponible($productos,$movimientos)
+    function calcularDisponible($productos,$movimientos,$existencias)
     {
-        $disponibles=$productos["ExistenciasTotales"];    
-
-            foreach ($movimientos as $movimiento) {
+        $disponibles=$existencias;
+        foreach ($movimientos as $movimiento) {
                 if ($movimiento["IdConcepto"] == $productos["IdConcepto"] && $movimiento["Accion"] == "Salida") 
                 {
                    $disponibles -= $movimiento["Cantidad"]*2 ; 
@@ -12,6 +11,21 @@
                    }
                 } 
                 return $disponibles;
-            }
+        }
+    }
+
+    function obtenerExistencias($producto,$existencias)
+    { 
+        $existenciasTotales=0;
+        foreach ($existencias as $existencia) {
+            if ($existencia["IdConcepto"] == $producto["IdConcepto"]) 
+            {
+                $existenciasTotales = $existencia["ExistenciasTotales"]; 
+                if ($existenciasTotales<0) {
+                    $existenciasTotales=0;
+                }
+            } 
+        }
+        return $existenciasTotales;
     }
 ?>

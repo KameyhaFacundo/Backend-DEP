@@ -3,10 +3,10 @@
 try {
     include 'conexion.php';
 
-    if (!empty($_GET['nombre']) && !empty($_GET['rubro']) && !empty($_GET['cantidad'])) {
-        $nombre = trim($_GET['nombre']);
-        $rubro = $_GET['rubro'];
-        $cantidad = (int)$_GET['cantidad'];
+    if (!empty($_POST['nombre']) && !empty($_POST['rubro']) && !empty($_POST['cantidad'])) {
+        $nombre = trim($_POST['nombre']);
+        $rubro = $_POST['rubro'];
+        $cantidad = (int)$_POST['cantidad'];
 
         // ----------------QUERY PARA OBTENER IDARTICULO E IDRUBRO ---------
         $queryIdArt = 'SELECT "IdArticulo", "IdRubro"
@@ -24,6 +24,7 @@ try {
         while ($fila = $stmtIdArt->fetch(PDO::FETCH_ASSOC)) {
             $idArt = $fila['IdArticulo'];
             $idRub = $fila['IdRubro'];
+            var_dump($fila);
         }
         //Creo el IdConcepto a partir del IdRubro e IdArticulo. Estas funciones me agregan los 0 necesarios a la izquierda de cada id para que coincidan con el patron definido. 
         $idConcepto = str_pad($idRub, 2, "0", STR_PAD_LEFT)."".str_pad($idArt, 3, "0", STR_PAD_LEFT);
@@ -35,7 +36,7 @@ try {
         //Vinculo los parametros para realizar la consulta.
 
         $stmtInsert = $pdo->prepare($queryInsert);
-        $stmtInsert->bindParam(':idArticulo', ($idArt+1), PDO::PARAM_INT);
+        $stmtInsert->bindParam(':idArticulo', $idArt, PDO::PARAM_INT);
         $stmtInsert->bindParam(':idRubro', $idRub, PDO::PARAM_INT);
         $stmtInsert->bindParam(':idConcepto', $idConcepto, PDO::PARAM_STR);
         $stmtInsert->bindParam(':articulo', $nombre, PDO::PARAM_STR);
@@ -43,10 +44,14 @@ try {
         
         if ($stmtInsert->execute()) {
             header('Location: '.BASE_URL.'components/Views/Stock/Stock.php');
+            exit();
             // echo '<p>Insercion exitosa</p>';
         } else {
             echo "Error al agregar el articulo.";
         }
+    }
+    else {
+        echo "Falta algún parámetro";
     }
     
 } catch (PDOException $e) {

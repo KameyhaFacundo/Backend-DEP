@@ -3,29 +3,36 @@
 try {
     include 'conexion.php';
 
-    // ----------------QUERY Obtener stock ---------
-    $query1 = 'SELECT "IdConcepto","Articulo", "Rubro", SUM("Cantidad") as "ExistenciasTotales" FROM "Articulos"
+    $query1 = 'SELECT "IdConcepto","Articulo", "Rubro" FROM "Articulos"
     INNER JOIN "Rubros" USING ("IdRubro") 
-    INNER JOIN "Movimientos" USING ("IdConcepto")
-    GROUP BY "IdConcepto","Articulo", "Rubro"
+    -- GROUP BY "IdConcepto","Articulo", "Rubro"
     ORDER BY "IdConcepto" ';
     
     $stmt1 = $pdo->query($query1);
     $productos = $stmt1->fetchAll(PDO::FETCH_ASSOC);
-
-
-    // ----------------QUERY OBTENER MOVIMENTOS  ---------
-    $query2 = 'SELECT m."IdConcepto", m."Cantidad" , ac."Accion"
-              FROM public."Movimientos" m
-              JOIN public."Acciones" ac ON m."IdAccion" = ac."IdAccion"';
+    // ----------------QUERY Obtener stock ---------
+    $query2 = 'SELECT "IdConcepto",SUM("Cantidad") as "ExistenciasTotales" 
+    FROM "Movimientos" 
+    GROUP BY "IdConcepto"
+    ORDER BY "IdConcepto" ';
+    
     $stmt2 = $pdo->query($query2);
-    $movimientos = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+    $existencias = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+    
+    
+    // ----------------QUERY OBTENER MOVIMENTOS  ---------
+    $query3 = 'SELECT m."IdConcepto", m."Cantidad" , ac."Accion"
+              FROM public."Movimientos" m
+              JOIN public."Acciones" ac ON m."IdAccion" = ac."IdAccion"
+              ORDER BY "IdConcepto"';
+    $stmt3 = $pdo->query($query3);
+    $movimientos = $stmt3->fetchAll(PDO::FETCH_ASSOC);
     
     // ----------------QUERY OBTENER RUBROS  ---------
-    $query3 = 'SELECT "Rubro"
+    $query4 = 'SELECT "Rubro"
     FROM "Rubros"';
-    $stmt3 = $pdo->query($query3);
-    $rubros = $stmt3->fetchAll(PDO::FETCH_ASSOC);
+    $stmt4 = $pdo->query($query3);
+    $rubros = $stmt4->fetchAll(PDO::FETCH_ASSOC);
 
 } catch (PDOException $e) {
         'Error al obtener productos: ' . $e->getMessage();
