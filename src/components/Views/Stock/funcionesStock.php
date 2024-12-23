@@ -10,13 +10,10 @@
                         if ($disponibles<0) {
                             $disponibles=0;
                         }
-                        return $disponibles;
-                   }
+                    }
                 } 
-                else {
-                    return 0;
-                }
         }
+        return $disponibles;
     }
 
     function obtenerExistencias($articulo,$existencias)
