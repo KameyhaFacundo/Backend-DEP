@@ -2,7 +2,7 @@
     define('BASE_URL', 'http://localhost/Backend-DEP/src/');
     
     //Enlaces relativos
-    define('MENU_URL', '../../common/Menu.php');
+    define('MENU_URL', '../../common/Menu.php');//URL relativo para el menú desde vistas
     $movURL = '../Movimientos/Movimiento.php';
     $oficinaURL = '../Oficina/Oficina.php';
     $stockURL = '../Stock/Stock.php';

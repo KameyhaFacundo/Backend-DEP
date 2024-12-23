@@ -22,11 +22,7 @@
     Agregar Artículo
     </button>
         <!-- Modal para agregar un articulo nuevo -->
-        <?php
 
-          require "agregarArticulo.php";
-
-        ?>
 
     </section>
 
@@ -42,20 +38,26 @@
         </thead>
         <tbody >
         <?php 
-          foreach ($productos as $producto)
+          $existenciasTotales=0;
+          foreach ($articulos as $articulo)
           {
+            $existenciasTotales=obtenerExistencias($articulo,$existencias);
             echo'<tr>
-              <td>'.$producto["IdConcepto"].'</td>
-              <td>'.$producto["Articulo"].'</td>
-              <td>'.$producto["Rubro"].'</td>
-              <td>'.$producto["ExistenciasTotales"].'</td>
-              <td>'.calcularDisponible($producto,$movimientos).'</td>
+              <td>'.$articulo["IdConcepto"].'</td>
+              <td>'.$articulo["Articulo"].'</td>
+              <td>'.$articulo["Rubro"].'</td>
+              <td>'.$existenciasTotales.'</td> 
+              <td>'.calcularDisponible($articulo,$movimientos,$existenciasTotales).'</td>
             </tr>';
           }                  
           ?>
         </tbody>
       </table>
   </section>  
+  <!-- Incluyo modulo para el modal -->
+  <?php
+    require "agregarArticulo.php";
+  ?>
 </main>
 
 
