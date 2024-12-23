@@ -4,10 +4,6 @@ require ("../../../Backend/insertarArticulo.php");
 
 <!-- Boton para activar el modal para agregar articulo -->
 
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregar">
-Agregar Artículo
-</button>
-
 <!-- Se despliega el formulario para agregar el Artículo -->
 <section class="modal fade" id="modalAgregar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <section class="modal-dialog">

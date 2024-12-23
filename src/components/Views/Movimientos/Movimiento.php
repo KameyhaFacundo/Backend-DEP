@@ -5,6 +5,7 @@
     $rutaFooter="../../common/";
     require("../../common/header.php");
     include 'funcionesMov.php';
+    require (MENU_URL);
 
     $movimientos = getMovimientos();
     $acciones = getAcciones();
@@ -55,6 +56,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
+    
     <div class="movimientos-container">
         <div class="movimientos-header">
             <h2>Movimientos Registrados</h2>
