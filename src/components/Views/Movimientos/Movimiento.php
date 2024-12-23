@@ -1,42 +1,46 @@
 <?php
-include 'funcionesMov.php';
+    require_once '../../../../config.php';
+    $ruta1 = BASE_URL.'styles';
+    $ruta2= 'Stock';
+    $rutaFooter="../../common/";
+    require("../../common/header.php");
+    include 'funcionesMov.php';
 
-$movimientos = getMovimientos();
-$acciones = getAcciones();
-$articulos = getArticulos();
-$centros = getCentros();
+    $movimientos = getMovimientos();
+    $acciones = getAcciones();
+    $articulos = getArticulos();
+    $centros = getCentros();
 
-$fechaMov = isset($_GET['fechaMov']) ? $_GET['fechaMov'] : null;
-if ($fechaMov) {
-    $movimientos = filtrarPorFecha($fechaMov);
-}
+    $fechaMov = isset($_GET['fechaMov']) ? $_GET['fechaMov'] : null;
+    if ($fechaMov) {
+        $movimientos = filtrarPorFecha($fechaMov);
+    }
 
-$accion = isset($_GET['accion']) ? $_GET['accion'] : null;
-if ($accion) {
-    $movimientos = filtrarPorAccion($accion);
-}
+    $accion = isset($_GET['accion']) ? $_GET['accion'] : null;
+    if ($accion) {
+        $movimientos = filtrarPorAccion($accion);
+    }
 
-$articulo = isset($_GET['articulo']) ? $_GET['articulo'] : null;
-if ($articulo) {
-    $movimientos = filtrarPorArticulo($articulo);
-}
+    $articulo = isset($_GET['articulo']) ? $_GET['articulo'] : null;
+    if ($articulo) {
+        $movimientos = filtrarPorArticulo($articulo);
+    }
 
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$items_per_page = 10;
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $items_per_page = 10;
 
-$pagination = getPaginatedMovimientos(
-    $page, 
-    $items_per_page, 
-    $movimientos, 
-    $fechaMov, 
-    $accion,
-    $articulo 
-);
+    $pagination = getPaginatedMovimientos(
+        $page, 
+        $items_per_page, 
+        $movimientos, 
+        $fechaMov, 
+        $accion,
+        $articulo 
+    );
 
-$movimientos = $pagination['movimientos'];
-$total_pages = $pagination['total_pages'];
-$current_page = $pagination['current_page'];
-
+    $movimientos = $pagination['movimientos'];
+    $total_pages = $pagination['total_pages'];
+    $current_page = $pagination['current_page'];
 ?>
 
 <!DOCTYPE html>
@@ -435,3 +439,7 @@ $current_page = $pagination['current_page'];
  
 </body>
 </html>
+
+<?php
+    require_once  $rutaFooter."footer.php"
+?>
