@@ -132,82 +132,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- <div class="table-responsive">
-            <table class="movimientos-table">
-                <thead>
-                    <?php if (is_array($movimientos) && count($movimientos) > 0): ?>
-                        <tr>
-                            <th>Código</th>
-                            <th class="px-5">Fecha</th> 
-                            <th class="px-5">Artículo</th> 
-                            <th class="px-5">Centro</th>
-                            <th>Acción</th>
-                            <th>Cantidad</th>
-                            <th>Unidad</th>
-                            <th class="px-4">Descripción Unidad</th>
-                            <th>Motivo</th>
-                            <th class="px-5"></th>
-                        </tr>
-                    <?php else: ?>
-                        <tr>
-                            <th>Código</th>
-                            <th class="px-4">Fecha</th>
-                            <th class="px-4">Artículo</th> 
-                            <th class="px-4">Centro</th>
-                            <th class="px-4">Acción</th>
-                            <th class="px-5">Cantidad</th>
-                            <th class="px-5">Unidad</th>
-                            <th class="px-5">Descripción Unidad</th>
-                            <th class="px-5">Motivo</th>
-                            <th class="px-5"></th>
-                        </tr>
-                    <?php endif; ?>
-                </thead>
-                <tbody>
-                    <?php if (is_array($movimientos) && count($movimientos) > 0): ?>
-                        <?php foreach ($movimientos as $movimiento): ?>
-                            <tr>
-                                <td><?= $movimiento['IdConcepto'] ?></td>
-                                <td class="px-0"><?= $movimiento['FechaMov'] ?></td>
-                                <td><?= $movimiento['Articulo'] ?></td>
-                                <td><?= $movimiento['Centro'] ?></td>
-                                <td><?= $movimiento['Accion'] ?></td>
-                                <td><?= $movimiento['Cantidad'] ?></td>
-                                <td><?= $movimiento['Unidad'] ?></td>
-                                <td><?= $movimiento['DescripUnidad'] ?></td>
-                                <td><?= $movimiento['Motivo'] ?></td>
-                                <td>
-                                <?php if ($usuarioPermitido): ?>
-                                    <a href="#" class="btn trasp btn-sm" data-toggle="modal" data-target="#movementModal"
-                                    data-action="edit"
-                                    data-id="<?= $movimiento['IdMovimiento'] ?>"
-                                    data-fecha="<?= $movimiento['FechaMov'] ?>"
-                                    data-accion="<?= $movimiento['Accion'] ?>"
-                                    data-articulo="<?= $movimiento['Articulo'] ?>"
-                                    data-centro="<?= $movimiento['Centro'] ?>"
-                                    data-cantidad="<?= $movimiento['Cantidad'] ?>"
-                                    data-unidad="<?= $movimiento['Unidad'] ?>"
-                                    data-descripunidad="<?= $movimiento['DescripUnidad'] ?>"
-                                    data-motivo="<?= $movimiento['Motivo'] ?>">
-                                    <i class="fas fa-pencil-alt"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-sm eliminar-style-button" data-toggle="modal" data-target="#deleteModal" 
-                                        data-id="<?= $movimiento['IdMovimiento'] ?>">
-                                        <i class="fas trasp fa-trash"></i>
-                                    </a>
-                                    <?php endif; ?>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <tr>
-                            <td colspan="10" class="py-5 text-center">No hay movimientos registrados.</td>
-                        </tr>
-                    <?php endif; ?>
-                </tbody>
-            </table>
-        </div> -->
         <div class="table-responsive">
             <div class="container">
                 <table class="table table-striped table-bordered movimientos-table">
@@ -217,12 +141,17 @@
                                 <th class="px-5">Fecha</th> 
                                 <th class="px-5">Artículo</th> 
                                 <th class="px-4">Centro</th>
-                                <th class="px-3">Acción</th>
-                                <th class="pc-3">Cantidad</th>
-                                <th class="px-2">Unidad</th>
-                                <th class="px-5">DescripUnidad</th>
-                                <th class="px-">Motivo</th>
-                                <th class="px-5"></th>
+                                <th class="px-4">Acción</th>
+                                <th class="px-3">Cantidad</th>
+                                <th class="px-4">Unidad</th>
+                                <?php if ($usuarioPermitido): ?>
+                                    <th class="px-4">DescripUnidad</th>
+                                    <th >Motivo</th>
+                                    <th class="px-2">Funciones</th>
+                                <?php else: ?>
+                                    <th class="px-5">DescripUnidad</th>
+                                    <th class="px-5">Motivo</th>
+                                <?php endif; ?>                                   
                             </tr>
                     </thead>
                     <tbody>
@@ -237,9 +166,9 @@
                                     <td><?= $movimiento['Cantidad'] ?></td>
                                     <td><?= $movimiento['Unidad'] ?></td>
                                     <td><?= $movimiento['DescripUnidad'] ?></td>
-                                    <td><?= $movimiento['Motivo'] ?></td>
-                                    <td>
-                                        <?php if ($usuarioPermitido): ?>
+                                    <td><?= $movimiento['Motivo'] ?></td>                                  
+                                    <?php if ($usuarioPermitido): ?>
+                                        <td>
                                             <a href="#" class="btn trasp btn-sm" data-toggle="modal" data-target="#movementModal"
                                             data-action="edit"
                                             data-id="<?= $movimiento['IdMovimiento'] ?>"
@@ -257,8 +186,8 @@
                                             data-id="<?= $movimiento['IdMovimiento'] ?>">
                                                 <i class="fas trasp fa-trash"></i>
                                             </a>
-                                        <?php endif; ?>
-                                    </td>
+                                        </td>
+                                    <?php endif; ?>                                    
                                 </tr>
                             <?php endforeach; ?>
                         <?php else: ?>
