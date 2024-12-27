@@ -9,7 +9,6 @@
       require ("funcionesStock.php");
       require(MENU_URL);
       $usuarioPermitido = ($_SESSION['user']['rol'] == 'administrador' || $_SESSION['user']['rol'] == 'usuario');
-      // var_dump($_SESSION);
 ?>
 <main class='productos-container'>
   
@@ -42,12 +41,6 @@
                     class="form-control"
                     placeholder="Buscar artículo..."
                     autocomplete="off"
-                    value="
-                      <?php 
-                        if(!empty($_GET['busqueda'])) {
-                          $busqueda=trim($_GET['busqueda']);
-                        }
-                      ?>"
                   />
                   <section id="articulos-results" class="list-group"></section>
                 </section>
@@ -73,11 +66,10 @@
             </thead>
             <tbody >
           <?php 
-            if (isset($busqueda)) {
+            if(!empty($_GET['busqueda'])) {
+              $busqueda=trim($_GET['busqueda']);
               $articulos=filtrarPorArticulo($articulos,$busqueda);
             }
-            // require ("../../../Backend/obtenerStock.php");
-            // require ("funcionesStock.php");
 
             $existenciasTotales=0;
             foreach ($articulos as $articulo)

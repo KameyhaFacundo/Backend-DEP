@@ -171,8 +171,8 @@ button[type="button"] {
 }
 
 .filter-container button {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !;
-  background-color: #6c757d; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #6c757d;
   color: white;
   font-size: 12px;
   padding: 5px 10px;
@@ -183,10 +183,6 @@ button[type="button"] {
   background-color: #1a1b1d;
 }
 
-/* Estilo del formulario */
-.form-row {
-  margin-bottom: 20px;
-}
 
 
 /* Para pantallas chicas */
