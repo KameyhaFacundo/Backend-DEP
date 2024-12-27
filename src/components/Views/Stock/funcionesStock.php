@@ -48,4 +48,25 @@
         return array_values($articulosFiltrados);
     }
 
+
+    function getPaginatedStock($page, $items_per_page, $articulos) {
+
+        // if ($articulos) {
+        //   $articulos = filtrarPorArticulo($articulo,$movimientos);
+        // }
+      
+        $total_articulos = count($articulos);
+        $total_pages = ceil($total_articulos / $items_per_page);
+        $current_page = min($page, $total_pages);
+      
+        $offset = ($current_page - 1) * $items_per_page;
+        $paginated_articulos = array_slice($articulos, $offset, $items_per_page);
+      
+        return [
+          'cant_articulos' => $paginated_articulos,
+          'total_pages' => $total_pages,
+          'current_page' => $current_page
+          ];
+    }
+
 ?>
