@@ -32,9 +32,20 @@
     }
 
 
-    function filtrarArticulos($articulos){
-        $articulosFiltrados = array_filter($articulos, function($movimiento) use ($articulo) {
-            return $movimiento['Articulo'] === $articulo;
-          });
+
+    function filtrarPorArticulo($articulos, $busqueda) {
+        // Usar array_filter para filtrar el array original
+        if(!$busqueda){
+          return $articulos;
+        }
+
+        $articulosFiltrados = array_filter($articulos, function($articulo) use ($busqueda) {
+            // Buscar la subcadena insensiblemente a mayúsculas/minúsculas
+            return stripos($articulo['Articulo'], $busqueda) !== false;
+        });
+    
+        // Reindexar el array resultante para que tenga índices consecutivos
+        return array_values($articulosFiltrados);
     }
+
 ?>
