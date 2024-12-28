@@ -9,6 +9,10 @@
     require(MENU_URL);
     $usuarioPermitido = ($_SESSION['user']['rol'] == 'administrador' || $_SESSION['user']['rol'] == 'usuario');
 
+    //Muestra de mensaje de error en caso que exista
+    if(isset($_GET['error'])){
+      echo '<div class="alert alert-danger" role="alert">'.htmlspecialchars($_GET['error']).'</div>';
+    }
 ?>
 <main class='usuarios-container'>
   

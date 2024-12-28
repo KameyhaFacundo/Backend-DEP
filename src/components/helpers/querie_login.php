@@ -55,7 +55,7 @@ if($_SERVER['REQUEST_METHOD']==='POST')
     {
         //Falla la autenticacion
         $errorMessage = $result['message'] ?? 'Error. Intentelo de nuevo mas tarde.';
-        header('Location: ../../../index.php?error='.urlencode($errorMessage));
+        header('Location: ../../../index.php?error=Usuario+o+contraseña+incorrectos');
         exit;
     }
 } else
