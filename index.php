@@ -5,6 +5,10 @@
     $rutaFooter="src/components/common/";
     //require("src/components/common/header.php");
 
+    //Muestra de mensaje de error en caso que exista
+    if(isset($_GET['error'])){
+        echo '<div class="alert alert-danger mt-2" role="alert">'.htmlspecialchars($_GET['error']).'</div>';
+      }
 ?>
 <!DOCTYPE html>
 <html lang="es">
