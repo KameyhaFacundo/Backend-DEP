@@ -6,7 +6,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
     session_destroy(); // Destruye la sesión
     header("Location: ../../../../index.php"); // Redirige al login
     exit();
+    
 }
+
+$usuarioPermitido = ($_SESSION['user']['rol'] == 'administrador');
+
 ?>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light mt-2">
@@ -21,6 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
               <li><a class="dropdown-item" href="<?php echo $movURL; ?>">Movimientos</a></li>
               <li><a class="dropdown-item" href="<?php echo $oficinaURL; ?>">Oficinas</a></li>
               <li><a class="dropdown-item" href="<?php echo $stockURL; ?>">Stock</a></li>
+              <?php
+              if ($usuarioPermitido) {//debo controlas que solo admin tenga acceso a la gestion de usuarios
+                echo '<li><a class="dropdown-item" href="'.$usuariosURL.'">Usuarios</a></li>';
+              }
+              ?>
             </ul>
           </li>
           <!-- Botón de cerrar sesión -->

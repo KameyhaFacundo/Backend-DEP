@@ -10,16 +10,6 @@
       require(MENU_URL);
       $usuarioPermitido = ($_SESSION['user']['rol'] == 'administrador' || $_SESSION['user']['rol'] == 'usuario');
 
-      // // -----------------Paginación-------------------
-      // $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-      
-      // $items_per_page = 10;
-
-      // $pagination = getPaginatedMovimientos($page, $items_per_page, $articulos);
-
-      // $movimientos = $pagination['movimientos'];
-      // $total_pages = $pagination['total_pages'];
-      // $current_page = $pagination['current_page'];
 ?>
 <main class='productos-container'>
   

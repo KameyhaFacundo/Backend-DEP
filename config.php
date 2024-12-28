@@ -6,4 +6,5 @@
     $movURL = '../Movimientos/Movimiento.php';
     $oficinaURL = '../Centros/Centros.php';
     $stockURL = '../Stock/Stock.php';
+    $usuariosURL = '../Usuarios/Usuarios.php';
 ?>
