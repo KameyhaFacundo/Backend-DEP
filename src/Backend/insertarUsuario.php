@@ -8,6 +8,18 @@ try {
         $contra = trim(md5($_POST['contra']));
         $rol = $_POST['rol'];
 
+        // ----------------QUERY PARA OBTENER UN USUARIO YA ALMACENADO SI ES QUE EXISTE ---------
+        $queryUsuarios = 'SELECT "Usuario" FROM "Usuarios" WHERE "Usuario" = :usuario';
+        $stmtUsuarios = $pdo->prepare($queryUsuarios);
+        $stmtUsuarios->bindParam(':usuario', $usu, PDO::PARAM_STR);
+        $stmtUsuarios->execute();
+
+        $usuario = $stmtUsuarios->fetch(PDO::FETCH_ASSOC);
+        if ($usuario) {
+            header('Location: ../components/Views/Usuarios/Usuarios.php?error=El+usuario+ya+existe');
+            exit();
+        }
+
         // ----------------QUERY PARA OBTENER IDROL  ---------
         $queryIdRol = 'SELECT "IdRol" FROM "Roles" WHERE "Rol" = :rol';
 

@@ -12,6 +12,11 @@
     if (!$usuarioPermitido) {
         header('Location: ../Movimientos/Movimiento.php');
     }
+
+    //Muestra de mensaje de error en caso que exista
+    if(isset($_GET['error'])){
+      echo '<div class="alert alert-danger" role="alert">'.htmlspecialchars($_GET['error']).'</div>';
+    }
 ?>
 <main class='usuarios-container'>
   
