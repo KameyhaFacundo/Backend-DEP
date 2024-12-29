@@ -15,8 +15,18 @@ $usuarioPermitido = ($_SESSION['user']['rol'] == 'administrador');
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light mt-2">
     <section class="container-fluid">
+    <!-- Aqui van la foto y el nombre de usuario , -->
+  <a href="" class="nav-link">
+    <section class="d-flex align-items-center ">
+      <h3 class="mb-0" ><?php echo $_SESSION['user']['username']?></h3>
+        <figure class="mb-0">
+          <img src="<?php echo BASE_URL?>assets/usuariosImg/usuario_default.png" alt="Imagen de usuario" class="rounded-circle img-fluid" width="30">
+        </figure>
+      </section>
+  </a>
       <section class="collapse navbar-collapse" id="navbarNavDarkDropdown">
         <ul class="navbar-nav ms-auto p-2">
+
           <li class="nav-item dropdown">
             <button class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
               Secciones
