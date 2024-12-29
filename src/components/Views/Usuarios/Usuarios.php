@@ -8,7 +8,10 @@
     require ("funcionesUsuarios.php");
     require(MENU_URL);
     $usuarioPermitido = ($_SESSION['user']['rol'] == 'administrador' || $_SESSION['user']['rol'] == 'usuario');
-
+    
+    if (!$usuarioPermitido) {
+        header('Location: ../Movimientos/Movimiento.php');
+    }
 ?>
 <main class='usuarios-container'>
   
