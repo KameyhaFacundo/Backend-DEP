@@ -16,18 +16,23 @@ $usuarioPermitido = ($_SESSION['user']['rol'] == 'administrador');
   <nav class="navbar navbar-expand-lg navbar-light bg-light mt-2">
     <section class="container-fluid">
     <!-- Aqui van la foto y el nombre de usuario , -->
-  <a href="" class="nav-link">
-    <section class="d-flex align-items-center ">
-      <h3 class="mb-0" ><?php echo $_SESSION['user']['username']?></h3>
-        <figure class="mb-0">
-          <img src="<?php echo BASE_URL?>assets/usuariosImg/usuario_default.png" alt="Imagen de usuario" class="rounded-circle img-fluid" width="30">
-        </figure>
-      </section>
-  </a>
-      <section class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-        <ul class="navbar-nav ms-auto p-2">
+      <a href="" class="nav-link">
+        <section class="d-flex align-items-center ">
+          <h3 class="mb-0" ><?php echo $_SESSION['user']['username']?></h3>
+            <figure class="mb-0">
+              <img src="<?php echo BASE_URL?>assets/usuariosImg/usuario_default.png" alt="Imagen de usuario" class="rounded-circle img-fluid" width="30">
+            </figure>
+          </section>
+      </a>
 
-          <li class="nav-item dropdown">
+       <!-- Botón para colapsar menú en pantallas pequeñas -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <section class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+        <ul class="navbar-nav ms-auto p-2 align-items-end">
+
+          <li class="nav-item dropdown py-1">
             <button class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
               Secciones
             </button>
@@ -43,7 +48,7 @@ $usuarioPermitido = ($_SESSION['user']['rol'] == 'administrador');
             </ul>
           </li>
           <!-- Botón de cerrar sesión -->
-          <li class="nav-item ms-3">
+          <li class="nav-item ms-3 py-1">
             <form method="POST" class="d-inline">
               <input type="hidden" name="logout" value="1">
               <button type="submit" class="btn btn-danger">Cerrar sesión</button>
