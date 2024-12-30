@@ -33,7 +33,7 @@
           <article class="col-sm-4 col-md-4 col-lg-4 mb-2">
 
             <form id="filterArticuloForm" method="GET" action="">
-              <section class="form-row">
+              <section class="form-row d-flex row">
                 <section class="col-8" >
                   <input
                     type="text"
@@ -46,7 +46,7 @@
                   <section id="articulos-results" class="list-group"></section>
                 </section>
                 <section class="col-4 d-flex align-items-center">
-                  <button type="submit" id="btn-filtrar" class="btn btn-sm btn-primary">Filtrar</button>
+                  <button type="submit" id="btn-buscar" class="btn btn-sm btn-primary btn-filtrar">Filtrar</button>
                 </section>
               </section>
             </form>
@@ -94,11 +94,11 @@
             {
               $existenciasTotales=obtenerExistencias($articulo,$existencias);
               echo'<tr>
-              <td>'.$articulo["IdConcepto"].'</td>
-              <td>'.$articulo["Articulo"].'</td>
-              <td>'.$articulo["Rubro"].'</td>
-              <td>'.$existenciasTotales.'</td> 
-              <td>'.calcularDisponible($articulo,$movimientos,$existenciasTotales).'</td>
+              <td class="p-2">'.$articulo["IdConcepto"].'</td>
+              <td class="p-2">'.$articulo["Articulo"].'</td>
+              <td class="p-2">'.$articulo["Rubro"].'</td>
+              <td class="p-2">'.$existenciasTotales.'</td> 
+              <td class="p-2">'.calcularDisponible($articulo,$movimientos,$existenciasTotales).'</td>
               </tr>';
             }                  
           ?>

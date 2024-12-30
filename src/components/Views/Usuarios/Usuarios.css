@@ -77,11 +77,11 @@ button {
   border-radius: 5px;
 }
 
-#btnAgregar {
+/* #btnAgregar {
   background-color: #4d84c2;
   color: rgb(12, 11, 11);
   border: none;
-}
+} */
 
 button[type="button"] {
   background-color: #6c757d;
@@ -149,7 +149,7 @@ button[type="button"] {
   padding: 4px;
 }
 
-.filter-container button {
+/* .filter-container button {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   background-color: #6c757d;
   color: white;
@@ -160,8 +160,20 @@ button[type="button"] {
 
 .filter-container button:hover {
   background-color: #1a1b1d;
+} */
+
+.btn-filtrar {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #6c757d;
+  color: white;
+  font-size: 12px;
+  padding: 5px 10px;
+  border: 0;
 }
 
+.btn-filtrar:hover {
+  background-color: #1a1b1d;
+}
 
 /* Paginación */
 

@@ -41,7 +41,7 @@
         <article class="col-sm-4 col-md-4 col-lg-4 mb-2">
 
           <form id="filterUsuarioForm" method="GET" action="">
-            <section class="form-row">
+            <section class="form-row d-flex row">
               <section class="col-8" >
                 <input
                   type="text"
@@ -54,7 +54,7 @@
                 <section id="usuarios-results" class="list-group"></section>
               </section>
               <section class="col-4 d-flex align-items-center">
-                <button type="submit" id="btn-buscar" class="btn btn-sm btn-primary">Buscar</button>
+                <button type="submit" id="btn-buscar" class="btn btn-sm btn-primary btn-filtrar">Buscar</button>
               </section>
             </section>
           </form>
@@ -66,11 +66,11 @@
         <table class=" table table-striped table-hover table-bordered">
           <thead>
             <tr>
-              <th class="p-3">IdUsuario</th>
-              <th class="p-3">Nombre</th>
-              <th class="p-3">Rol</th>
-              <th class="p-3">Modificar</th>
-              <th class="p-3">Eliminar</th>
+              <th class="p-2">IdUsuario</th>
+              <th class="p-2">Nombre</th>
+              <th class="p-2">Rol</th>
+              <th class="p-2">Modificar</th>
+              <!-- <th class="p-3">Eliminar</th> -->
             </tr>
           </thead>
           <tbody >
@@ -100,10 +100,10 @@
           foreach ($usuarios as $usuario)
           {
             echo'<tr>
-            <td class="py-3">'.$usuario["IdUsuario"].'</td>
-            <td class="py-3">'.$usuario["Usuario"].'</td>
-            <td class="py-3">'.$usuario["Rol"].'</td>
-            <td class="py-3">
+            <td class="py-2">'.$usuario["IdUsuario"].'</td>
+            <td class="py-2">'.$usuario["Usuario"].'</td>
+            <td class="py-2">'.$usuario["Rol"].'</td>
+            <td class="py-2">
             <button 
                 type="button" 
                 class="btn btn-modificar"
@@ -117,7 +117,6 @@
                 <i class="bi bi-pencil-square h-3"></i>
             </button>
             
-            <td class="py-3"><a href="eliminarUsuario.php?id='.$usuario["IdUsuario"].'"><i class="bi bi-trash-fill"></i></a></td>
             </tr>';
           }                  
         ?>
