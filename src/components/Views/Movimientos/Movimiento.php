@@ -130,14 +130,14 @@
                         </div>
                     </form>
                 </div>
-                <div class="text-right mb-3">
-                    <form method="POST" action="../../../Backend/exportarExcel.php">
-                        <button type="submit" class="btn btn-success">Abrir en Excel</button>
-                    </form>
-                </div>
             </div>
         </div>
         <div class="table-responsive">
+            <div class="text-right mb-3 mx-5">
+                <form method="POST" action="../../../Backend/exportarExcel.php">
+                    <button type="submit" class="btn btn-success">Descargar</button>
+                </form>
+            </div>
             <div class="container">
                 <table class="table table-striped table-bordered movimientos-table">
                     <thead>
