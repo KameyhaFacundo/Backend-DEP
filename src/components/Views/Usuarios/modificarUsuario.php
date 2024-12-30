@@ -12,7 +12,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </header>
         <section class="modal-body">
-            <form action="<?php echo BASE_URL."Backend/actualizarUsuario.php"?>" class="row border rounded " id="stockForm" method="POST">
+            <form action="<?php echo BASE_URL."Backend/actualizarUsuario.php"?>" class="row border rounded " id="modUsuForm" method="POST">
 
                     <input type="hidden" id="idUsuario" name="idUsuario">
                     
@@ -46,7 +46,7 @@
                     </section>
 
                     <section>
-                        <input type="submit" id="btnAgregar" class="btn btn-primary" value="Guardar cambios">
+                        <input type="submit" id="btnGuardar" class="btn btn-primary" value="Guardar cambios">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                     </section>
             </form>

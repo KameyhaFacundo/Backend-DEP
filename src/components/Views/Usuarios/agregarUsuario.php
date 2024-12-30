@@ -12,7 +12,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </header>
         <section class="modal-body">
-            <form action="<?php echo BASE_URL."Backend/insertarUsuario.php"?>" class="row border rounded " id="stockForm" method="POST">
+            <form action="<?php echo BASE_URL."Backend/insertarUsuario.php"?>" class="row border rounded " id="agregarUsuForm" method="POST">
                 <!-- <fieldset> -->
                     <section class="row mb-3">
                         <label for="usu" class="col-sm-2 col-form-label">Nombre de usuario</label>
@@ -31,7 +31,7 @@
                     <section class="row mb-3">
                         <label for="rol" class="col-sm-2 col-form-label">Rol</label>
                         <section class="col-sm-10">
-                            <select name = "rol" id="rol" class="form-control mb-3" require>
+                            <select name = "rol" id="rolUsu" class="form-control mb-3" require>
                                 <?php
                                 $roles = $rolesBD;
                                 foreach ($roles as $rol)
