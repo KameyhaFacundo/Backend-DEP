@@ -130,6 +130,11 @@
                         </div>
                     </form>
                 </div>
+                <div class="text-right mb-3">
+                    <form method="POST" action="../../../Backend/exportarExcel.php">
+                        <button type="submit" class="btn btn-success">Abrir en Excel</button>
+                    </form>
+                </div>
             </div>
         </div>
         <div class="table-responsive">
