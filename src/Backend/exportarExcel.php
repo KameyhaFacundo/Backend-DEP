@@ -2,7 +2,6 @@
 include 'conexion.php';
 
 try {
-
     // Consulta los datos
     $stmt = $pdo->query('
     SELECT 
@@ -26,55 +25,31 @@ try {
         public."Acciones" ac ON m."IdAccion" = ac."IdAccion"
     ORDER BY 
         m."IdMovimiento" ASC
-
-');
+    ');
     $movimientos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     if ($movimientos) {
         // Nombre del archivo
-        $fileName = 'movimientos_' . date('Ymd_His') . '.xls';
+        $fileName = 'movimientos_' . date('Ymd_His') . '.csv';
 
-        // Encabezados para descarga
-        header('Content-Type: application/vnd.ms-excel');
+        // Configurar encabezados para descarga
+        header('Content-Type: text/csv');
         header('Content-Disposition: attachment; filename="' . $fileName . '"');
         header('Cache-Control: max-age=0');
 
-        // Comienza el archivo XML
-        echo '<?xml version="1.0"?>' . "\n";
-        echo '<?mso-application progid="Excel.Sheet"?>' . "\n";
-        echo '<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" 
-                xmlns:o="urn:schemas-microsoft-com:office:office" 
-                xmlns:x="urn:schemas-microsoft-com:office:excel" 
-                xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">' . "\n";
+        // Abrir un flujo de salida
+        $output = fopen('php://output', 'w');
 
-        // Hoja de cálculo
-        echo '<Worksheet ss:Name="Movimientos">' . "\n";
-        echo '<Table>' . "\n";
+        // Escribir encabezados al archivo CSV usando punto y coma como delimitador
+        fputcsv($output, array_keys($movimientos[0]), ';');
 
-        // Encabezados
-        echo '<Row>';
-        foreach (array_keys($movimientos[0]) as $header) {
-            echo '<Cell><Data ss:Type="String">' . htmlspecialchars($header) . '</Data></Cell>';
-        }
-        echo '</Row>' . "\n";
-
-        // Filas de datos
+        // Escribir datos al archivo CSV usando punto y coma como delimitador
         foreach ($movimientos as $row) {
-            echo '<Row>';
-            foreach ($row as $cell) {
-                // Detectar tipo de dato
-                $type = is_numeric($cell) ? "Number" : "String";
-                echo '<Cell><Data ss:Type="' . $type . '">' . htmlspecialchars($cell) . '</Data></Cell>';
-            }
-            echo '</Row>' . "\n";
+            fputcsv($output, $row, ';');
         }
 
-        // Cierra tabla y hoja
-        echo '</Table>' . "\n";
-        echo '</Worksheet>' . "\n";
-
-        // Cierra archivo
-        echo '</Workbook>';
+        // Cerrar el flujo de salida
+        fclose($output);
         exit;
     } else {
         echo "No hay datos para exportar.";
