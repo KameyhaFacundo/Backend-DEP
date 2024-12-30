@@ -73,10 +73,10 @@
         <?php endif; ?>
         </div>
 
-        <div class="filter-container mb-3">
+        <div class="filter-container mb-0">
             <div class="row">
                 <!-- Formulario de filtro por fecha -->
-                <div class="col-sm-4 col-md-4 col-lg-4 mb-2">
+                <div class="col-sm-4 col-md-4 col-lg-4 mb-0">
                     <form method="GET" action="" id="filterDateForm">
                         <div class="form-row">
                             <div class="col-8">
@@ -91,7 +91,7 @@
                 </div>
 
                 <!-- Formulario de búsqueda de artículo -->
-                <div class="col-sm-4 col-md-4 col-lg-4 mb-2">
+                <div class="col-sm-4 col-md-4 col-lg-4 mb-0">
                     <form id="filterArticuloForm" method="GET" action="">
                         <div class="form-row position-relative">
                             <div class="col-8">
@@ -114,7 +114,7 @@
                 </div>
 
                 <!-- Formulario de filtro por acción -->
-                <div class="col-sm-4 col-md-4 col-lg-4 mb-2">
+                <div class="col-sm-4 col-md-4 col-lg-4 mb-0">
                     <form method="GET" action="" id="filterAccionForm">
                         <div class="form-row">
                             <div class="col-8">
@@ -133,7 +133,7 @@
             </div>
         </div>
         <div class="table-responsive">
-            <div class="text-right mb-3 mx-5">
+            <div class="text-right mb-1 mx-5">
                 <form method="POST" action="../../../Backend/exportarExcel.php">
                     <button type="submit" class="btn btn-success">Descargar</button>
                 </form>
