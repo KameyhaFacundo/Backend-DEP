@@ -27,13 +27,6 @@
                             <input type="password" id="contra" name="contra" class="form-control mb-3" min="8" max="25" autocomplete="off" required>
                         </section>
                     </section>
-<!-- 
-                    <section class="row mb-3">
-                        <label for="rol" class="col-sm-2 col-form-label">Repetir contraseña</label>
-                        <section class="col-sm-10"> 
-                            <input type="password" id="pass" name="contra" class="form-control mb-3" required>
-                        </section>
-                    </section> -->
 
                     <section class="row mb-3">
                         <label for="rol" class="col-sm-2 col-form-label">Rol</label>

@@ -23,4 +23,8 @@ try {
 } catch (PDOException $e) {
         'Error al obtener productos: ' . $e->getMessage();
 }
+finally {
+    // Desconectar manualmente
+    $pdo = null;
+}
 ?>

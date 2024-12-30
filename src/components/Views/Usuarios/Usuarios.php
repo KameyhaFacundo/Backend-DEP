@@ -3,6 +3,7 @@
     $ruta1 = BASE_URL.'styles';
     $ruta2= 'Usuarios';
     $rutaFooter="../../common/";
+    
     require("../../common/header.php");
     require ("../../../Backend/obtenerUsuarios.php");
     require ("funcionesUsuarios.php");
@@ -68,6 +69,8 @@
               <th class="p-3">IdUsuario</th>
               <th class="p-3">Nombre</th>
               <th class="p-3">Rol</th>
+              <th class="p-3">Modificar</th>
+              <th class="p-3">Eliminar</th>
             </tr>
           </thead>
           <tbody >
@@ -97,9 +100,24 @@
           foreach ($usuarios as $usuario)
           {
             echo'<tr>
-            <td>'.$usuario["IdUsuario"].'</td>
-            <td>'.$usuario["Usuario"].'</td>
-            <td>'.$usuario["Rol"].'</td>
+            <td class="py-3">'.$usuario["IdUsuario"].'</td>
+            <td class="py-3">'.$usuario["Usuario"].'</td>
+            <td class="py-3">'.$usuario["Rol"].'</td>
+            <td class="py-3">
+            <button 
+                type="button" 
+                class="btn btn-modificar"
+                data-bs-toggle="modal" 
+                data-bs-target="#modalModificar" 
+                data-id="' . $usuario["IdUsuario"] . '" 
+                data-usuario="' . $usuario["Usuario"] . '" 
+                data-rol="' . $usuario["Rol"] . '
+                data-password="' . $usuario["Password"] . '
+              ">
+                <i class="bi bi-pencil-square h-3"></i>
+            </button>
+            
+            <td class="py-3"><a href="eliminarUsuario.php?id='.$usuario["IdUsuario"].'"><i class="bi bi-trash-fill"></i></a></td>
             </tr>';
           }                  
         ?>
@@ -140,10 +158,36 @@
 <!-- Incluyo modulo para el modal para agregar un articulo nuevo -->
  <?php
     require "agregarUsuario.php";
+    require "modificarUsuario.php";
 ?> 
 </main>
+
+<!-- Script para llenar los campos del modal de modificar usuario: -->
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const modalModificar = document.getElementById("modalModificar");
+
+    modalModificar.addEventListener("show.bs.modal", function (event) {
+        // Botón que activó el modal
+        const button = event.relatedTarget;
+
+        // Obtener datos del botón
+        const idUsuario = button.getAttribute("data-id");
+        const usuario = button.getAttribute("data-usuario");
+        const rol = button.getAttribute("data-rol");
+
+        // Asignar los datos a los campos del formulario
+        modalModificar.querySelector("#idUsuario").value = idUsuario;
+        modalModificar.querySelector("#usuario").value = usuario;
+        modalModificar.querySelector("#rol").value = rol;
+    });
+});
+</script>
+
+
 
 <?php
         
 require_once  $rutaFooter."footer.php"
+
 ?>

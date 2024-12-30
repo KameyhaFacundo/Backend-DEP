@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="<?php echo $ruta2?>.css">
     <!-- Enlace al css del footer  -->
     <link rel="stylesheet" href="<?php echo $rutaFooter?>footer.css">
+    <!-- Enlace a los iconos de bootstrap -->
+    <link rel="stylesheet" href="<?php echo BASE_URL?>styles/icons/font/bootstrap-icons.min.css">
+    
 </head>
 <body class="container-fluid">
     <?php 
