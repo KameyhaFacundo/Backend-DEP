@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
 }
 
 $usuarioPermitido = ($_SESSION['user']['rol'] == 'administrador');
+$baseURL = "http://localhost/Backend-DEP/";
 
 ?>
 
@@ -37,12 +38,12 @@ $usuarioPermitido = ($_SESSION['user']['rol'] == 'administrador');
               Secciones
             </button>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="<?php echo $movURL; ?>">Movimientos</a></li>
-              <li><a class="dropdown-item" href="<?php echo $oficinaURL; ?>">Oficinas</a></li>
-              <li><a class="dropdown-item" href="<?php echo $stockURL; ?>">Stock</a></li>
+              <li><a class="dropdown-item" href="<?php echo MOVIMIENTOS_URL; ?>">Movimientos</a></li>
+              <li><a class="dropdown-item" href="<?php echo OFICINAS_URL; ?>">Oficinas</a></li>
+              <li><a class="dropdown-item" href="<?php echo STOCK_URL; ?>">Stock</a></li>
               <?php
               if ($usuarioPermitido) {//debo controlas que solo admin tenga acceso a la gestion de usuarios
-                echo '<li><a class="dropdown-item" href="'.$usuariosURL.'">Usuarios</a></li>';
+                echo '<li><a class="dropdown-item" href="'.USUARIOS_URL.'">Usuarios</a></li>';
               }
               ?>
             </ul>
