@@ -1,4 +1,4 @@
-﻿-- Eliminar secuencias si existen (usando CASCADE para eliminar dependencias)
+﻿
 DROP SEQUENCE IF EXISTS public."Acciones_IdAccion_seq" CASCADE;
 DROP SEQUENCE IF EXISTS public."Movimientos_IdMovimientos_seq" CASCADE;
 DROP SEQUENCE IF EXISTS public."Centros_idcentro_seq" CASCADE;
