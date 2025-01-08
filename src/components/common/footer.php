@@ -1,7 +1,7 @@
 <?php
   // defino las url para el css del footer y el
   $rutaFooter= $rutaFooter;
-  $rutaImgs = $rutaFooter.'../../assets/sitiosImg/';
+  $rutaImgs = BASE_URL.'assets/sitiosImg/';
 ?>
 
     <footer class="bg-dark text-light pt-3">

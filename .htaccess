@@ -1,7 +1,6 @@
 RewriteEngine On
 RewriteBase /Backend-DEP/
-
-# Redirigir todo al router
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ router.php [L]
+RewriteRule ^Movimientos$ src/components/Views/Movimientos/Movimiento.php [L]
+RewriteRule ^Centros$ src/components/Views/Centros/Centro.php [L] 
+RewriteRule ^Stock$ src/components/Views/Stock/Stock.php [L] 
+RewriteRule ^Usuarios$ src/components/Views/Usuarios/Usuario.php [L]

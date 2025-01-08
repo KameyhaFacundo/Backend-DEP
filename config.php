@@ -3,6 +3,7 @@
     
     //Enlaces relativos
     define('MENU_URL', '../../common/Menu.php');//URL relativo para el menú desde vistas
+    define('FOOTER_URL', 'src/components/common/footer.php');//URL relativo para el menú desde vistas
     // define('MENU_URL', '../../common/Menu.php');//URL relativo para el menú desde vistas
     // define('MENU_URL', '../../common/Menu.php');//URL relativo para el menú desde vistas
     // define('MENU_URL', '../../common/Menu.php');//URL relativo para el menú desde vistas

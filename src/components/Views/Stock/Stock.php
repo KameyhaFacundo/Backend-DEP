@@ -3,7 +3,7 @@
       require_once '../../../../config.php';
       $ruta1 = BASE_URL.'styles';
       $ruta2= 'Stock';
-      $rutaFooter="../../common/";
+      // $rutaFooter= ;
       require("../../common/header.php");
       require ("../../../Backend/obtenerStock.php");
       require ("funcionesStock.php");
@@ -144,5 +144,5 @@
 
 <?php
 
-require_once  $rutaFooter."footer.php"
+include(FOOTER_URL);
 ?>

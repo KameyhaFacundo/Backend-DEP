@@ -9,7 +9,7 @@
     if(isset($_GET['error'])){
         echo '<div class="alert alert-danger mt-2" role="alert">'.htmlspecialchars($_GET['error']).'</div>';
       }
-
+    
 ?>
 <!DOCTYPE html>
 <html lang="es">
