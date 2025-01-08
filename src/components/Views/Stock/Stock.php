@@ -58,11 +58,12 @@
           <table class=" table table-striped table-hover table-bordered">
             <thead>
               <tr>
-                <th class="p-3">Código</th>
-                <th class="p-3">Artículo</th>
-                <th class="p-3">Rubro</th>
-                <th class="p-3">Existencias Totales</th>
-                <th class="p-3">Existencias Disponibles</th>
+                <th class="p-2">Código</th>
+                <th class="p-2">Artículo</th>
+                <th class="p-2">Rubro</th>
+                <th class="p-2">Entradas</th>
+                <th class="p-2">Salidas</th>
+                <th class="p-2">Existencias Disponibles</th>
               </tr>
             </thead>
             <tbody >
@@ -98,6 +99,7 @@
               <td class="p-2">'.$articulo["Articulo"].'</td>
               <td class="p-2">'.$articulo["Rubro"].'</td>
               <td class="p-2">'.$existenciasTotales.'</td> 
+              <td class="p-2">0</td> 
               <td class="p-2">'.calcularDisponible($articulo,$movimientos,$existenciasTotales).'</td>
               </tr>';
             }                  
