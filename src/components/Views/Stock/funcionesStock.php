@@ -16,21 +16,35 @@
         return $disponibles;
     }
 
-    function obtenerExistencias($articulo,$existencias)
+    function obtenerEntradas($articulo,$existencias)
     { 
-        $existenciasTotales=0;
+        $entradas=$articulo["Cantidad"];
         foreach ($existencias as $existencia) {
-            if ($existencia["IdConcepto"] == $articulo["IdConcepto"]) 
+            if ($existencia["IdConcepto"] == $articulo["IdConcepto"] && $existencia["Accion"] == "Entrada") 
             {
-                $existenciasTotales = $existencia["ExistenciasTotales"]; 
-                if ($existenciasTotales<0) {
-                    $existenciasTotales=0;
+                $entradas += $existencia["ExistenciasTotales"]; 
+                if ($entradas<0) {
+                    $entradas=0;
                 }
             } 
         }
-        return $existenciasTotales;
+        return $entradas;
     }
 
+    function obtenerSalidas($articulo,$existencias)
+    { 
+        $salidas=0;
+        foreach ($existencias as $existencia) {
+            if ($existencia["IdConcepto"] == $articulo["IdConcepto"] && $existencia["Accion"] == "Salida") 
+            {
+                $salidas += $existencia["ExistenciasTotales"]; 
+                if ($salidas<0) {
+                    $salidas=0;
+                }
+            } 
+        }
+        return $salidas;
+    }
 
 
     function filtrarPorArticulo($articulos, $busqueda) {

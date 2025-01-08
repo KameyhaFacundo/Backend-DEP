@@ -28,7 +28,8 @@
 
     <section clas="filter-container mb-3">
       <!-- Formulario de búsqueda de artículo -->
-      <section class="row">
+      <?php require "busquedas.php"; ?>
+      <!-- <section class="row">
           <article class="col-sm-4 col-md-4 col-lg-4 mb-2">
 
             <form id="filterArticuloForm" method="GET" action="">
@@ -52,7 +53,7 @@
 
           </article>
 
-        </section>
+        </section> -->
         <section table-responsive>
           <table class=" table table-striped table-hover table-bordered">
             <thead>
@@ -89,16 +90,17 @@
 
             // -----------------FIN Paginación-------------------
 
-            $existenciasTotales=0;
+            $entradas=0;
             foreach ($articulos as $articulo)
             {
-              $existenciasTotales=obtenerExistencias($articulo,$existencias);
+              $entradas=obtenerEntradas($articulo,$existencias);
+              $salidas=obtenerSalidas($articulo,$existencias);
               echo'<tr>
               <td class="p-2">'.$articulo["IdConcepto"].'</td>
               <td class="p-2">'.$articulo["Articulo"].'</td>
               <td class="p-2">'.$articulo["Rubro"].'</td>
-              <td class="p-2">'.$existenciasTotales.'</td> 
-              <td class="p-2">0</td> 
+              <td class="p-2">'.$entradas.'</td> 
+              <td class="p-2">'.$salidas.'</td> 
               <td class="p-2">'.$articulo["Cantidad"].'</td>
               </tr>';
             }                  
