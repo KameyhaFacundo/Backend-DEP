@@ -9,7 +9,6 @@
       require ("funcionesStock.php");
       require(MENU_URL);
       $usuarioPermitido = ($_SESSION['user']['rol'] == 'administrador' || $_SESSION['user']['rol'] == 'usuario');
-
 ?>
 <main class='productos-container'>
   
