@@ -17,18 +17,19 @@
     $centros = getCentros();
 
     $fechaMov = isset($_GET['fechaMov']) ? $_GET['fechaMov'] : null;
-    if ($fechaMov) {
-        $movimientos = filtrarPorFecha($fechaMov);
-    }
-
     $accion = isset($_GET['accion']) ? $_GET['accion'] : null;
-    if ($accion) {
-        $movimientos = filtrarPorAccion($accion);
+    $articulo = isset($_GET['articulo']) ? $_GET['articulo'] : null;
+
+    if ($fechaMov) {
+        $movimientos = filtrarPorFecha($fechaMov, $movimientos);
     }
 
-    $articulo = isset($_GET['articulo']) ? $_GET['articulo'] : null;
+    if ($accion) {
+        $movimientos = filtrarPorAccion($accion, $movimientos);  
+    }
+
     if ($articulo) {
-        $movimientos = filtrarPorArticulo($articulo);
+        $movimientos = filtrarPorArticulo($articulo,$movimientos); 
     }
 
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -57,7 +58,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movimientos</title>
     <link rel="stylesheet" href="Movimiento.css">
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="../../../styles/css/bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
@@ -72,59 +72,40 @@
             </button>
         <?php endif; ?>
         </div>
-
         <div class="filter-container mb-0">
             <div class="row">
-                <!-- Formulario de filtro por fecha -->
-                <div class="col-sm-4 col-md-4 col-lg-4 mb-0">
-                    <form method="GET" action="" id="filterDateForm">
-                        <div class="form-row">
-                            <div class="col-8">
-                                <input type="date" id="fechaMov" name="fechaMov" class="form-control" 
-                                    value="<?= isset($_GET['fechaMov']) ? $_GET['fechaMov'] : '' ?>">
+                <div class="col-12 mb-0">
+                    <form method="GET" action="" id="filterForm">
+                        <div class="form-row align-items-center">
+                            <!-- Filtro por fecha -->
+                            <div class="col-12 col-sm-4 mb-2 mb-sm-0">
+                                <input type="date" id="fechaMov" name="fechaMov" class="form-control form-control-sm" 
+                                    value="<?= isset($_GET['fechaMov']) ? $_GET['fechaMov'] : '' ?>" style="font-size: 1rem; padding: 0.375rem 0.75rem;">
                             </div>
-                            <div class="col-4 d-flex align-items-center">
-                                <button type="submit" class="btn btn-sm btn-primary">Filtrar</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- Formulario de búsqueda de artículo -->
-                <div class="col-sm-4 col-md-4 col-lg-4 mb-0">
-                    <form id="filterArticuloForm" method="GET" action="">
-                        <div class="form-row position-relative">
-                            <div class="col-8">
+                            <!-- Filtro por artículo -->
+                            <div class="col-12 col-sm-4 mb-2 mb-sm-0">
                                 <input
                                     type="text"
                                     id="articulo"
                                     name="articulo"
-                                    class="form-control"
+                                    class="form-control form-control-sm"
                                     placeholder="Buscar artículo..."
                                     autocomplete="off"
                                     value="<?= isset($_GET['articulo']) ? $_GET['articulo'] : '' ?>"
-                                />
+                                    style="font-size: 1rem; padding: 0.375rem 0.75rem;">
                                 <div id="articulos-results" class="list-group"></div>
                             </div>
-                            <div class="col-4 d-flex align-items-center">
-                                <button type="submit" class="btn btn-sm btn-primary">Filtrar</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- Formulario de filtro por acción -->
-                <div class="col-sm-4 col-md-4 col-lg-4 mb-0">
-                    <form method="GET" action="" id="filterAccionForm">
-                        <div class="form-row">
-                            <div class="col-8">
-                                <select name="accion" class="form-control">
+                            <!-- Filtro por acción -->
+                            <div class="col-12 col-sm-3 mb-2 mb-sm-0">
+                                <select name="accion" class="form-control form-control-sm" style="font-size: 0.875rem; padding: 0.25rem 0.5rem;">
                                     <option value="">Seleccionar acción</option>
                                     <option value="Entrada" <?= isset($_GET['accion']) && $_GET['accion'] == 'Entrada' ? 'selected' : '' ?>>Entrada</option>
                                     <option value="Salida" <?= isset($_GET['accion']) && $_GET['accion'] == 'Salida' ? 'selected' : '' ?>>Salida</option> 
                                 </select>
                             </div>
-                            <div class="col-4 d-flex align-items-center">
+
+                            <!-- Botón Filtrar -->
+                            <div class="col-12 col-sm-1 mb-2 mb-sm-0 d-flex justify-content-left">
                                 <button type="submit" class="btn btn-sm btn-primary">Filtrar</button>
                             </div>
                         </div>
