@@ -4,7 +4,7 @@ try {
     include 'conexion.php';
 
     // ----------------QUERY Obtener articulos ---------
-    $query1 = 'SELECT "IdConcepto","Articulo", "Rubro" FROM "Articulos"
+    $query1 = 'SELECT "IdConcepto","Articulo", "Rubro", "Cantidad" FROM "Articulos"
     INNER JOIN "Rubros" USING ("IdRubro") 
     -- GROUP BY "IdConcepto","Articulo", "Rubro"
     ORDER BY "IdConcepto" ';
@@ -12,7 +12,7 @@ try {
     $stmt1 = $pdo->query($query1);
     $stock = $stmt1->fetchAll(PDO::FETCH_ASSOC);
 
-    // ----------------QUERY Obtener las existencias de los articulos ---------
+    // ----------------QUERY Obtener los movimientos de los articulos ---------
     $query2 = 'SELECT "IdConcepto",SUM("Cantidad") as "ExistenciasTotales" 
     FROM "Movimientos"
     JOIN "Acciones"  USING ("IdAccion")

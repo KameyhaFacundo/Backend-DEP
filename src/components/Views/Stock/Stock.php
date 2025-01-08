@@ -100,10 +100,11 @@
               <td class="p-2">'.$articulo["Rubro"].'</td>
               <td class="p-2">'.$existenciasTotales.'</td> 
               <td class="p-2">0</td> 
-              <td class="p-2">'.calcularDisponible($articulo,$movimientos,$existenciasTotales).'</td>
+              <td class="p-2">'.$articulo["Cantidad"].'</td>
               </tr>';
             }                  
-          ?>
+            ?>
+            <!-- <td class="p-2">'.calcularDisponible($articulo,$movimientos,$existenciasTotales).'</td> -->
           </tbody>
         </table>
     </section>
@@ -114,21 +115,21 @@
         <ul class="pagination justify-content-center">
             <?php if ($page > 1): ?>
                 <li class="page-item">
-                    <a class="page-link" href="?page=<?= $page - 1 ?>&fechaMov=<?= urlencode($_GET['fechaMov'] ?? '') ?>&accion=<?= urlencode($_GET['accion'] ?? '') ?>" aria-label="Previous">
+                    <a class="page-link" href="?page=<?= $page - 1 ?>" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
             <?php endif; ?>
             <?php for ($i = 1; $i <= $total_pages; $i++): ?>
                 <li class="page-item <?= $i == $page ? 'active' : '' ?>">
-                    <a class="page-link" href="?page=<?= $i ?>&fechaMov=<?= urlencode($_GET['fechaMov'] ?? '') ?>&accion=<?= urlencode($_GET['accion'] ?? '') ?>">
+                    <a class="page-link" href="?page=<?= $i ?>">
                         <?= $i ?>
                     </a>
                 </li>
             <?php endfor; ?>
             <?php if ($page < $total_pages): ?>
                 <li class="page-item">
-                    <a class="page-link" href="?page=<?= $page + 1 ?>&fechaMov=<?= urlencode($_GET['fechaMov'] ?? '') ?>&accion=<?= urlencode($_GET['accion'] ?? '') ?>" aria-label="Next">
+                    <a class="page-link" href="?page=<?= $page + 1 ?>" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
