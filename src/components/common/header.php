@@ -13,11 +13,11 @@
     <meta name="author" content="">
     <title>DEP</title>
     <!-- Enlace dinamico al bootstrap -->
-    <link rel="stylesheet" href="<?php echo $ruta1 ?>/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL ?>styles/css/bootstrap.min.css">
     <!-- Enlace dinamico al css propio -->
     <link rel="stylesheet" href="<?php echo $ruta2?>.css">
     <!-- Enlace al css del footer  -->
-    <link rel="stylesheet" href="<?php echo $rutaFooter?>footer.css">
+    <link rel="stylesheet" href="<?php echo FOOTER_CSS_URL?>">
     <!-- Enlace a los iconos de bootstrap -->
     <link rel="stylesheet" href="<?php echo BASE_URL?>styles/icons/font/bootstrap-icons.min.css">
     
