@@ -1,8 +1,8 @@
 <?php
     require_once '../../../../config.php';
-    $ruta1 = BASE_URL.'styles';
+    //$ruta1 = BASE_URL.'styles';
     $ruta2= 'Usuarios';
-    $rutaFooter="../../common/";
+    //$rutaFooter="../../common/";
     
     require("../../common/header.php");
     require ("../../../Backend/obtenerUsuarios.php");
