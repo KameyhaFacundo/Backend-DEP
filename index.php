@@ -5,6 +5,13 @@
     $rutaFooter="src/components/common/";
     //require("src/components/common/header.php");
 
+    //Verifica si hay un usuario logueado
+    session_start();
+    if(isset($_SESSION['user'])){
+        header('Location: Movimientos');
+        exit;
+    }
+
     //Muestra de mensaje de error en caso que exista
     if(isset($_GET['error'])){
         echo '<div class="alert alert-danger mt-2" role="alert">'.htmlspecialchars($_GET['error']).'</div>';
