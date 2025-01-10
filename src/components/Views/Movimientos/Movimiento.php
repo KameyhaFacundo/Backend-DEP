@@ -1,8 +1,8 @@
 <?php
     require_once '../../../../config.php';
-    $ruta1 = BASE_URL.'styles';
+    //$ruta1 = BASE_URL.'styles';
     $ruta2= 'Movimiento';
-    $rutaFooter="../../common/";
+    //$rutaFooter="../../common/";
     require("../../common/header.php");
     include 'funcionesMov.php';
     require (MENU_URL);
@@ -449,5 +449,5 @@
 </html>
 
 <?php
-    require_once  $rutaFooter."footer.php"
+    require_once  FOOTER_URL;
 ?>
