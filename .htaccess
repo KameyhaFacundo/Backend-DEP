@@ -1,6 +1,7 @@
 RewriteEngine On
 RewriteBase /Backend-DEP/
+
 RewriteRule ^Movimientos$ src/components/Views/Movimientos/Movimiento.php [L]
-RewriteRule ^Centros$ src/components/Views/Centros/Centro.php [L] 
+RewriteRule ^Centros$ src/components/Views/Centros/Centros.php [L] 
 RewriteRule ^Stock$ src/components/Views/Stock/Stock.php [L] 
-RewriteRule ^Usuarios$ src/components/Views/Usuarios/Usuario.php [L]
+RewriteRule ^Usuarios$ src/components/Views/Usuarios/Usuarios.php [L]
