@@ -10,6 +10,23 @@
         echo '<div class="alert alert-danger mt-2" role="alert">'.htmlspecialchars($_GET['error']).'</div>';
       }
     
+    $request = $_SERVER['REQUEST_URI'];
+    
+    $routes = [
+        '/' => 'src/index.php',
+        '/Movimientos' => 'src/components/Views/Movimientos/Movimiento.php',
+        '/Centros' => 'src/components/Views/Centros/Centros.php',
+        '/Stock' => 'src/components/Views/Stock/Stock.php',
+        '/Usuarios' => 'src/components/Views/Usuarios/Usuarios.php',
+    ];
+
+    if(array_key_exists($request, $routes)){
+        require __DIR__ . $routes[$request];
+    }else{
+        //En caso que no exista la ruta
+        http_response_code(404);
+        echo '404 Not Found';
+    }
 ?>
 <!DOCTYPE html>
 <html lang="es">
