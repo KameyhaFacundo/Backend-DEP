@@ -24,7 +24,7 @@
                     <section class="row mb-3">
                         <label for="rubro" class="col-sm-2 col-form-label">Rubro</label>
                         <section class="col-sm-10">
-                            <select name = "rubro" id="rub" class="form-control mb-3" require>
+                            <select name = "rubro" id="rub" class="form-control mb-3" required>
                                 <?php
                                 foreach ($rubros as $rubro)
                                 {

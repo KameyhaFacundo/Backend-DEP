@@ -6,6 +6,7 @@
       $rutaFooter="../../common/";
       require("../../common/header.php");
       require ("../../../Backend/obtenerStock.php");
+      // require (BASE_URL.'Backend/excelStockInicial.php');
       require ("funcionesStock.php");
       require(MENU_URL);
       $usuarioPermitido = ($_SESSION['user']['rol'] == 'administrador' || $_SESSION['user']['rol'] == 'usuario');
@@ -26,34 +27,10 @@
       ?>
     </section>
 
-    <section clas="filter-container mb-3">
+    <!-- <section clas="filter-container mb-3"> -->
       <!-- Formulario de búsqueda de artículo -->
       <?php require "busquedas.php"; ?>
-      <!-- <section class="row">
-          <article class="col-sm-4 col-md-4 col-lg-4 mb-2">
-
-            <form id="filterArticuloForm" method="GET" action="">
-              <section class="form-row d-flex row">
-                <section class="col-8" >
-                  <input
-                    type="text"
-                    id="articulo"
-                    name="busqueda"
-                    class="form-control"
-                    placeholder="Buscar artículo..."
-                    autocomplete="off"
-                  />
-                  <section id="articulos-results" class="list-group"></section>
-                </section>
-                <section class="col-4 d-flex align-items-center">
-                  <button type="submit" id="btn-buscar" class="btn btn-sm btn-primary btn-filtrar">Filtrar</button>
-                </section>
-              </section>
-            </form>
-
-          </article>
-
-        </section> -->
+ 
         <section table-responsive>
           <table class=" table table-striped table-hover table-bordered">
             <thead>
@@ -71,6 +48,10 @@
             if(!empty($_GET['busqueda'])) {
               $busqueda=trim($_GET['busqueda']);
               $articulos=filtrarPorArticulo($stock,$busqueda);
+            }
+            elseif (!empty($_GET['rubroFiltro'])) {
+              $busqueda=$_GET['rubroFiltro'];
+              $articulos= filtrarPorRubro($stock,$busqueda);
             }
             else{
               $articulos=$stock;
@@ -95,13 +76,14 @@
             {
               $entradas=obtenerEntradas($articulo,$existencias);
               $salidas=obtenerSalidas($articulo,$existencias);
+              
               echo'<tr>
               <td class="p-2">'.$articulo["IdConcepto"].'</td>
               <td class="p-2">'.$articulo["Articulo"].'</td>
               <td class="p-2">'.$articulo["Rubro"].'</td>
               <td class="p-2">'.$entradas.'</td> 
               <td class="p-2">'.$salidas.'</td> 
-              <td class="p-2">'.$articulo["Cantidad"].'</td>
+              <td class="p-2">'.obtenerDisponible($salidas,$entradas).'</td>
               </tr>';
             }                  
             ?>
