@@ -10,6 +10,7 @@
       require ("funcionesStock.php");
       require(MENU_URL);
       $usuarioPermitido = ($_SESSION['user']['rol'] == 'administrador' || $_SESSION['user']['rol'] == 'usuario');
+      
 ?>
 <main class='productos-container'>
   
@@ -52,6 +53,8 @@
             elseif (!empty($_GET['rubroFiltro'])) {
               $busqueda=$_GET['rubroFiltro'];
               $articulos= filtrarPorRubro($stock,$busqueda);
+              $rubroFiltrado = $busqueda;
+              echo $rubroFiltrado;
             }
             else{
               $articulos=$stock;
@@ -98,21 +101,21 @@
         <ul class="pagination justify-content-center">
             <?php if ($page > 1): ?>
                 <li class="page-item">
-                    <a class="page-link" href="?page=<?= $page - 1 ?>" aria-label="Previous">
+                    <a class="page-link" href="?page=<?= $page - 1 ?>&rubroFiltrado=<?= urlencode($_GET['rubroFiltro'] ?? '') ?>" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
             <?php endif; ?>
             <?php for ($i = 1; $i <= $total_pages; $i++): ?>
                 <li class="page-item <?= $i == $page ? 'active' : '' ?>">
-                    <a class="page-link" href="?page=<?= $i ?>">
+                    <a class="page-link" href="?page=<?= $i ?>&rubroFiltro=<?= urlencode($_GET['rubroFiltro'] ?? '') ?>">
                         <?= $i ?>
                     </a>
                 </li>
             <?php endfor; ?>
             <?php if ($page < $total_pages): ?>
                 <li class="page-item">
-                    <a class="page-link" href="?page=<?= $page + 1 ?>" aria-label="Next">
+                    <a class="page-link" href="?page=<?= $page + 1 ?>&rubroFiltrado=<?= urlencode($_GET['rubroFiltro'] ?? '') ?>" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
