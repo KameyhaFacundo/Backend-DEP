@@ -6,10 +6,11 @@
       $rutaFooter="../../common/";
       require("../../common/header.php");
       require ("../../../Backend/obtenerStock.php");
+      // require (BASE_URL.'Backend/excelStockInicial.php');
       require ("funcionesStock.php");
       require(MENU_URL);
       $usuarioPermitido = ($_SESSION['user']['rol'] == 'administrador' || $_SESSION['user']['rol'] == 'usuario');
-
+      
 ?>
 <main class='productos-container'>
   
@@ -27,42 +28,20 @@
       ?>
     </section>
 
-    <section clas="filter-container mb-3">
+    <!-- <section clas="filter-container mb-3"> -->
       <!-- Formulario de búsqueda de artículo -->
-      <section class="row">
-          <article class="col-sm-4 col-md-4 col-lg-4 mb-2">
-
-            <form id="filterArticuloForm" method="GET" action="">
-              <section class="form-row d-flex row">
-                <section class="col-8" >
-                  <input
-                    type="text"
-                    id="articulo"
-                    name="busqueda"
-                    class="form-control"
-                    placeholder="Buscar artículo..."
-                    autocomplete="off"
-                  />
-                  <section id="articulos-results" class="list-group"></section>
-                </section>
-                <section class="col-4 d-flex align-items-center">
-                  <button type="submit" id="btn-buscar" class="btn btn-sm btn-primary btn-filtrar">Filtrar</button>
-                </section>
-              </section>
-            </form>
-
-          </article>
-
-        </section>
+      <?php require "busquedas.php"; ?>
+ 
         <section table-responsive>
           <table class=" table table-striped table-hover table-bordered">
             <thead>
               <tr>
-                <th class="p-3">Código</th>
-                <th class="p-3">Artículo</th>
-                <th class="p-3">Rubro</th>
-                <th class="p-3">Existencias Totales</th>
-                <th class="p-3">Existencias Disponibles</th>
+                <th class="p-2">Código</th>
+                <th class="p-2">Artículo</th>
+                <th class="p-2">Rubro</th>
+                <th class="p-2">Entradas</th>
+                <th class="p-2">Salidas</th>
+                <th class="p-2">Existencias Disponibles</th>
               </tr>
             </thead>
             <tbody >
@@ -70,6 +49,12 @@
             if(!empty($_GET['busqueda'])) {
               $busqueda=trim($_GET['busqueda']);
               $articulos=filtrarPorArticulo($stock,$busqueda);
+            }
+            elseif (!empty($_GET['rubroFiltro'])) {
+              $busqueda=$_GET['rubroFiltro'];
+              $articulos= filtrarPorRubro($stock,$busqueda);
+              $rubroFiltrado = $busqueda;
+              echo $rubroFiltrado;
             }
             else{
               $articulos=$stock;
@@ -89,19 +74,23 @@
 
             // -----------------FIN Paginación-------------------
 
-            $existenciasTotales=0;
+            $entradas=0;
             foreach ($articulos as $articulo)
             {
-              $existenciasTotales=obtenerExistencias($articulo,$existencias);
+              $entradas=obtenerEntradas($articulo,$existencias);
+              $salidas=obtenerSalidas($articulo,$existencias);
+              
               echo'<tr>
               <td class="p-2">'.$articulo["IdConcepto"].'</td>
               <td class="p-2">'.$articulo["Articulo"].'</td>
               <td class="p-2">'.$articulo["Rubro"].'</td>
-              <td class="p-2">'.$existenciasTotales.'</td> 
-              <td class="p-2">'.calcularDisponible($articulo,$movimientos,$existenciasTotales).'</td>
+              <td class="p-2">'.$entradas.'</td> 
+              <td class="p-2">'.$salidas.'</td> 
+              <td class="p-2">'.obtenerDisponible($salidas,$entradas).'</td>
               </tr>';
             }                  
-          ?>
+            ?>
+            <!-- <td class="p-2">'.calcularDisponible($articulo,$movimientos,$existenciasTotales).'</td> -->
           </tbody>
         </table>
     </section>
@@ -112,21 +101,21 @@
         <ul class="pagination justify-content-center">
             <?php if ($page > 1): ?>
                 <li class="page-item">
-                    <a class="page-link" href="?page=<?= $page - 1 ?>&fechaMov=<?= urlencode($_GET['fechaMov'] ?? '') ?>&accion=<?= urlencode($_GET['accion'] ?? '') ?>" aria-label="Previous">
+                    <a class="page-link" href="?page=<?= $page - 1 ?>&rubroFiltrado=<?= urlencode($_GET['rubroFiltro'] ?? '') ?>" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
             <?php endif; ?>
             <?php for ($i = 1; $i <= $total_pages; $i++): ?>
                 <li class="page-item <?= $i == $page ? 'active' : '' ?>">
-                    <a class="page-link" href="?page=<?= $i ?>&fechaMov=<?= urlencode($_GET['fechaMov'] ?? '') ?>&accion=<?= urlencode($_GET['accion'] ?? '') ?>">
+                    <a class="page-link" href="?page=<?= $i ?>&rubroFiltro=<?= urlencode($_GET['rubroFiltro'] ?? '') ?>">
                         <?= $i ?>
                     </a>
                 </li>
             <?php endfor; ?>
             <?php if ($page < $total_pages): ?>
                 <li class="page-item">
-                    <a class="page-link" href="?page=<?= $page + 1 ?>&fechaMov=<?= urlencode($_GET['fechaMov'] ?? '') ?>&accion=<?= urlencode($_GET['accion'] ?? '') ?>" aria-label="Next">
+                    <a class="page-link" href="?page=<?= $page + 1 ?>&rubroFiltrado=<?= urlencode($_GET['rubroFiltro'] ?? '') ?>" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>

@@ -20,11 +20,11 @@
                             <input type="text" id="nom" name="nombre" class="form-control mb-3" required>
                         </section>
                     </section>
-
+                    
                     <section class="row mb-3">
                         <label for="rubro" class="col-sm-2 col-form-label">Rubro</label>
                         <section class="col-sm-10">
-                            <select name = "rubro" id="rub" class="form-control mb-3" require>
+                            <select name = "rubro" id="rub" class="form-control mb-3" required>
                                 <?php
                                 foreach ($rubros as $rubro)
                                 {
@@ -34,6 +34,12 @@
                             </select>
                         </section>
                     </section>
+
+                    <section class="row mb-3">
+                        <label for="cantidad" class="col-sm-2 col-form-label">Cantidad</label>
+                        <section class="col-sm-10"> 
+                            <input type="number" step="1" id="cant" name="cantidad" class="form-control mb-3" value="0" min="0" required>
+                        </section>
 
                     <section>
                         <input type="submit" id="btnAgregar" class="btn btn-primary" value="Agregar">

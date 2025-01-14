@@ -1,36 +1,46 @@
 <?php 
-    function calcularDisponible($articulo,$movimientos,$existencias)
-    {
-        $disponibles=$existencias;
-        foreach ($movimientos as $movimiento) {
-                if ($movimiento["IdConcepto"] == $articulo["IdConcepto"] ) 
-                {
-                    if ($movimiento["Accion"] == "Salida") {
-                        $disponibles -= $movimiento["Cantidad"] ; 
-                        if ($disponibles<0) {
-                            $disponibles=0;
-                        }
-                    }
-                } 
-        }
-        return $disponibles;
-    }
+    
 
-    function obtenerExistencias($articulo,$existencias)
+    function obtenerEntradas($articulo,$existencias)
     { 
-        $existenciasTotales=0;
+        $entradas=$articulo["Cantidad"];
         foreach ($existencias as $existencia) {
-            if ($existencia["IdConcepto"] == $articulo["IdConcepto"]) 
+            if ($existencia["IdConcepto"] == $articulo["IdConcepto"] && $existencia["Accion"] == "Entrada") 
             {
-                $existenciasTotales = $existencia["ExistenciasTotales"]; 
-                if ($existenciasTotales<0) {
-                    $existenciasTotales=0;
+                $entradas += $existencia["ExistenciasTotales"]; 
+                if ($entradas<0) {
+                    $entradas=0;
                 }
             } 
         }
-        return $existenciasTotales;
+        return $entradas;
+    }
+ 
+    function obtenerSalidas($articulo,$existencias)
+    { 
+        $salidas=0;
+        foreach ($existencias as $existencia) {
+            if ($existencia["IdConcepto"] == $articulo["IdConcepto"] && $existencia["Accion"] == "Salida") 
+            {
+                $salidas += $existencia["ExistenciasTotales"]; 
+                if ($salidas<0) {
+                    $salidas=0;
+                }
+            } 
+        }
+        return $salidas;
     }
 
+
+
+    function obtenerDisponible($salidas, $entradas)
+    {         
+        $disponible=$entradas-$salidas;
+        if ($disponible<0) {
+            $disponible=0;
+        }
+        return $disponible;
+    }
 
 
     function filtrarPorArticulo($articulos, $busqueda) {
@@ -48,13 +58,26 @@
         return array_values($articulosFiltrados);
     }
 
+    function filtrarPorRubro($articulos, $busqueda) {
+        
+        if(!$busqueda){
+            return $articulos;
+        }
+        
+        // Uso array_filter para filtrar el array original
+        $articulosFiltrados = array_filter($articulos, function($articulo) use ($busqueda) {
+            // Busco la subcadena insensiblemente a mayúsculas/minúsculas
+            return stripos($articulo['Rubro'], $busqueda) !== false;
+        });
+    
+        // Reindexo el array resultante para que tenga índices consecutivos
+        return array_values($articulosFiltrados);
+    }
+
 
     function getPaginatedStock($page, $items_per_page, $articulos) {
 
-        // if ($articulos) {
-        //   $articulos = filtrarPorArticulo($articulo,$movimientos);
-        // }
-      
+
         $total_articulos = count($articulos);
         $total_pages = ceil($total_articulos / $items_per_page);
         $current_page = min($page, $total_pages);
