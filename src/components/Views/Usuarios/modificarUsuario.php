@@ -24,8 +24,8 @@
                     </section>
 
                     <section class="row mb-3">
-                        <label for="password" class="col-sm-2 col-form-label">Contraseña</label>
-                        <section class="col-sm-10"> 
+                        <label for="password" class="col-sm-3 col-form-label">Contraseña</label>
+                        <section class="col-sm-9"> 
                             <input type="password" id="password" name="password" class="form-control mb-3" min="8" max="25">
                         </section>
                     </section>
