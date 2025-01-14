@@ -37,31 +37,9 @@
 
   <section clas="filter-container mb-3">
     <!-- Formulario de búsqueda de artículo -->
-    <section class="row">
-        <article class="col-sm-4 col-md-4 col-lg-4 mb-2">
-
-          <form id="filterUsuarioForm" method="GET" action="">
-            <section class="form-row d-flex row">
-              <section class="col-8" >
-                <input
-                  type="text"
-                  id="buscar"
-                  name="busqueda"
-                  class="form-control"
-                  placeholder="Buscar usuario..."
-                  autocomplete="off"
-                />
-                <section id="usuarios-results" class="list-group"></section>
-              </section>
-              <section class="col-4 d-flex align-items-center">
-                <button type="submit" id="btn-buscar" class="btn btn-sm btn-primary btn-filtrar">Buscar</button>
-              </section>
-            </section>
-          </form>
-
-        </article>
-
-      </section>
+    <?php require 'busqueda.php'?>
+    
+    <!-- TABLA DE USUARIOS -->
       <section table-responsive>
         <table class=" table table-striped table-hover table-bordered">
           <thead>
@@ -78,6 +56,12 @@
           if(!empty($_GET['busqueda'])) {
             $busqueda=trim($_GET['busqueda']);
             $usuarios=filtrarPorUsuario($usuariosBD,$busqueda);
+          }
+          elseif (!empty($_GET['rolFiltro'])) {
+            $busqueda=$_GET['rolFiltro'];
+            $usuarios= filtrarPorRubro($usuariosBD,$busqueda);
+            $rolFiltrado = $busqueda;
+            // echo $rubroFiltrado;
           }
           else{
             $usuarios=$usuariosBD;

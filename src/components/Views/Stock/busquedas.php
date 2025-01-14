@@ -34,7 +34,7 @@
                       <select name = "rubroFiltro" id="rubroFiltro" class="form-control " require>
                           <option value="">Filtrar por rubro...</option>
                           <?php
-                          foreach ($rubros as $rubro)
+                          foreach ($roles as $rol)
                           {
                               echo '<option value="'.$rubro["Rubro"].'">'.$rubro["Rubro"].'</option>';
                           }                            
