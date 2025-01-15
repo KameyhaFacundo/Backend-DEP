@@ -144,5 +144,5 @@
 
 <?php
 
-include(FOOTER_URL);
+  include(FOOTER_URL);
 ?>

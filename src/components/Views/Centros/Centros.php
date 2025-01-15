@@ -41,5 +41,5 @@
 </main>
 
 <?php
-  require_once  $rutaFooter."footer.php";
+  require_once  FOOTER_URL;
 ?>
