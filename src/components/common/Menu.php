@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__DIR__, 3) . '/config.php';
+//require_once dirname(__DIR__, 3) . '/config.php';
 // Lógica para cerrar sesión
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
     session_unset(); // Destruye las variables de sesión
