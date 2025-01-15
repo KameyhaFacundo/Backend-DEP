@@ -1,7 +1,7 @@
 <?php
       //require_once '../../../../config.php';
       //$ruta1 = BASE_URL.'styles';
-      $ruta2= 'centros';
+      $ruta2= 'Centros';
       //$rutaFooter="../../common/";
       require("../../common/header.php");
       require dirname(__DIR__, 2) . '/helpers/centros.php';
