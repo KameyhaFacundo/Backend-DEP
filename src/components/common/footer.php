@@ -1,6 +1,6 @@
 <?php
   // defino las url para el css del footer y el
-  $rutaFooter= $rutaFooter;
+  //$rutaFooter= $rutaFooter;
   $rutaImgs = BASE_URL.'assets/sitiosImg/';
 ?>
 
