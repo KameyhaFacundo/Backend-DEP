@@ -1,13 +1,13 @@
 <?php
     define('BASE_URL', 'http://localhost/Backend-DEP/src/');
-    
+    define('BASE_PATH', __DIR__);
     //Enlaces relativos
     define('MENU_URL', '../../common/Menu.php');//URL relativo para el menú desde vistas
-    define('FOOTER_URL', 'http://localhost/Backend-DEP/src/components/common/footer.php');//URL relativo para el menú desde vistas
-    define('FOOTER_CSS_URL', 'http://localhost/Backend-DEP/src/components/common/footer.css');//URL relativo para el menú desde vistas
-    // define('MENU_URL', '../../common/Menu.php');//URL relativo para el menú desde vistas
-    // define('MENU_URL', '../../common/Menu.php');//URL relativo para el menú desde vistas
-    // define('MENU_URL', '../../common/Menu.php');//URL relativo para el menú desde vistas
+    define('FOOTER_URL', BASE_PATH.'/src/components/common/footer.php');
+    define('FOOTER_CSS_URL', BASE_URL.'components/common/footer.css');
+    // define('MENU_URL', '../../common/Menu.php');
+    // define('MENU_URL', '../../common/Menu.php');
+    // define('MENU_URL', '../../common/Menu.php');
 
     define('MOVIMIENTOS_URL', BASE_URL . 'components/Views/Movimientos/Movimiento.php');
     define('OFICINAS_URL', BASE_URL . 'components/Views/Centros/Centros.php');
