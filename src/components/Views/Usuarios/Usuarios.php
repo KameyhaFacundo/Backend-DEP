@@ -37,32 +37,10 @@
 
   <section clas="filter-container mb-3">
     <!-- Formulario de búsqueda de artículo -->
-    <section class="row">
-        <article class="col-sm-4 col-md-4 col-lg-4 mb-2">
-
-          <form id="filterUsuarioForm" method="GET" action="">
-            <section class="form-row d-flex row">
-              <section class="col-8" >
-                <input
-                  type="text"
-                  id="buscar"
-                  name="busqueda"
-                  class="form-control"
-                  placeholder="Buscar usuario..."
-                  autocomplete="off"
-                />
-                <section id="usuarios-results" class="list-group"></section>
-              </section>
-              <section class="col-4 d-flex align-items-center">
-                <button type="submit" id="btn-buscar" class="btn btn-sm btn-primary btn-filtrar">Buscar</button>
-              </section>
-            </section>
-          </form>
-
-        </article>
-
-      </section>
-      <section table-responsive>
+    <?php require 'busqueda.php'?>
+    
+    <!-- TABLA DE USUARIOS -->
+      <section class="table-responsive">
         <table class=" table table-striped table-hover table-bordered">
           <thead>
             <tr>
@@ -78,6 +56,11 @@
           if(!empty($_GET['busqueda'])) {
             $busqueda=trim($_GET['busqueda']);
             $usuarios=filtrarPorUsuario($usuariosBD,$busqueda);
+          }
+          elseif (!empty($_GET['rolFiltro'])) {
+            $busqueda=$_GET['rolFiltro'];
+            $usuarios= filtrarPorRubro($usuariosBD,$busqueda);
+            $rolFiltrado = $busqueda;
           }
           else{
             $usuarios=$usuariosBD;
@@ -111,7 +94,7 @@
                 data-bs-target="#modalModificar" 
                 data-id="' . $usuario["IdUsuario"] . '" 
                 data-usuario="' . $usuario["Usuario"] . '" 
-                data-rol="' . $usuario["Rol"] . '
+                data-rol="' . $usuario["Rol"] . '"
                 data-password="' . $usuario["Password"] . '
               ">
                 <i class="bi bi-pencil-square h-3"></i>
@@ -130,21 +113,21 @@
       <ul class="pagination justify-content-center">
           <?php if ($page > 1): ?>
               <li class="page-item">
-                  <a class="page-link" href="?page=<?= $page - 1?>?>" aria-label="Previous">
+                  <a class="page-link" href="?page=<?= $page - 1?>&rolFiltrado=<?= urlencode($_GET['rolFiltro'] ?? '') ?>" aria-label="Previous">
                       <span aria-hidden="true">&laquo;</span>
                   </a>
               </li>
           <?php endif; ?>
           <?php for ($i = 1; $i <= $total_pages; $i++): ?>
               <li class="page-item <?= $i == $page ? 'active' : '' ?>">
-                  <a class="page-link" href="?page=<?= $i?>?>">
+                  <a class="page-link" href="?page=<?= $i?>&rolFiltro=<?= urlencode($_GET['rolFiltro'] ?? '') ?>">
                       <?= $i ?>
                   </a>
               </li>
           <?php endfor; ?>
           <?php if ($page < $total_pages): ?>
               <li class="page-item">
-                  <a class="page-link" href="?page=<?= $page + 1 ?>?>" aria-label="Next">
+                  <a class="page-link" href="?page=<?= $page + 1 ?>&rolFiltrado=<?= urlencode($_GET['rolFiltro'] ?? '') ?>" aria-label="Next">
                       <span aria-hidden="true">&raquo;</span>
                   </a>
               </li>
@@ -174,11 +157,18 @@ document.addEventListener("DOMContentLoaded", function () {
         const idUsuario = button.getAttribute("data-id");
         const usuario = button.getAttribute("data-usuario");
         const rol = button.getAttribute("data-rol");
+        console.log(rol);
 
         // Asignar los datos a los campos del formulario
         modalModificar.querySelector("#idUsuario").value = idUsuario;
         modalModificar.querySelector("#usuario").value = usuario;
-        modalModificar.querySelector("#rol").value = rol;
+        
+        // Seleccionar el valor correspondiente en el campo de rol
+        const rolSelect = modalModificar.querySelector("#rol");
+        for (let option of rolSelect.options) {
+            option.selected = option.value === rol;
+        }
+
     });
 });
 </script>

@@ -30,8 +30,8 @@ try {
         $idRol = $stmtIdRol->fetch(PDO::FETCH_ASSOC);
 
         // ----------------QUERY INSERTAR USUARIO ---------
-        $queryInsert = 'INSERT INTO "Usuarios" ("Usuario", "IdRol", "Password") 
-         VALUES (:usuario, :idRol, :contra)';
+        $queryInsert = 'INSERT INTO "Usuarios" ("IdUsuario","Usuario", "IdRol", "Password") 
+         VALUES ((SELECT "IdUsuario"+1 FROM "Usuarios" ORDER BY "IdUsuario" DESC LIMIT 1) ,:usuario, :idRol, :contra)';
 
         //Vinculo los parametros para realizar la consulta.
 

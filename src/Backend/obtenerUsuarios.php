@@ -7,7 +7,7 @@ try {
     $query1 = 'SELECT * FROM "Usuarios"
     INNER JOIN "Roles" USING ("IdRol") 
     -- GROUP BY "IdConcepto","Articulo", "Rubro"
-    ORDER BY "IdRol","IdUsuario" ';
+    ORDER BY "IdUsuario"';
     
     $stmt1 = $pdo->query($query1);
     $usuariosBD = $stmt1->fetchAll(PDO::FETCH_ASSOC);

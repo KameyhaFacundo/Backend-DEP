@@ -15,6 +15,22 @@
         return array_values($usuariosFiltrados);
     }
 
+    function filtrarPorRubro($usuarios, $busqueda){
+
+        if(!$busqueda){
+            return $usuarios;
+        }
+        // Uso array_filter para filtrar el array original
+        $usuariosFiltrados = array_filter($usuarios, function($usuario) use ($busqueda) {
+            // Busco la subcadena insensiblemente a mayúsculas/minúsculas
+            return stripos($usuario['Rol'], $busqueda) !== false;
+        });
+    
+        // Reindexo el array resultante para que tenga índices consecutivos
+        return array_values($usuariosFiltrados);
+    }
+
+
 
     function getPaginatedStock($page, $items_per_page, $usuarios) {
 

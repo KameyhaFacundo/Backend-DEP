@@ -3,10 +3,10 @@ include '../../config.php';
 try {
     include 'conexion.php';
 
-    if (!empty($_POST['nombre']) && !empty($_POST['rubro'])) {
+    if (!empty($_POST['nombre']) && !empty($_POST['rubro']) && !empty($_POST['cantidad'])) {
         $nombre = trim($_POST['nombre']);
         $rubro = $_POST['rubro'];
-        // $cantidad = (int)$_POST['cantidad'];
+        $cantidad = (int)$_POST['cantidad'];
 
         // ----------------QUERY PARA OBTENER IDARTICULO E IDRUBRO ---------
         $queryIdArt = 'SELECT "IdArticulo", "IdRubro"
@@ -30,8 +30,8 @@ try {
         $idConcepto = str_pad($idRub, 2, "0", STR_PAD_LEFT)."".str_pad($idArt, 3, "0", STR_PAD_LEFT);
 
         // ----------------QUERY INSERTAR ARTICULO ---------
-        $queryInsert = 'INSERT INTO "Articulos" ("IdArticulo", "IdRubro", "IdConcepto", "Articulo") 
-         VALUES (:idArticulo, :idRubro, :idConcepto, :articulo)';
+        $queryInsert = 'INSERT INTO "Articulos" ("IdArticulo", "IdRubro", "IdConcepto", "Articulo", "Cantidad") 
+         VALUES (:idArticulo, :idRubro, :idConcepto, :articulo, :cantidad)';
 
         //Vinculo los parametros para realizar la consulta.
 
@@ -40,6 +40,7 @@ try {
         $stmtInsert->bindParam(':idRubro', $idRub, PDO::PARAM_INT);
         $stmtInsert->bindParam(':idConcepto', $idConcepto, PDO::PARAM_STR);
         $stmtInsert->bindParam(':articulo', $nombre, PDO::PARAM_STR);
+        $stmtInsert->bindParam(':cantidad', $cantidad, PDO::PARAM_STR);
         
         if ($stmtInsert->execute()) {
             header('Location: '.BASE_URL.'../Stock');
