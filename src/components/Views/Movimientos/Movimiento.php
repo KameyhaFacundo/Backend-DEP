@@ -1,8 +1,8 @@
 <?php
-    require_once '../../../../config.php';
-    $ruta1 = BASE_URL.'styles';
-    $ruta2= 'Movimiento';
-    $rutaFooter="../../common/";
+    //require_once '../../../../config.php';
+    //$ruta1 = BASE_URL.'styles';
+    $ruta2= 'Movimientos';
+    //$rutaFooter="../../common/";
     require("../../common/header.php");
     include 'funcionesMov.php';
     require (MENU_URL);
@@ -51,18 +51,7 @@
     $usuarioPermitido = isset($_SESSION['user']) && ($_SESSION['user']['rol'] == 'administrador' || $_SESSION['user']['rol'] == 'usuario');
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movimientos</title>
-    <link rel="stylesheet" href="Movimiento.css">
-    <link rel="stylesheet" href="../../../styles/css/bootstrap4.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-</head>
 <body>
-    
     <div class="movimientos-container">
         <div class="movimientos-header">
             <h2>Movimientos Registrados</h2>
@@ -115,7 +104,7 @@
         </div>
         <div class="table-responsive">
             <div class="text-right mb-1 mx-5">
-                <form method="POST" action="../../../Backend/exportarExcel.php">
+                <form method="POST" action="<?php echo BASE_URL?>Backend/exportarExcel.php">
                     <button type="submit" class="btn btn-success">Descargar</button>
                 </form>
             </div>
@@ -308,7 +297,7 @@
                         <p class="text-muted">Esta acción no se puede deshacer.</p>
                     </div>
                     <div class="modal-footer justify-content-center">
-                        <form id="deleteForm" method="POST" action="../../../Backend/eliminarMovimiento.php">
+                        <form id="deleteForm" method="POST" action="<?php echo BASE_URL?>Backend/eliminarMovimiento.php">
                             <input type="hidden" name="id" id="deleteId">
                             <button type="button" class="btn btn-outline-secondary btn-cancelar" data-dismiss="modal">
                                 Cancelar
@@ -350,7 +339,7 @@
 
             if (action === 'edit') {
                 modal.find('.modal-title').text('Modificar Movimiento');
-                form.attr('action', '../../../Backend/actualizarMovimiento.php');
+                form.attr('action', '<?php echo BASE_URL?>Backend/actualizarMovimiento.php');
                 modal.find('button[type="submit"]').text('Guardar cambios');
 
                 // Llena los campos con los datos del movimiento
@@ -365,7 +354,7 @@
                 $('#Motivo').val(button.data('motivo'));
             } else if (action === 'add') {
                 modal.find('.modal-title').text('Agregar Movimiento');
-                form.attr('action', '../../../Backend/guardarMovimientos.php');
+                form.attr('action', '<?php echo BASE_URL?>Backend/guardarMovimientos.php');
                 modal.find('button[type="submit"]').text('Agregar');
 
                 // Limpia los campos
@@ -394,7 +383,7 @@
         }
 
         // Realizar petición a `buscarArticulos.php` con el texto parcial.
-        fetch("../../../Backend/buscarArticulos.php?query=" + encodeURIComponent(articulo))
+        fetch("<?php echo BASE_URL?>Backend/buscarArticulos.php?query=" + encodeURIComponent(articulo))
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Error en la respuesta del servidor");
@@ -430,5 +419,5 @@
 </html>
 
 <?php
-    require_once  $rutaFooter."footer.php"
+    require_once  FOOTER_URL;
 ?>

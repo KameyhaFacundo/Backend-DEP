@@ -1,8 +1,8 @@
 <?php
-      require_once '../../../../config.php';
-      $ruta1 = BASE_URL.'styles';
-      $ruta2= 'centros';
-      $rutaFooter="../../common/";
+      //require_once '../../../../config.php';
+      //$ruta1 = BASE_URL.'styles';
+      $ruta2= 'Centros';
+      //$rutaFooter="../../common/";
       require("../../common/header.php");
       require dirname(__DIR__, 2) . '/helpers/centros.php';
       require 'ItemCentro.php';
@@ -41,5 +41,5 @@
 </main>
 
 <?php
-  require_once  $rutaFooter."footer.php";
+  require_once  FOOTER_URL;
 ?>

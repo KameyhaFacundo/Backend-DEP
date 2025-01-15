@@ -1,11 +1,11 @@
 
 <?php
-      require_once '../../../../config.php';
-      $ruta1 = BASE_URL.'styles';
+      //require_once '../../../../config.php';
+      //$ruta1 = BASE_URL.'styles';
       $ruta2= 'Stock';
-      $rutaFooter="../../common/";
+      // $rutaFooter= ;
       require("../../common/header.php");
-      require ("../../../Backend/obtenerStock.php");
+      require (BASE_PATH."/src/Backend/obtenerStock.php");
       // require (BASE_URL.'Backend/excelStockInicial.php');
       require ("funcionesStock.php");
       require(MENU_URL);
@@ -132,5 +132,5 @@
 
 <?php
 
-require_once  $rutaFooter."footer.php"
+  include(FOOTER_URL);
 ?>

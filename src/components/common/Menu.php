@@ -1,15 +1,16 @@
 <?php
-
+//require_once dirname(__DIR__, 3) . '/config.php';
 // Lógica para cerrar sesión
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
     session_unset(); // Destruye las variables de sesión
     session_destroy(); // Destruye la sesión
-    header("Location: ../../../../index.php"); // Redirige al login
+    header("Location: ".BASE_URL."../index.php"); // Redirige al login
     exit();
     
 }
 
 $usuarioPermitido = ($_SESSION['user']['rol'] == 'administrador');
+$baseURL = BASE_URL;
 
 ?>
 
@@ -37,12 +38,12 @@ $usuarioPermitido = ($_SESSION['user']['rol'] == 'administrador');
               Secciones
             </button>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="<?php echo $movURL; ?>">Movimientos</a></li>
-              <li><a class="dropdown-item" href="<?php echo $oficinaURL; ?>">Oficinas</a></li>
-              <li><a class="dropdown-item" href="<?php echo $stockURL; ?>">Stock</a></li>
+              <li><a class="dropdown-item" href="Movimientos">Movimientos</a></li>
+              <li><a class="dropdown-item" href="Centros">Oficinas</a></li>
+              <li><a class="dropdown-item" href="Stock">Stock</a></li>
               <?php
               if ($usuarioPermitido) {//debo controlas que solo admin tenga acceso a la gestion de usuarios
-                echo '<li><a class="dropdown-item" href="'.$usuariosURL.'">Usuarios</a></li>';
+                echo '<li><a class="dropdown-item" href="Usuarios">Usuarios</a></li>';
               }
               ?>
             </ul>

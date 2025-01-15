@@ -1,14 +1,21 @@
 <?php
+    $ruta2= '';
     require_once 'config.php';
-    $ruta1 = 'src/styles';
-    $ruta2= 'src/index';
-    $rutaFooter="src/components/common/";
+    //$rutaFooter="src/components/common/";
     //require("src/components/common/header.php");
+
+    //Verifica si hay un usuario logueado
+    session_start();
+    if(isset($_SESSION['user'])){
+        header('Location: Movimientos');
+        exit;
+    }
 
     //Muestra de mensaje de error en caso que exista
     if(isset($_GET['error'])){
         echo '<div class="alert alert-danger mt-2" role="alert">'.htmlspecialchars($_GET['error']).'</div>';
       }
+    
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -19,11 +26,7 @@
     <meta name="author" content="">
     <title>DEP</title>
     <!-- Enlace dinamico al bootstrap -->
-    <link rel="stylesheet" href="<?php echo $ruta1 ?>/css/bootstrap.min.css">
-    <!-- Enlace dinamico al css propio -->
-    <link rel="stylesheet" href="<?php echo $ruta2?>.css">
-    <!-- Enlace al css del footer  -->
-    <link rel="stylesheet" href="<?php echo $rutaFooter?>footer.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL ?>styles/css/bootstrap.min.css">
 </head>
 <body class="container-fluid">
 
