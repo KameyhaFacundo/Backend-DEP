@@ -131,7 +131,7 @@
         </section>
     </Section>
     </footer>
-    <script src="../../../styles/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo BASE_URL;?>styles/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
