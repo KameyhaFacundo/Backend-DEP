@@ -1,6 +1,6 @@
 
 <?php
-      require_once '../../../../config.php';
+      //require_once '../../../../config.php';
       //$ruta1 = BASE_URL.'styles';
       $ruta2= 'Stock';
       // $rutaFooter= ;
