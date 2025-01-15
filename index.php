@@ -1,7 +1,6 @@
 <?php
+    $ruta2= '';
     require_once 'config.php';
-    $ruta1 = BASE_URL.'/styles';
-    $ruta2= BASE_URL.'/index';
     //$rutaFooter="src/components/common/";
     //require("src/components/common/header.php");
 
@@ -27,11 +26,7 @@
     <meta name="author" content="">
     <title>DEP</title>
     <!-- Enlace dinamico al bootstrap -->
-    <link rel="stylesheet" href="<?php echo $ruta1 ?>/css/bootstrap.min.css">
-    <!-- Enlace dinamico al css propio -->
-    <link rel="stylesheet" href="<?php echo $ruta2?>.css">
-    <!-- Enlace al css del footer  -->
-    <link rel="stylesheet" href="<?php echo $rutaFooter?>footer.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL ?>styles/css/bootstrap.min.css">
 </head>
 <body class="container-fluid">
 
