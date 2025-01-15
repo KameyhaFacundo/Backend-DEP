@@ -40,7 +40,7 @@
     <?php require 'busqueda.php'?>
     
     <!-- TABLA DE USUARIOS -->
-      <section table-responsive>
+      <section class="table-responsive">
         <table class=" table table-striped table-hover table-bordered">
           <thead>
             <tr>
@@ -61,7 +61,6 @@
             $busqueda=$_GET['rolFiltro'];
             $usuarios= filtrarPorRubro($usuariosBD,$busqueda);
             $rolFiltrado = $busqueda;
-            echo $rolFiltrado;
           }
           else{
             $usuarios=$usuariosBD;

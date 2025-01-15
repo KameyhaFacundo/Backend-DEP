@@ -32,7 +32,7 @@
       <!-- Formulario de búsqueda de artículo -->
       <?php require "busquedas.php"; ?>
  
-        <section table-responsive>
+        <section class="table-responsive">
           <table class=" table table-striped table-hover table-bordered">
             <thead>
               <tr>
@@ -54,7 +54,6 @@
               $busqueda=$_GET['rubroFiltro'];
               $articulos= filtrarPorRubro($stock,$busqueda);
               $rubroFiltrado = $busqueda;
-              echo $rubroFiltrado;
             }
             else{
               $articulos=$stock;
