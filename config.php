@@ -8,11 +8,12 @@
     // define('MENU_URL', '../../common/Menu.php');
     // define('MENU_URL', '../../common/Menu.php');
     // define('MENU_URL', '../../common/Menu.php');
-
+    $rutaCSS = BASE_URL.'components/Views/'.$ruta2.'/'.$ruta2.'.css';
     define('MOVIMIENTOS_URL', BASE_URL . 'components/Views/Movimientos/Movimiento.php');
     define('OFICINAS_URL', BASE_URL . 'components/Views/Centros/Centros.php');
     define('STOCK_URL', BASE_URL . 'components/Views/Stock/Stock.php');
     define('USUARIOS_URL', BASE_URL . 'components/Views/Usuarios/Usuarios.php');
+    define('RUTA_CSS', $rutaCSS);
     // $movURL = '../Movimientos/Movimiento.php';
     // $oficinaURL = '../Centros/Centros.php';
     // $stockURL = '../Stock/Stock.php';
