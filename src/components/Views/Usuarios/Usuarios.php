@@ -56,6 +56,7 @@
           if(!empty($_GET['busqueda'])) {
             $busqueda=trim($_GET['busqueda']);
             $usuarios=filtrarPorUsuario($usuariosBD,$busqueda);
+            $usuFiltrado = $busqueda;
           }
           elseif (!empty($_GET['rolFiltro'])) {
             $busqueda=$_GET['rolFiltro'];
@@ -113,21 +114,21 @@
       <ul class="pagination justify-content-center">
           <?php if ($page > 1): ?>
               <li class="page-item">
-                  <a class="page-link" href="?page=<?= $page - 1?>&rolFiltrado=<?= urlencode($_GET['rolFiltro'] ?? '') ?>" aria-label="Previous">
+                  <a class="page-link" href="?page=<?= $page - 1?>&rolFiltrado=<?= urlencode($_GET['rolFiltro'] ?? '') ?>&usuFitrado=<?= urlencode($_GET['busqueda'] ?? '') ?>" aria-label="Previous">
                       <span aria-hidden="true">&laquo;</span>
                   </a>
               </li>
           <?php endif; ?>
           <?php for ($i = 1; $i <= $total_pages; $i++): ?>
               <li class="page-item <?= $i == $page ? 'active' : '' ?>">
-                  <a class="page-link" href="?page=<?= $i?>&rolFiltro=<?= urlencode($_GET['rolFiltro'] ?? '') ?>">
+                  <a class="page-link" href="?page=<?= $i?>&rolFiltro=<?= urlencode($_GET['rolFiltro'] ?? '') ?>&busqueda=<?= urlencode($_GET['busqueda'] ?? '') ?>">
                       <?= $i ?>
                   </a>
               </li>
           <?php endfor; ?>
           <?php if ($page < $total_pages): ?>
               <li class="page-item">
-                  <a class="page-link" href="?page=<?= $page + 1 ?>&rolFiltrado=<?= urlencode($_GET['rolFiltro'] ?? '') ?>" aria-label="Next">
+                  <a class="page-link" href="?page=<?= $page + 1 ?>&rolFiltrado=<?= urlencode($_GET['rolFiltro'] ?? '') ?>&usuFitrado=<?= urlencode($_GET['busqueda'] ?? '') ?>" aria-label="Next">
                       <span aria-hidden="true">&raquo;</span>
                   </a>
               </li>
