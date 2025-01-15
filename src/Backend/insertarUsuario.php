@@ -5,7 +5,14 @@ try {
 
     if (!empty($_POST['usu']) && !empty($_POST['contra']) && !empty($_POST['rol'])) {
         $usu = trim($_POST['usu']);
+        
+        if (strlen($_POST['contra']) < 8 || strlen($_POST['contra']) > 25) {
+            $error="Error+al+ingresar+un+usuario+nuevo.+La+contraseña+debe+tener+entre+8+y+25+caracteres";
+            header('Location:'.BASE_URL.'../Usuarios?error='.$error);
+            exit();
+        }
         $contra = trim(md5($_POST['contra']));
+        
         $rol = $_POST['rol'];
 
         // ----------------QUERY PARA OBTENER UN USUARIO YA ALMACENADO SI ES QUE EXISTE ---------
@@ -19,7 +26,7 @@ try {
             header('Location:'.BASE_URL.'../Usuarios?error=El+usuario+ya+existe');
             exit();
         }
-
+        
         // ----------------QUERY PARA OBTENER IDROL  ---------
         $queryIdRol = 'SELECT "IdRol" FROM "Roles" WHERE "Rol" = :rol';
 
