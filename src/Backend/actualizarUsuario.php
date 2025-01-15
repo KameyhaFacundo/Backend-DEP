@@ -1,5 +1,5 @@
 <?php
-
+include '../../config.php';
 try {
     include 'conexion.php';
 
@@ -17,7 +17,7 @@ try {
 
         $usuario = $stmtUpdateUsu->fetch(PDO::FETCH_ASSOC);
         if ($usuario) {
-            header('Location: ../components/Views/Usuarios/Usuarios.php?error=El+usuario+ya+existe');
+            header('Location:'.BASE_URL.'../Usuarios?error=El+usuario+ya+existe');
             exit();
         }
 
@@ -46,7 +46,7 @@ try {
         $stmtInsert->bindParam(':contra', $contra, PDO::PARAM_STR);
         
         if ($stmtInsert->execute()) {
-            header('Location: ../components/Views/Usuarios/Usuarios.php');
+            header('Location: '.BASE_URL.'../Usuarios');
             exit();
             // echo '<p>Modificacion exitosa</p>';
         } else {

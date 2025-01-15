@@ -1,4 +1,5 @@
 <?php
+include '../../config.php';
 include 'conexion.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -28,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindParam(':descripUnidad', $descripUnidad, PDO::PARAM_STR);
 
     if ($stmt->execute()) {
-        header('Location: ../components/Views/Movimientos/Movimiento.php');
+        header('Location: '.BASE_URL.'../Movimientos');
         exit();
     } else {
         echo "Error al guardar el movimiento.";

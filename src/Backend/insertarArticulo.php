@@ -1,5 +1,5 @@
 <?php
-
+include '../../config.php';
 try {
     include 'conexion.php';
 
@@ -42,7 +42,7 @@ try {
         $stmtInsert->bindParam(':articulo', $nombre, PDO::PARAM_STR);
         
         if ($stmtInsert->execute()) {
-            header('Location: ../components/Views/Stock/Stock.php');
+            header('Location: '.BASE_URL.'../Stock');
             exit();
             // echo '<p>Insercion exitosa</p>';
         } else {
