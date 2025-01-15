@@ -5,7 +5,7 @@
       $ruta2= 'Stock';
       // $rutaFooter= ;
       require("../../common/header.php");
-      require ("../../../Backend/obtenerStock.php");
+      require (BASE_PATH."/src/Backend/obtenerStock.php");
       // require (BASE_URL.'Backend/excelStockInicial.php');
       require ("funcionesStock.php");
       require(MENU_URL);
