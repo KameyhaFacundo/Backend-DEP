@@ -51,8 +51,6 @@
     $usuarioPermitido = isset($_SESSION['user']) && ($_SESSION['user']['rol'] == 'administrador' || $_SESSION['user']['rol'] == 'usuario');
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
 <body>
     <div class="movimientos-container">
         <div class="movimientos-header">
@@ -299,7 +297,7 @@
                         <p class="text-muted">Esta acción no se puede deshacer.</p>
                     </div>
                     <div class="modal-footer justify-content-center">
-                        <form id="deleteForm" method="POST" action="../../../Backend/eliminarMovimiento.php">
+                        <form id="deleteForm" method="POST" action="<?php echo BASE_URL?>Backend/eliminarMovimiento.php">
                             <input type="hidden" name="id" id="deleteId">
                             <button type="button" class="btn btn-outline-secondary btn-cancelar" data-dismiss="modal">
                                 Cancelar
