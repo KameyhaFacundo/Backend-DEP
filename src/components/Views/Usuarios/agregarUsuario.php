@@ -24,7 +24,7 @@
                     <section class="row mb-3">
                         <label for="contra" class="col-sm-3 col-form-label">Contraseña</label>
                         <section class="col-sm-9"> 
-                            <input type="password" id="contra" name="contra" class="form-control mb-3" min="8" max="25" autocomplete="off" required>
+                            <input type="password" id="contra" name="contra" class="form-control mb-3" minlength="8" maxlength="25" autocomplete="off" placeholder="8 a 25 caracteres" required>
                         </section>
                     </section>
 

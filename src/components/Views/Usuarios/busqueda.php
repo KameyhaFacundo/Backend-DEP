@@ -39,7 +39,7 @@
                 </select>
             </section>
             <section class="col-4 d-flex align-items-center vertical-center">
-                <button type="submit" id="btn-buscar" class="btn btn-sm btn-primary btn-filtrar">Filtrar</button>
+                <button type="submit" id="btn-filtrar" class="btn btn-sm btn-primary btn-filtrar">Filtrar</button>
             </section>
         </section>
         </form>

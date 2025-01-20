@@ -1,4 +1,5 @@
 <?php
+include '../../config.php';
 include 'conexion.php'; // Asegúrate de que la ruta sea correcta
 
 // Recibir datos del formulario
@@ -28,7 +29,7 @@ $stmt->bindParam(':descripUnidad', $descripUnidad, PDO::PARAM_STR);
 $stmt->bindParam(':motivo', $motivo, PDO::PARAM_STR);
 $stmt->bindParam(':idMovimiento', $idMovimiento, PDO::PARAM_INT);
     if ($stmt->execute()) {
-        header('Location: ../components/Views/Movimientos/Movimiento.php');
+        header('Location: '.BASE_URL.'../Movimientos');
         exit();
     } else {
         echo "Error al guardar el movimiento.";

@@ -1,4 +1,5 @@
 <?php
+require '../../config.php';
 // Lista de orígenes permitidos
 $allowedOrigins = ['http://localhost:5173', 'http://localhost:5174'];
 
@@ -32,7 +33,7 @@ try {
         $stmt->bindParam(':idMovimiento', $idMovimiento, PDO::PARAM_INT);
 
         if ($stmt->execute()) {
-                header('Location: ../components/Views/Movimientos/Movimiento.php');
+                header('Location: '.BASE_URL.'../Movimientos');
                 exit();
             } else {
                 echo "Error al guardar el movimiento.";

@@ -1,11 +1,18 @@
 <?php
-
+include '../../config.php';
 try {
     include 'conexion.php';
 
     if (!empty($_POST['usu']) && !empty($_POST['contra']) && !empty($_POST['rol'])) {
         $usu = trim($_POST['usu']);
+        
+        if (strlen($_POST['contra']) < 8 || strlen($_POST['contra']) > 25) {
+            $error="Error+al+ingresar+un+usuario+nuevo.+La+contraseña+debe+tener+entre+8+y+25+caracteres";
+            header('Location:'.BASE_URL.'../Usuarios?error='.$error);
+            exit();
+        }
         $contra = trim(md5($_POST['contra']));
+        
         $rol = $_POST['rol'];
 
         // ----------------QUERY PARA OBTENER UN USUARIO YA ALMACENADO SI ES QUE EXISTE ---------
@@ -16,10 +23,10 @@ try {
 
         $usuario = $stmtUsuarios->fetch(PDO::FETCH_ASSOC);
         if ($usuario) {
-            header('Location: ../components/Views/Usuarios/Usuarios.php?error=El+usuario+ya+existe');
+            header('Location:'.BASE_URL.'../Usuarios?error=El+usuario+ya+existe');
             exit();
         }
-
+        
         // ----------------QUERY PARA OBTENER IDROL  ---------
         $queryIdRol = 'SELECT "IdRol" FROM "Roles" WHERE "Rol" = :rol';
 
@@ -30,8 +37,8 @@ try {
         $idRol = $stmtIdRol->fetch(PDO::FETCH_ASSOC);
 
         // ----------------QUERY INSERTAR USUARIO ---------
-        $queryInsert = 'INSERT INTO "Usuarios" ("Usuario", "IdRol", "Password") 
-         VALUES (:usuario, :idRol, :contra)';
+        $queryInsert = 'INSERT INTO "Usuarios" ("IdUsuario","Usuario", "IdRol", "Password") 
+         VALUES ((SELECT "IdUsuario"+1 FROM "Usuarios" ORDER BY "IdUsuario" DESC LIMIT 1) ,:usuario, :idRol, :contra)';
 
         //Vinculo los parametros para realizar la consulta.
 
@@ -41,7 +48,7 @@ try {
         $stmtInsert->bindParam(':contra', $contra, PDO::PARAM_STR);
         
         if ($stmtInsert->execute()) {
-            header('Location: ../components/Views/Usuarios/Usuarios.php');
+            header('Location: '.BASE_URL.'../Usuarios');
             exit();
             // echo '<p>Insercion exitosa</p>';
         } else {
