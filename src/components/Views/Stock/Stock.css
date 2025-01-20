@@ -1,4 +1,4 @@
-.productos-container {
+.stock-container {
   margin: 40px 40px;
   padding: 20px;
   max-width: 90%;
@@ -8,21 +8,22 @@
   text-align: center;
 }
 
-.productos-header {
+.stock-header {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
   flex-wrap: wrap;
 }
 
-.productos-header h2 {
+.stock-header h2 {
   font-size: 2rem;
   font-weight: bold;
   margin: 0 auto;
 }
 
-.productos-header button {
+.stock-header button {
   background-color: beige;
   color: white;
   font-size: 1rem;
@@ -34,14 +35,14 @@
   transition: background-color 0.3s ease;
 }
 
-.productos-header button:hover {
+.stock-header button:hover {
   background-color: #1a1b1d;
 }
-.productos-header button:active {
+.stock-header button:active {
   background-color: #1a1b1d;
   background: none;
 }
-.productos-table {
+.stock-table {
   width: 100%;
   border-collapse: collapse;
   background-color: white;
@@ -50,23 +51,23 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.productos-table th,
-.productos-table td {
+.stock-table th,
+.stock-table td {
   text-align: center;
   padding: 20px;
   border: 1px solid #ddd;
 }
 
-.productos-table th {
+.stock-table th {
   background-color: #f1f1f1;
   font-weight: bold;
 }
 
-.productos-table tr:nth-child(even) {
+.stock-table tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 
-.productos-table tr:hover {
+.stock-table tr:hover {
   background-color: #f2f2f2;
 }
 
@@ -113,23 +114,23 @@ button[type="button"] {
 }
 
 
-.productos-table .btn {
+.stock-table .btn {
   padding: 0.2rem 0.4rem;
   font-size: 1.2rem;
   display: inline-block;
 }
 
-.productos-table .fa-edit,
-.productos-table .fa-trash {
+.stock-table .fa-edit,
+.stock-table .fa-trash {
   font-size: 1.2rem;
   cursor: pointer;
 }
 
-.productos-table .fa-edit:hover {
+.stock-table .fa-edit:hover {
   color: #007bff;
 }
 
-.productos-table .fa-trash:hover {
+.stock-table .fa-trash:hover {
   color: #dc3545;
 }
 
@@ -242,13 +243,13 @@ button[type="button"] {
 /* Para pantallas chicas */
 @media (max-width: 460px) {
 
-  .productos-container {
+  .stock-container {
     width: 100%;
     margin: 0;
     margin: 0 auto
   }
 
-  .productos-table{
+  .stock-table{
     width: 100%
   }
   

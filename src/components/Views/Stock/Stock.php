@@ -12,21 +12,30 @@
       $usuarioPermitido = ($_SESSION['user']['rol'] == 'administrador' || $_SESSION['user']['rol'] == 'usuario');
       
 ?>
-<main class='productos-container'>
+<main class='stock-container'>
   
-  <!-- {/* Tabla de productos */} -->
-    <section class="productos-header">
+  <!-- {/* Tabla de articulos */} -->
+    <section class="stock-header">
       <h2>Stock</h2>
       
       <!-- Boton para activar el modal para agregar articulo -->
-      <?php
-      if ($usuarioPermitido) {
-        echo '<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregar">
-        Agregar Artículo
-        </button>';
-      }
-      ?>
+       <section>
+
+         <?php
+          if ($usuarioPermitido) {
+            echo '<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregar">
+            Agregar Artículo
+            </button>';
+          }
+          ?>
+          <section class="text-right mb-1 mx-5">
+            <form method="POST" action="<?php echo BASE_URL?>Backend/exportarExcelStock.php">
+              <button type="submit" class="btn btn-succes ">Descargar</button>
+            </form>
+          </section>
+      </section>
     </section>
+    
 
     <!-- <section clas="filter-container mb-3"> -->
       <!-- Formulario de búsqueda de artículo -->
@@ -89,7 +98,6 @@
               </tr>';
             }                  
             ?>
-            <!-- <td class="p-2">'.calcularDisponible($articulo,$movimientos,$existenciasTotales).'</td> -->
           </tbody>
         </table>
     </section>
