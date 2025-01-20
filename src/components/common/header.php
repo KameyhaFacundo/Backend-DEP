@@ -23,7 +23,7 @@
     <!--<link rel="stylesheet" href="<?php echo BASE_URL?>styles/css/bootstrap4.min.css">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
-<body class="container-fluid">
+<body class="">
     <?php 
         include 'cabecera.php';
         echo cabecera();

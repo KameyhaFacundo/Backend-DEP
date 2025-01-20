@@ -14,7 +14,7 @@ $baseURL = BASE_URL;
 
 ?>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light mt-2">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <section class="container-fluid">
     <!-- Aqui van la foto y el nombre de usuario , -->
       <a href="" class="nav-link">
