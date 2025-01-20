@@ -72,7 +72,6 @@
                                     class="form-control form-control-sm" 
                                     value="<?= isset($_GET['fechaMov']) ? $_GET['fechaMov'] : '' ?>">
                             </div>
-
                             <!-- Filtro por artículo -->
                             <div class="col-12 col-sm-4 mb-3">
                                 <input
@@ -85,7 +84,6 @@
                                     value="<?= isset($_GET['articulo']) ? $_GET['articulo'] : '' ?>">
                                 <div id="articulos-results" class="list-group"></div>
                             </div>
-
                             <!-- Filtro por acción -->
                             <div class="col-12 col-sm-3 mb-3">
                                 <select 
