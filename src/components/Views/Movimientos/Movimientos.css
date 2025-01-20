@@ -100,20 +100,12 @@ body {
   margin-bottom: 20px;
 }
 
-#articulo {
-  font-size: 14px;
-  padding: 6px;
-  border-radius: 5px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* Contenedor de resultados */
+/* Ajustar el ancho del contenedor de resultados al input */
 #articulos-results {
   position: absolute;
   z-index: 10;
   background-color: white;
-  width: calc(100% - 10px); /* Alinear con el ancho del input */
+  width: 100%; /* Se ajusta automáticamente al ancho del contenedor padre */
   max-height: 200px;
   overflow-y: auto;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
@@ -124,9 +116,8 @@ body {
 
 /* Estilo de los elementos de la lista */
 #articulos-results .list-group-item {
-  font-size: 12px;
+  font-size: 14px;
   padding: 5px 10px;
-  margin-bottom: 2px;
   cursor: pointer;
 }
 
@@ -135,8 +126,8 @@ body {
 }
 
 .no-results {
-  font-size: 12px;
-  padding: 2px;
+  font-size: 14px;
+  padding: 5px;
   color: #999;
   text-align: center;
   margin-top: 5px;

@@ -1,8 +1,5 @@
 <?php
-    //require_once '../../../../config.php';
-    //$ruta1 = BASE_URL.'styles';
     $ruta2= 'Movimientos';
-    //$rutaFooter="../../common/";
     require("../../common/header.php");
     include 'funcionesMov.php';
     require (MENU_URL);
@@ -65,14 +62,19 @@
             <div class="row">
                 <div class="col-12 mb-0">
                     <form method="GET" action="" id="filterForm">
-                        <div class="form-row align-items-center">
+                        <div class="row align-items-center gx-2">
                             <!-- Filtro por fecha -->
-                            <div class="col-12 col-sm-4 mb-2 mb-sm-0">
-                                <input type="date" id="fechaMov" name="fechaMov" class="form-control form-control-sm" 
-                                    value="<?= isset($_GET['fechaMov']) ? $_GET['fechaMov'] : '' ?>" style="font-size: 1rem; padding: 0.375rem 0.75rem;">
+                            <div class="col-12 col-sm-4 mb-3">
+                                <input 
+                                    type="date" 
+                                    id="fechaMov" 
+                                    name="fechaMov" 
+                                    class="form-control form-control-sm" 
+                                    value="<?= isset($_GET['fechaMov']) ? $_GET['fechaMov'] : '' ?>">
                             </div>
+
                             <!-- Filtro por artículo -->
-                            <div class="col-12 col-sm-4 mb-2 mb-sm-0">
+                            <div class="col-12 col-sm-4 mb-3">
                                 <input
                                     type="text"
                                     id="articulo"
@@ -80,22 +82,25 @@
                                     class="form-control form-control-sm"
                                     placeholder="Buscar artículo..."
                                     autocomplete="off"
-                                    value="<?= isset($_GET['articulo']) ? $_GET['articulo'] : '' ?>"
-                                    style="font-size: 1rem; padding: 0.375rem 0.75rem;">
+                                    value="<?= isset($_GET['articulo']) ? $_GET['articulo'] : '' ?>">
                                 <div id="articulos-results" class="list-group"></div>
                             </div>
+
                             <!-- Filtro por acción -->
-                            <div class="col-12 col-sm-3 mb-2 mb-sm-0">
-                                <select name="accion" class="form-control form-control-sm" style="font-size: 0.875rem; padding: 0.25rem 0.5rem;">
+                            <div class="col-12 col-sm-3 mb-3">
+                                <select 
+                                    id="accion" 
+                                    name="accion" 
+                                    class="form-select form-select-sm">
                                     <option value="">Seleccionar acción</option>
                                     <option value="Entrada" <?= isset($_GET['accion']) && $_GET['accion'] == 'Entrada' ? 'selected' : '' ?>>Entrada</option>
-                                    <option value="Salida" <?= isset($_GET['accion']) && $_GET['accion'] == 'Salida' ? 'selected' : '' ?>>Salida</option> 
+                                    <option value="Salida" <?= isset($_GET['accion']) && $_GET['accion'] == 'Salida' ? 'selected' : '' ?>>Salida</option>
                                 </select>
                             </div>
 
                             <!-- Botón Filtrar -->
-                            <div class="col-12 col-sm-1 mb-2 mb-sm-0 d-flex justify-content-left">
-                                <button type="submit" class="btn btn-sm btn-primary">Filtrar</button>
+                            <div class="col-12 col-sm-1 d-flex align-items-end mb-3">
+                                <button type="submit" class="btn btn-sm btn-primary w-100">Filtrar</button>
                             </div>
                         </div>
                     </form>
@@ -103,7 +108,7 @@
             </div>
         </div>
         <div class="table-responsive">
-            <div class="text-right mb-1 mx-5">
+            <div class="d-flex justify-content-end mb-3 mx-5">
                 <form method="POST" action="<?php echo BASE_URL?>Backend/exportarExcel.php">
                     <button type="submit" class="btn btn-success">Descargar</button>
                 </form>
@@ -373,48 +378,51 @@
 
     <!-- Autocompletar articulos -->
      <script>
-    document.getElementById("articulo").addEventListener("input", function () {
-        const articulo = this.value;
+        document.getElementById("articulo").addEventListener("input", function () {
+            const articulo = this.value;
+            const resultsContainer = document.getElementById("articulos-results");
 
-        // Si no hay texto, limpiar resultados y no realizar petición.
-        if (articulo.trim() === "") {
-            document.getElementById("articulos-results").innerHTML = "";
-            return;
-        }
+            // Ajustar el ancho del contenedor de resultados al ancho del input.
+            const inputRect = this.getBoundingClientRect();
+            resultsContainer.style.width = `${inputRect.width}px`;
 
-        // Realizar petición a `buscarArticulos.php` con el texto parcial.
-        fetch("<?php echo BASE_URL?>Backend/buscarArticulos.php?query=" + encodeURIComponent(articulo))
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Error en la respuesta del servidor");
-                }
-                return response.json();
-            })
-            .then(data => {
-                const resultsContainer = document.getElementById("articulos-results");
-                resultsContainer.innerHTML = ""; // Limpiar resultados previos.
+            // Si no hay texto, limpiar resultados y no realizar petición.
+            if (articulo.trim() === "") {
+                resultsContainer.innerHTML = "";
+                return;
+            }
 
-                // Generar la lista de resultados.
-                data.forEach(item => {
-                    const listItem = document.createElement("a");
-                    listItem.href = "#"; // Puedes ajustar esto para que seleccione el artículo.
-                    listItem.className = "list-group-item list-group-item-action";
-                    listItem.textContent = item.Articulo;
+            // Realizar petición a `buscarArticulos.php` con el texto parcial.
+            fetch("<?php echo BASE_URL?>Backend/buscarArticulos.php?query=" + encodeURIComponent(articulo))
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Error en la respuesta del servidor");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    resultsContainer.innerHTML = ""; // Limpiar resultados previos.
 
-                    // Agregar evento de clic para seleccionar el artículo.
-                    listItem.addEventListener("click", function (e) {
-                        e.preventDefault();
-                        document.getElementById("articulo").value = item.Articulo;
-                        resultsContainer.innerHTML = ""; // Limpiar resultados.
+                    // Generar la lista de resultados.
+                    data.forEach(item => {
+                        const listItem = document.createElement("a");
+                        listItem.href = "#"; // Puedes ajustar esto para que seleccione el artículo.
+                        listItem.className = "list-group-item list-group-item-action";
+                        listItem.textContent = item.Articulo;
+
+                        // Agregar evento de clic para seleccionar el artículo.
+                        listItem.addEventListener("click", function (e) {
+                            e.preventDefault();
+                            document.getElementById("articulo").value = item.Articulo;
+                            resultsContainer.innerHTML = ""; // Limpiar resultados.
+                        });
+
+                        resultsContainer.appendChild(listItem);
                     });
-
-                    resultsContainer.appendChild(listItem);
-                });
-            })
+                })
             .catch(error => console.error("Error en la solicitud:", error));
-    });
+        });
     </script>
- 
 </body>
 </html>
 
