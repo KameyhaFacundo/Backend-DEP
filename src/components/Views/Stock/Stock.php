@@ -19,8 +19,6 @@
       <h2>Stock</h2>
       
       <!-- Boton para activar el modal para agregar articulo -->
-       <section>
-
          <?php
           if ($usuarioPermitido) {
             echo '<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregar">
@@ -28,18 +26,19 @@
             </button>';
           }
           ?>
-          <section class="text-right mb-1 mx-5">
-            <form method="POST" action="<?php echo BASE_URL?>Backend/exportarExcelStock.php">
-              <button type="submit" class="btn btn-succes ">Descargar</button>
-            </form>
-          </section>
-      </section>
     </section>
     
 
     <!-- <section clas="filter-container mb-3"> -->
       <!-- Formulario de búsqueda de artículo -->
-      <?php require "busquedas.php"; ?>
+      <section class="row" >
+        <?php require "busquedas.php"; ?>
+        <article class="col-sm-4 col-md-4 col-lg-4 mb-2 d-flex justify-content-end">
+            <form method="POST" action="<?php echo BASE_URL?>Backend/exportarExcelStock.php">
+              <button type="submit" class="btn btn-success">Descargar excel</button>
+            </form>
+        </article>
+      </section>
  
         <section class="table-responsive">
           <table class=" table table-striped table-hover table-bordered">

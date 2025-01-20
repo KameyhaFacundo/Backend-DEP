@@ -1,4 +1,3 @@
-<section class="row" >
           <article class="col-sm-4 col-md-4 col-lg-4 mb-2">
 
             <form id="filterArticuloForm" method="GET" action="">
@@ -49,5 +48,4 @@
 
           </article>
 
-        </section>
 
