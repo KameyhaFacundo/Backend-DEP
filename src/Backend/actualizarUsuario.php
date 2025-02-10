@@ -10,6 +10,7 @@ try {
         $idUsuario = $_POST['idUsuario'];
 
         // ----------------QUERY PARA OBTENER UN USUARIO YA ALMACENADO SI ES QUE EXISTE ---------
+        /*
         $queryUsuRepetido = 'SELECT "Usuario" FROM "Usuarios" WHERE "Usuario" = :usuario';
         $stmtUpdateUsu = $pdo->prepare($queryUsuRepetido);
         $stmtUpdateUsu->bindParam(':usuario', $usu, PDO::PARAM_STR);
@@ -19,7 +20,7 @@ try {
         if ($usuario) {
             header('Location:'.BASE_URL.'../Usuarios?error=El+usuario+ya+existe');
             exit();
-        }
+        }*/
 
         // ----------------QUERY PARA OBTENER IDROL  ---------
         // $queryIdRol = 'SELECT "IdRol" FROM "Roles" WHERE "Rol" = :rol';
@@ -50,11 +51,14 @@ try {
             exit();
             // echo '<p>Modificacion exitosa</p>';
         } else {
+            header('Location:'.BASE_URL.'../Usuarios?error=El+usuario+ya+existe');
+            exit();
             echo "Error al modificar el usuario.";
         }
     }
     else {
-        echo "Falta algún parámetro";
+        header('Location:'.BASE_URL.'../Usuarios?error=Faltan+parametros+requeridos.');
+        exit();
     }
     
 } catch (PDOException $e) {

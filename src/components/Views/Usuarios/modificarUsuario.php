@@ -19,7 +19,7 @@
                     <section class="row mb-3">
                         <label for="usuario" class="col-sm-2 col-form-label">Nombre de usuario</label>
                         <section class="col-sm-10"> 
-                            <input type="text" id="usuario" name="usuario" class="form-control mb-3" >
+                            <input type="text" id="usuario" name="usuario" class="form-control mb-3" required>
                         </section>
                     </section>
 
