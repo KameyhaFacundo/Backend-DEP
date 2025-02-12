@@ -214,9 +214,9 @@
         <div id="movementModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="movementModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="movementModalLabel"></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <div class="modal-header d-flex justify-content-between align-items-center" style="background-color: #f8f9fa; color: black;">
+                        <h5 class="modal-title m-0" id="movementModalLabel">Agregar o Editar Movimiento</h5>
+                        <button type="button" class="m-0" data-dismiss="modal" aria-label="Close" style="border: none;background-color: #f8f9fa; color: red; font-size: 1.5rem;">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -224,12 +224,12 @@
                         <form id="movementForm" method="POST">
                             <input type="hidden" id="idMovimiento" name="idMovimiento">
                             <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="fechaMov">Fecha:</label>
+                                <div class="form-group col-md-6 text-start">
+                                    <label for="fechaMov" class="m-2">Fecha:</label>
                                     <input type="date" id="fechaMov" name="FechaMov" class="form-control" required>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="accion">Acción:</label>
+                                <div class="form-group col-md-6 text-start">
+                                    <label for="accion" class="m-2">Acción:</label>
                                     <select id="accion" name="Accion" class="form-control" required>
                                         <option value="">Seleccione una acción</option>
                                         <?php foreach ($acciones as $accion): ?>
@@ -239,8 +239,8 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="Articulo">Artículo:</label>
+                                <div class="form-group col-md-6 text-start">
+                                    <label for="Articulo" class="m-2">Artículo:</label>
                                     <select id="Articulo" name="Articulo" class="form-control" required>
                                         <option value="">Seleccione un artículo</option>
                                         <?php foreach ($articulos as $articulo): ?>
@@ -248,8 +248,8 @@
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="Centro">Centro:</label>
+                                <div class="form-group col-md-6 text-start">
+                                    <label for="Centro" class="m-2">Centro:</label>
                                     <select id="Centro" name="Centro" class="form-control" required>
                                         <option value="">Seleccione un centro</option>
                                         <?php foreach ($centros as $centro): ?>
@@ -259,28 +259,28 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="Cantidad">Cantidad:</label>
+                                <div class="form-group col-md-6 text-start">
+                                    <label for="Cantidad" class="m-2">Cantidad:</label>
                                     <input type="number" id="Cantidad" name="Cantidad" class="form-control" required>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="Motivo">Motivo:</label>
+                                    <label for="Motivo" class="m-2">Motivo:</label>
                                     <textarea id="Motivo" name="Motivo" class="form-control" required></textarea>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="Unidad">Unidad:</label>
+                                <div class="form-group col-md-6 text-start">
+                                    <label for="Unidad" class="m-2">Unidad:</label>
                                     <input type="text" id="Unidad" name="Unidad" class="form-control" required>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="DescripUnidad">Descripción:</label>
+                                <div class="form-group col-md-6 text-start">
+                                    <label for="DescripUnidad" class="m-2">Descripción:</label>
                                     <input type="text" id="DescripUnidad" name="DescripUnidad" class="form-control" required>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <button type="submit" class="btn btn-primary"></button>
+                                <button class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-secondary"></button>
                             </div>
                         </form>
                     </div>
