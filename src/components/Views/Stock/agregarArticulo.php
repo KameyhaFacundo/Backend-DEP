@@ -38,7 +38,7 @@
                     <section class="row mb-3">
                         <label for="cantidad" class="col-sm-2 col-form-label">Cantidad</label>
                         <section class="col-sm-10"> 
-                            <input type="number" step="1" id="cant" name="cantidad" class="form-control mb-3" value="0" min="0" required>
+                            <input type="number" step="1" id="cant" name="cantidad" class="form-control mb-3" value="1" min="1" required>
                         </section>
 
                     <section>
