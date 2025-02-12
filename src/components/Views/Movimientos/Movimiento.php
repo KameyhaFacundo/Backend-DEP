@@ -66,10 +66,13 @@
                             <!-- Filtro por fecha -->
                             <div class="col-12 col-sm-4 mb-3">
                                 <input 
-                                    type="date" 
+                                    type="text" 
                                     id="fechaMov" 
                                     name="fechaMov" 
-                                    class="form-control form-control-sm" 
+                                    class="form-control form-control-sm placeholder-style" 
+                                    placeholder="dd/mm/aaaa"
+                                    onfocus="(this.type='date')" 
+                                    onblur="if(!this.value)this.type='text'" 
                                     value="<?= isset($_GET['fechaMov']) ? $_GET['fechaMov'] : '' ?>">
                             </div>
                             <!-- Filtro por artículo -->
