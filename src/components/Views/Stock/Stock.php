@@ -54,9 +54,10 @@
             </thead>
             <tbody >
           <?php 
-            if(!empty($_GET['busqueda'])) {
-              $busqueda=trim($_GET['busqueda']);
+            if(!empty($_GET['nombreFiltro'])) {
+              $busqueda=trim($_GET['nombreFiltro']);
               $articulos=filtrarPorArticulo($stock,$busqueda);
+              $articuloFiltrado = $busqueda;
             }
             elseif (!empty($_GET['rubroFiltro'])) {
               $busqueda=$_GET['rubroFiltro'];
@@ -107,7 +108,7 @@
         <ul class="pagination justify-content-center d-flex flex-wrap">
             <?php if ($page > 1): ?>
                 <li class="page-item">
-                    <a class="page-link" href="?page=<?= $page - 1 ?>&rubroFiltrado=<?= urlencode($_GET['rubroFiltro'] ?? '') ?>" aria-label="Previous">
+                    <a class="page-link" href="?page=<?= $page - 1 ?>&rubroFiltrado=<?= urlencode($_GET['rubroFiltro'] ?? '') ?>&nombreFiltrado=<?= urlencode($_GET['nombreFiltro'] ?? '') ?>" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
@@ -120,7 +121,7 @@
       // Mostrar la primera página
       ?>
       <li class="page-item <?= 1 == $page ? 'active' : '' ?>">
-        <a class="page-link" href="?page=<?= 1 ?>&rubroFiltro=<?= urlencode($_GET['rubroFiltro'] ?? '') ?>">
+        <a class="page-link" href="?page=<?= 1 ?>&rubroFiltro=<?= urlencode($_GET['rubroFiltro'] ?? '') ?>&nombreFiltro=<?= urlencode($_GET['nombreFiltro'] ?? '') ?>">
           <?= 1 ?>
         </a>
       </li>
@@ -147,7 +148,7 @@
       // Mostrar las páginas del rango
       for ($i = $startPage; $i <= $endPage; $i++): ?>
         <li class="page-item <?= $i == $page ? 'active' : '' ?>">
-          <a class="page-link" href="?page=<?= $i ?>&rubroFiltro=<?= urlencode($_GET['rubroFiltro'] ?? '') ?>">
+          <a class="page-link" href="?page=<?= $i ?>&rubroFiltro=<?= urlencode($_GET['rubroFiltro'] ?? '') ?>&nombreFiltro=<?= urlencode($_GET['nombreFiltro'] ?? '') ?>">
             <?= $i ?>
           </a>
         </li>
@@ -161,13 +162,13 @@
       // Mostrar la última página
       ?>
       <li class="page-item <?= $total_pages == $page ? 'active' : '' ?>">
-        <a class="page-link" href="?page=<?= $total_pages ?>&rubroFiltro=<?= urlencode($_GET['rubroFiltro'] ?? '') ?>">
+        <a class="page-link" href="?page=<?= $total_pages ?>&rubroFiltro=<?= urlencode($_GET['rubroFiltro'] ?? '') ?>&nombreFiltro=<?= urlencode($_GET['nombreFiltro'] ?? '') ?>">
           <?= $total_pages ?>
         </a>
       </li>
             <?php if ($page < $total_pages): ?>
                 <li class="page-item">
-                    <a class="page-link" href="?page=<?= $page + 1 ?>&rubroFiltrado=<?= urlencode($_GET['rubroFiltro'] ?? '') ?>" aria-label="Next">
+                    <a class="page-link" href="?page=<?= $page + 1 ?>&rubroFiltrado=<?= urlencode($_GET['rubroFiltro'] ?? '') ?>&nombreFiltrado=<?= urlencode($_GET['nombreFiltro'] ?? '') ?>" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
