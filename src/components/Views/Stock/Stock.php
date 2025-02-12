@@ -104,7 +104,7 @@
     <!-- Paginado -->
     <?php if (is_array($articulos) && count($articulos) > 0): ?>
       <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center">
+        <ul class="pagination justify-content-center d-flex flex-wrap">
             <?php if ($page > 1): ?>
                 <li class="page-item">
                     <a class="page-link" href="?page=<?= $page - 1 ?>&rubroFiltrado=<?= urlencode($_GET['rubroFiltro'] ?? '') ?>" aria-label="Previous">
