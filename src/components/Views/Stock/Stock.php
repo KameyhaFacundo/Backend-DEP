@@ -147,7 +147,7 @@
       // Mostrar las páginas del rango
       for ($i = $startPage; $i <= $endPage; $i++): ?>
         <li class="page-item <?= $i == $page ? 'active' : '' ?>">
-          <a class="page-link" href="?page=<?= $i ?>&rubroFiltrado=<?= urlencode($_GET['rubroFiltro'] ?? '') ?>">
+          <a class="page-link" href="?page=<?= $i ?>&rubroFiltro=<?= urlencode($_GET['rubroFiltro'] ?? '') ?>">
             <?= $i ?>
           </a>
         </li>
@@ -161,7 +161,7 @@
       // Mostrar la última página
       ?>
       <li class="page-item <?= $total_pages == $page ? 'active' : '' ?>">
-        <a class="page-link" href="?page=<?= $total_pages ?>&rubroFiltrado=<?= urlencode($_GET['rubroFiltro'] ?? '') ?>">
+        <a class="page-link" href="?page=<?= $total_pages ?>&rubroFiltro=<?= urlencode($_GET['rubroFiltro'] ?? '') ?>">
           <?= $total_pages ?>
         </a>
       </li>
