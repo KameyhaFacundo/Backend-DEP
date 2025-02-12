@@ -6,7 +6,7 @@
                   <input
                     type="text"
                     id="articulo"
-                    name="busqueda"
+                    name="nombreFiltro"
                     class="form-control"
                     placeholder="Buscar artículo..."
                     autocomplete="off"
