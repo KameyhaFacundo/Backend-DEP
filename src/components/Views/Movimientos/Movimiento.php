@@ -189,13 +189,58 @@
                             </a>
                         </li>
                     <?php endif; ?>
-                    <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-                        <li class="page-item <?= $i == $page ? 'active' : '' ?>">
-                            <a class="page-link" href="?page=<?= $i ?>&fechaMov=<?= urlencode($_GET['fechaMov'] ?? '') ?>&accion=<?= urlencode($_GET['accion'] ?? '') ?>">
-                                <?= $i ?>
-                            </a>
-                        </li>
-                    <?php endfor; ?>
+                    <?php
+      $visiblePages = 2; // Número de páginas a mostrar (sin contar la primera y la última)
+      $halfVisible = floor($visiblePages / 2);
+
+      // Mostrar la primera página
+      ?>
+      <li class="page-item <?= 1 == $page ? 'active' : '' ?>">
+        <a class="page-link" href="?page=<?= 1 ?>&rubroFiltro=<?= urlencode($_GET['rubroFiltro'] ?? '') ?>">
+          <?= 1 ?>
+        </a>
+      </li>
+      <?php
+
+      // Mostrar "..." si es necesario
+      if ($total_pages > $visiblePages + 2 && $page > $halfVisible + 1) : ?>
+        <li class="page-item disabled"> <span class="page-link">...</span></li>
+      <?php endif;
+
+      // Calcular el rango de páginas a mostrar
+      $startPage = max(2, $page - $halfVisible);
+      $endPage = min($total_pages - 1, $page + $halfVisible);
+
+       if ($endPage - $startPage + 1 < $visiblePages) {
+           if ($page <= $halfVisible + 1) {
+               $endPage = min($total_pages - 1, $visiblePages + 1);
+           } else {
+               $startPage = max(2, $total_pages - $visiblePages -1);
+           }
+       }
+
+
+      // Mostrar las páginas del rango
+      for ($i = $startPage; $i <= $endPage; $i++): ?>
+        <li class="page-item <?= $i == $page ? 'active' : '' ?>">
+          <a class="page-link" href="?page=<?= $i ?>&rubroFiltrado=<?= urlencode($_GET['rubroFiltro'] ?? '') ?>">
+            <?= $i ?>
+          </a>
+        </li>
+      <?php endfor; 
+
+      // Mostrar "..." si es necesario
+      if ($total_pages > $visiblePages + 2 && $page < $total_pages - $halfVisible - 1) : ?>
+        <li class="page-item disabled"> <span class="page-link">...</span></li>
+      <?php endif; 
+
+      // Mostrar la última página
+      ?>
+      <li class="page-item <?= $total_pages == $page ? 'active' : '' ?>">
+        <a class="page-link" href="?page=<?= $total_pages ?>&rubroFiltrado=<?= urlencode($_GET['rubroFiltro'] ?? '') ?>">
+          <?= $total_pages ?>
+        </a>
+      </li>
                     <?php if ($page < $total_pages): ?>
                         <li class="page-item">
                             <a class="page-link" href="?page=<?= $page + 1 ?>&fechaMov=<?= urlencode($_GET['fechaMov'] ?? '') ?>&accion=<?= urlencode($_GET['accion'] ?? '') ?>" aria-label="Next">
