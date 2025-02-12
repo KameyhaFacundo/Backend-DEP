@@ -17,7 +17,7 @@ $baseURL = BASE_URL;
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <section class="container-fluid">
     <!-- Aqui van la foto y el nombre de usuario , -->
-      <a href="" class="nav-link">
+      <a href="Movimientos" class="nav-link">
         <section class="d-flex align-items-center ">
           <h3 class="mb-0" ><?php echo $_SESSION['user']['username']?></h3>
             <figure class="mb-0">
