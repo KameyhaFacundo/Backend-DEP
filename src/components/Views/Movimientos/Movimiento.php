@@ -182,9 +182,11 @@
         </div>
 
         <!-- Paginado -->
-        <?php if (is_array($movimientos) && count($movimientos) > 0): ?>
+        <?php if (is_array($movimientos) && count($movimientos) > 0 && $total_pages>1): ?>
             <nav aria-label="Page navigation">
                 <ul class="pagination justify-content-center d-flex flex-wrap">
+
+                    <!-- Boton de pagina previa -->
                     <?php if ($page > 1): ?>
                         <li class="page-item">
                             <a class="page-link" href="?page=<?= $page - 1 ?>&fechaMov=<?= urlencode($_GET['fechaMov'] ?? '') ?>&accion=<?= urlencode($_GET['accion'] ?? '') ?>" aria-label="Previous">
@@ -196,18 +198,22 @@
                     <?php
                     $visiblePages = 2; // Número de páginas a mostrar (sin contar la primera y la última)
                     $halfVisible = floor($visiblePages / 2);
+
+                     // Mostrar la primera página
                     ?>
                     <li class="page-item <?= 1 == $page ? 'active' : '' ?>">
                         <a class="page-link" href="?page=<?= 1 ?>&fechaMov=<?= urlencode($_GET['fechaMov'] ?? '') ?>&accion=<?= urlencode($_GET['accion'] ?? '') ?>">
                             <?= 1 ?>
                         </a>
                     </li>
-
+                        
                     <?php
+                    // Mostrar "..." si es necesario
                     if ($total_pages > $visiblePages + 2 && $page > $halfVisible + 1) : ?>
                         <li class="page-item disabled"><span class="page-link">...</span></li>
                     <?php endif;
 
+                    // Calcular el rango de páginas a mostrar
                     $startPage = max(2, $page - $halfVisible);
                     $endPage = min($total_pages - 1, $page + $halfVisible);
 
@@ -218,7 +224,8 @@
                             $startPage = max(2, $total_pages - $visiblePages - 1);
                         }
                     }
-
+                    
+                    // Mostrar las páginas del rango
                     for ($i = $startPage; $i <= $endPage; $i++): ?>
                         <li class="page-item <?= $i == $page ? 'active' : '' ?>">
                             <a class="page-link" href="?page=<?= $i ?>&fechaMov=<?= urlencode($_GET['fechaMov'] ?? '') ?>&accion=<?= urlencode($_GET['accion'] ?? '') ?>">
@@ -226,10 +233,13 @@
                             </a>
                         </li>
                     <?php endfor;
-
+                    
+                    // Mostrar "..." si es necesario
                     if ($total_pages > $visiblePages + 2 && $page < $total_pages - $halfVisible - 1) : ?>
                         <li class="page-item disabled"><span class="page-link">...</span></li>
                     <?php endif;
+                    
+                    // Mostrar la última página
                     ?>
                     <li class="page-item <?= $total_pages == $page ? 'active' : '' ?>">
                         <a class="page-link" href="?page=<?= $total_pages ?>&fechaMov=<?= urlencode($_GET['fechaMov'] ?? '') ?>&accion=<?= urlencode($_GET['accion'] ?? '') ?>">
