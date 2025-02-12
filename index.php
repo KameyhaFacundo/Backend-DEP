@@ -32,16 +32,18 @@
             </div>
             <div class="d-flex justify-content-center mx-3">
                 <div class="card p-0">
-                    <div class="card-header">
-                        <div class="d-flex">
-                            <div class="col-6 py-4">
-                                <h4 class="py-3 mx-2"><strong>Iniciar Sesión al Sistema</strong></h4>
-                            </div>
-                            <div class="col-6 py-4 d-flex justify-content-center align-items-center">
-                                <img src="./src/assets/img/header-responsive-1.png" alt="header-login">
-                            </div>
+                <div class="card-header">
+                    <div class="d-flex flex-column flex-md-row">
+                        <!-- Título: se mostrará en segundo lugar para small, y en primer lugar para md+ -->
+                        <div class="col-12 col-md-6 py-4 order-2 order-md-1">
+                            <h4 class="py-3 mx-2"><strong>Iniciar Sesión al Sistema</strong></h4>
+                        </div>
+                        <!-- Imagen: se mostrará primero en small y luego a la derecha en md+ -->
+                        <div class="col-12 col-md-6 py-4 d-flex justify-content-center align-items-center order-1 order-md-2">
+                            <img src="./src/assets/img/header-responsive-1.png" alt="header-login">
                         </div>
                     </div>
+                </div>
                     <div class="card-body">
                         <?php
                             //Muestra de mensaje de error en caso que exista
