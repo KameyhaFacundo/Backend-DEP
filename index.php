@@ -1,5 +1,5 @@
 <?php
-    $ruta2= '';
+    $ruta2= 'style';
     require_once 'config.php';
     //$rutaFooter="src/components/common/";
     //require("src/components/common/header.php");
@@ -10,12 +10,6 @@
         header('Location: Movimientos');
         exit;
     }
-
-    //Muestra de mensaje de error en caso que exista
-    if(isset($_GET['error'])){
-        echo '<div class="alert alert-danger mt-2" role="alert">'.htmlspecialchars($_GET['error']).'</div>';
-      }
-    
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -27,6 +21,7 @@
     <title>DEP</title>
     <!-- Enlace dinamico al bootstrap -->
     <link rel="stylesheet" href="<?php echo BASE_URL ?>styles/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL ?>styles/style.css">
 </head>
 <body class="container-fluid">
 
@@ -48,6 +43,12 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        <?php
+                            //Muestra de mensaje de error en caso que exista
+                            if(isset($_GET['error'])){
+                                echo '<div class="alert alert-danger mt-2" role="alert">'.htmlspecialchars($_GET['error']).'</div>';
+                            }
+                        ?>
                         <form id="loginForm" action="./src/components/helpers/querie_login.php" method="POST" name="formLogin">
                             <div class="mb-3">
                                 <input 
@@ -76,7 +77,7 @@
                                 <? htmlspecialchars($_GET['error']) ?>
                               </div>
                             <?php endif;?>
-                            <button type="submit" id="loginButton" class="btn btn-primary">Ingresar</button>
+                            <button type="submit" id="loginButton" class="btn-loggin-ingresar">Ingresar</button>
                         </form>
                     </div>
                 </div>
