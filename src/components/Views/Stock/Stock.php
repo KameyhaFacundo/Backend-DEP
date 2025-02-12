@@ -103,9 +103,11 @@
     </section>
            
     <!-- Paginado -->
-    <?php if (is_array($articulos) && count($articulos) > 0): ?>
+    <?php if (is_array($articulos) && count($articulos) > 0 && $total_pages>1) : ?>
       <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center d-flex flex-wrap">
+
+          <!-- Boton de pagina previa -->
             <?php if ($page > 1): ?>
                 <li class="page-item">
                     <a class="page-link" href="?page=<?= $page - 1 ?>&rubroFiltrado=<?= urlencode($_GET['rubroFiltro'] ?? '') ?>&nombreFiltrado=<?= urlencode($_GET['nombreFiltro'] ?? '') ?>" aria-label="Previous">
@@ -126,6 +128,7 @@
         </a>
       </li>
       <?php
+
 
       // Mostrar "..." si es necesario
       if ($total_pages > $visiblePages + 2 && $page > $halfVisible + 1) : ?>
