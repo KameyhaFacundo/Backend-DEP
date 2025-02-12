@@ -19,23 +19,25 @@
     <section class="centros-header">
       <h2>Centro de Costos</h2>
     </section>
-    
-    <table class="table table-responsive table-striped table-hover table-bordered">
-      <thead>
-        <tr>
-          <th class="p-3">ID Centro</th>
-          <th class="p-3">Nombre</th>
-          <th class="p-3">Opciones</th>
-        </tr>
-      </thead>
-      <tbody >
-        <?php
-          foreach ($centros as $centro) {
-            echo ItemCertro($centro);
-          }
-        ?>
-      </tbody>
-    </table>
+
+    <section class="table-responsive">
+      <table class="table table-responsive table-striped table-hover table-bordered">
+        <thead>
+          <tr>
+            <th class="p-3">ID Centro</th>
+            <th class="p-3">Nombre</th>
+            <th class="p-3">Opciones</th>
+          </tr>
+        </thead>
+        <tbody >
+          <?php
+            foreach ($centros as $centro) {
+              echo ItemCertro($centro);
+            }
+          ?>
+        </tbody>
+      </table>
+    </section>
   </section>
 
 </main>
