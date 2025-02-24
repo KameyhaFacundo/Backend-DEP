@@ -340,9 +340,9 @@
         <div id="deleteModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <div class="modal-header bg-primary text-white">
+                    <div class="modal-header bg-primary text-white d-flex justify-content-between align-items-center">
                         <h5 class="modal-title" id="deleteModalLabel">Confirmar Eliminación</h5>
-                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close bg-primary text-white" data-dismiss="modal" aria-label="Close" style="border: none; color: red; font-size: 1.5rem;">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
