@@ -17,7 +17,7 @@
             >
               <img
                 class="img-interes"
-                src = "<?php echo $rutaImgs?>defecto.png"
+                src = "<?php echo $rutaImgs?>dirEstadistica2.png"
                 alt="estadistica"
               />
             </a>
@@ -62,7 +62,7 @@
             >
               <img
                 class="img-interes"
-                src="<?php echo $rutaImgs?>defecto.png"
+                src="<?php echo $rutaImgs?>sepLogo.png"
                 alt="sep"
               />
             </a>
