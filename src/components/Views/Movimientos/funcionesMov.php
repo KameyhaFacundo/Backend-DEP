@@ -1,6 +1,6 @@
 <?php
   function getMovimientos() {
-    $url = 'http://localhost/Backend-DEP/src/Backend/obtenerMovimientos.php'; 
+    $url = 'http://localhost/depStock/src/Backend/obtenerMovimientos.php'; 
     $response = file_get_contents($url); 
 
     if ($response === false) {
@@ -14,7 +14,7 @@
 
 
   function getArticulos() {
-    $url = 'http://localhost/Backend-DEP/src/Backend/Movimiento.php';
+    $url = 'http://localhost/depStock/src/Backend/Movimiento.php';
 
     $response = file_get_contents($url);
 
@@ -29,7 +29,7 @@
 
 
   function getCentros() {
-    $url = 'http://localhost/Backend-DEP/src/Backend/Movimiento.php';
+    $url = 'http://localhost/depStock/src/Backend/Movimiento.php';
 
     $response = file_get_contents($url);
 
@@ -44,7 +44,7 @@
 
 
   function getAcciones() {
-    $url = 'http://localhost/Backend-DEP/src/Backend/Movimiento.php';
+    $url = 'http://localhost/depStock/src/Backend/Movimiento.php';
 
     $response = file_get_contents($url);
     

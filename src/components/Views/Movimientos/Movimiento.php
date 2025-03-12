@@ -274,7 +274,7 @@
                             <div class="row">
                                 <div class="form-group col-md-6 text-start">
                                     <label for="fechaMov" class="m-2">Fecha:</label>
-                                    <input type="date" id="fechaMov" name="FechaMov" class="form-control" required>
+                                    <input type="date" id="fechaMov" name="FechaMov" class="form-control" max="<?php  echo date('Y-m-d')?>" required>
                                 </div>
                                 <div class="form-group col-md-6 text-start">
                                     <label for="accion" class="m-2">Acción:</label>
@@ -310,7 +310,20 @@
                                 <div class="form-group col-md-6 text-start">
                                     <label for="Cantidad" class="m-2">Cantidad:</label>
                                     <input type="number" id="Cantidad" name="Cantidad" class="form-control" required>
+                                    <small id="error-message" style="color: red; display: none;">No se pueden ingresar valores negativos.</small>
                                 </div>
+                                <script>
+                                    const cantidadInput = document.getElementById('Cantidad');
+                                    const errorMessage = document.getElementById('error-message');
+
+                                    cantidadInput.addEventListener('input', function() {
+                                        if (cantidadInput.value <= 0) {
+                                            errorMessage.style.display = 'block';
+                                        } else {
+                                            errorMessage.style.display = 'none';
+                                        }
+                                    });
+                                </script>
                                 <div class="form-group col-md-6">
                                     <label for="Motivo" class="m-2">Motivo:</label>
                                     <textarea id="Motivo" name="Motivo" class="form-control" required></textarea>

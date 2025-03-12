@@ -9,7 +9,7 @@ if($_SERVER['REQUEST_METHOD']==='POST')
     $contrasenia=$_POST['contrasenia'];
     
     //URL del back
-    $url = 'http://localhost/Backend-DEP/src/Backend/login.php';
+    $url = 'http://localhost/depStock/src/Backend/login.php';
 
     //Crea los datos para mandarlos al back
     $data = json_encode([
@@ -49,7 +49,7 @@ if($_SERVER['REQUEST_METHOD']==='POST')
             'username'=>$result['usuario'],
             'rol'=>$result['rol']
         ];
-        header('Location: /Backend-DEP/Movimientos'); //Esto lo podemos modificar para que se vean los movimientos
+        header('Location: /depStock/Movimientos'); //Esto lo podemos modificar para que se vean los movimientos
         exit;
     }else
     {

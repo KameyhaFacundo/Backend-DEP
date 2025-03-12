@@ -1,5 +1,5 @@
 RewriteEngine On
-RewriteBase /Backend-DEP/
+RewriteBase /depStock/
 
 RewriteRule ^Movimientos$ src/components/Views/Movimientos/Movimiento.php [L]
 RewriteRule ^Centros$ src/components/Views/Centros/Centros.php [L] 
