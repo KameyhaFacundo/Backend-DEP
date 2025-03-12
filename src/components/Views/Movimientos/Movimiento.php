@@ -46,6 +46,8 @@
     $current_page = $pagination['current_page'];
 
     $usuarioPermitido = isset($_SESSION['user']) && ($_SESSION['user']['rol'] == 'administrador' || $_SESSION['user']['rol'] == 'usuario');
+
+  
 ?>
 
 <body>
@@ -274,7 +276,7 @@
                             <div class="row">
                                 <div class="form-group col-md-6 text-start">
                                     <label for="fechaMov" class="m-2">Fecha:</label>
-                                    <input type="date" id="fechaMov" name="FechaMov" class="form-control" required>
+                                    <input type="date" id="fechaMov" name="FechaMov" class="form-control" max="<?php echo date('Y-m-d') ?>" required>
                                 </div>
                                 <div class="form-group col-md-6 text-start">
                                     <label for="accion" class="m-2">Acción:</label>
