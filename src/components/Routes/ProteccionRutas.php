@@ -3,7 +3,7 @@ session_start();
 
 function verificarUsuarioLogueado() {
     if (!isset($_SESSION['user'])) {
-        header("Location: http://localhost/Backend-DEP/"); //Esta ruta habria que modificarla al momento de subir el proyecto
+        header("Location: http://localhost/depStock/"); //Esta ruta habria que modificarla al momento de subir el proyecto
         exit();
     }
 }
