@@ -7,7 +7,7 @@
     //Verifica si hay un usuario logueado
     session_start();
     if(isset($_SESSION['user'])){
-        header('Location: Movimientos');
+        header('Location: src/components/Views/Movimientos/Movimiento.php');
         exit;
     }
 ?>
