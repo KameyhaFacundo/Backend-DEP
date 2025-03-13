@@ -2,7 +2,7 @@
 $request = $_SERVER['REQUEST_URI'];
 
 switch ($request) {
-    case '/depStock/Movimientos':
+    case '/Backend-DEP/Movimientos':
         require __DIR__ . '/src/components/Views/Movimientos/Movimiento.php';
         break;
     // Agrega otros casos según sea necesario
