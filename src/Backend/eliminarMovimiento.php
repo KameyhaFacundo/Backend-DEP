@@ -33,7 +33,7 @@ try {
         $stmt->bindParam(':idMovimiento', $idMovimiento, PDO::PARAM_INT);
 
         if ($stmt->execute()) {
-                header('Location: '.BASE_URL.'../Movimientos');
+                header('Location: '.BASE_URL.'components/Views/Movimientos/Movimiento.php');
                 exit();
             } else {
                 echo "Error al guardar el movimiento.";

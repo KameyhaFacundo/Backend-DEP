@@ -48,7 +48,7 @@ try {
         $stmtInsert->bindParam(':contra', $contra, PDO::PARAM_STR);
         
         if ($stmtInsert->execute()) {
-            header('Location: '.BASE_URL.'../Usuarios');
+            header('Location: '.BASE_URL.'components/Views/Usuarios/Usuarios.php');
             exit();
             // echo '<p>Insercion exitosa</p>';
         } else {

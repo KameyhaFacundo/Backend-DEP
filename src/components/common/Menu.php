@@ -17,7 +17,7 @@ $baseURL = BASE_URL;
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <section class="container-fluid">
     <!-- Aqui van la foto y el nombre de usuario , -->
-      <a href="Movimientos" class="nav-link">
+      <a href="../Movimientos/Movimiento.php" class="nav-link">
         <section class="d-flex align-items-center ">
           <h3 class="mb-0" ><?php echo $_SESSION['user']['username']?></h3>
             <figure class="mb-0">
@@ -38,12 +38,12 @@ $baseURL = BASE_URL;
               Secciones
             </button>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="Movimientos">Movimientos</a></li>
-              <li><a class="dropdown-item" href="Centros">Oficinas</a></li>
-              <li><a class="dropdown-item" href="Stock">Stock</a></li>
+              <li><a class="dropdown-item" href="../Movimientos/Movimiento.php">Movimientos</a></li>
+              <li><a class="dropdown-item" href="../Centros/Centros.php">Oficinas</a></li>
+              <li><a class="dropdown-item" href="../Stock/Stock.php">Stock</a></li>
               <?php
               if ($usuarioPermitido) {//debo controlas que solo admin tenga acceso a la gestion de usuarios
-                echo '<li><a class="dropdown-item" href="Usuarios">Usuarios</a></li>';
+                echo '<li><a class="dropdown-item" href="../Usuarios/Usuarios.php">Usuarios</a></li>';
               }
               ?>
             </ul>
