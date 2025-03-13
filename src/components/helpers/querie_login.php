@@ -49,7 +49,7 @@ if($_SERVER['REQUEST_METHOD']==='POST')
             'username'=>$result['usuario'],
             'rol'=>$result['rol']
         ];
-        header('Location: /depStock/Movimientos'); //Esto lo podemos modificar para que se vean los movimientos
+        header('Location: ../../../src/components/Views/Movimientos/Movimiento.php'); //Esto lo podemos modificar para que se vean los movimientos
         exit;
     }else
     {

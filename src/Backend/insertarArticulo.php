@@ -43,7 +43,7 @@ try {
         $stmtInsert->bindParam(':cantidad', $cantidad, PDO::PARAM_STR);
         
         if ($stmtInsert->execute()) {
-            header('Location: '.BASE_URL.'../Stock');
+            header('Location: '.BASE_URL.'components/Views/Stock/Stock.php');
             exit();
             // echo '<p>Insercion exitosa</p>';
         } else {

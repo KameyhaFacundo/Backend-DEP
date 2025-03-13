@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindParam(':descripUnidad', $descripUnidad, PDO::PARAM_STR);
 
     if ($stmt->execute()) {
-        header('Location: '.BASE_URL.'../Movimientos');
+        header('Location: '.BASE_URL.'components/Views/Movimientos/Movimiento.php');
         exit();
     } else {
         echo "Error al guardar el movimiento.";

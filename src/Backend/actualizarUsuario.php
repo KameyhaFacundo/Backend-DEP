@@ -42,7 +42,7 @@ try {
 
         
         if ($stmtInsert->execute()) {
-            header('Location: '.BASE_URL.'../Usuarios');
+            header('Location: '.BASE_URL.'components/Views/Usuarios/Usuarios.php');
             exit();
             // echo '<p>Modificacion exitosa</p>';
         } else {
