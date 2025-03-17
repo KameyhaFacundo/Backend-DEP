@@ -1,31 +1,38 @@
 <?php
-    $ruta2= 'style';
-    require_once 'config.php';
-    //$rutaFooter="src/components/common/";
-    //require("src/components/common/header.php");
+require_once 'config.php';
 
-    //Verifica si hay un usuario logueado
-    session_start();
-    if(isset($_SESSION['user'])){
-        header('Location: src/components/Views/Movimientos/Movimiento.php');
-        exit;
-    }
+// Verifica si hay un usuario logueado y redirige
+session_start();
+if (isset($_SESSION['user'])) {
+    header('Location: src/components/Views/Movimientos/Movimiento.php');
+    exit;
+}
 
-    $request = trim($_SERVER['REQUEST_URI'], '/'); // Obtener la ruta solicitada sin barras
+// Obtener la ruta solicitada y limpiarla
+$request = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 
-    $routes = [
-        'depStock/Movimientos' => getenv('MOVIMIENTOS_PATH'),
-        'depStock/Centros' => getenv('CENTROS_PATH'),
-        'depStock/Stock' => getenv('STOCK_PATH'),
-        'depStock/Usuarios' => getenv('USUARIOS_PATH'),
-    ];
+// Definir las rutas disponibles usando las variables de entorno
+$routes = [
+    'depStock/Movimientos' => $_ENV['MOVIMIENTOS_PATH'] ?? '',
+    'depStock/Centros' => $_ENV['CENTROS_PATH'] ?? '',
+    'depStock/Stock' => $_ENV['STOCK_PATH'] ?? '',
+    'depStock/Usuarios' => $_ENV['USUARIOS_PATH'] ?? '',
+];
 
-    if (isset($routes[$request])) {
-        require __DIR__ . '/' . $routes[$request];
+// Verificar si la ruta existe y cargar el archivo correspondiente
+if (isset($routes[$request]) && !empty($routes[$request])) {
+    $filePath = __DIR__ . '/' . $routes[$request];
+    
+    if (file_exists($filePath)) {
+        require $filePath;
     } else {
-        http_response_code(404);
-        echo '404 - Página no encontrada';
+        http_response_code(500);
+        echo "Error: El archivo no existe en $filePath";
     }
+} else {
+    http_response_code(404);
+    echo '404 - Página no encontrada';
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
