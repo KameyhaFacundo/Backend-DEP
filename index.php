@@ -10,6 +10,22 @@
         header('Location: src/components/Views/Movimientos/Movimiento.php');
         exit;
     }
+
+    $request = trim($_SERVER['REQUEST_URI'], '/'); // Obtener la ruta solicitada sin barras
+
+    $routes = [
+        'depStock/Movimientos' => getenv('MOVIMIENTOS_PATH'),
+        'depStock/Centros' => getenv('CENTROS_PATH'),
+        'depStock/Stock' => getenv('STOCK_PATH'),
+        'depStock/Usuarios' => getenv('USUARIOS_PATH'),
+    ];
+
+    if (isset($routes[$request])) {
+        require __DIR__ . '/' . $routes[$request];
+    } else {
+        http_response_code(404);
+        echo '404 - Página no encontrada';
+    }
 ?>
 <!DOCTYPE html>
 <html lang="es">
