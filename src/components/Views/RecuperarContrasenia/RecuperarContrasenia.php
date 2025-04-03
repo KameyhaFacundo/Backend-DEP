@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php';
+require_once dirname(__DIR__, 4) . '/config.php';
 
 // Verifica si hay un usuario logueado y redirige
 session_start();
@@ -10,29 +10,6 @@ if (isset($_SESSION['user'])) {
 
 // Obtener la ruta solicitada y limpiarla
 $request = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
-
-// Definir las rutas disponibles usando las variables de entorno
-$routes = [
-    'Backend-DEP/Movimientos' => $_ENV['MOVIMIENTOS_PATH'] ?? '',
-    'Backend-DEP/Centros' => $_ENV['CENTROS_PATH'] ?? '',
-    'Backend-DEP/Stock' => $_ENV['STOCK_PATH'] ?? '',
-    'Backend-DEP/Usuarios' => $_ENV['USUARIOS_PATH'] ?? '',
-];
-
-// Verificar si la ruta existe y cargar el archivo correspondiente
-if (isset($routes[$request]) && !empty($routes[$request])) {
-    $filePath = __DIR__ . '/' . $routes[$request];
-    
-    if (file_exists($filePath)) {
-        require $filePath;
-    } else {
-        http_response_code(500);
-        echo "Error: El archivo no existe en $filePath";
-    }
-} else {
-    http_response_code(404);
-    echo '404 - Página no encontrada';
-}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -59,11 +36,11 @@ if (isset($routes[$request]) && !empty($routes[$request])) {
                     <div class="d-flex flex-column flex-md-row">
                         <!-- Título: se mostrará en segundo lugar para small, y en primer lugar para md+ -->
                         <div class="col-12 col-md-6 py-4 order-2 order-md-1">
-                            <h4 class="py-3 mx-2"><strong>Iniciar Sesión al Sistema</strong></h4>
+                            <h4 class="py-3 mx-2"><strong>Recuperar Contraseña</strong></h4>
                         </div>
                         <!-- Imagen: se mostrará primero en small y luego a la derecha en md+ -->
                         <div class="col-12 col-md-6 py-4 d-flex justify-content-center align-items-center order-1 order-md-2">
-                            <img src="./src/assets/img/header-responsive-1.png" alt="header-login">
+                            <img src="../../../assets/img/header-responsive-1.png" alt="header-login">
                         </div>
                     </div>
                 </div>
@@ -85,25 +62,13 @@ if (isset($routes[$request]) && !empty($routes[$request])) {
                                     maxlength="16" 
                                     required>
                             </div>
-                            <div class="mb-3">
-                                <input 
-                                    type="password" 
-                                    class="form-control" 
-                                    id="contrasenia" 
-                                    name="contrasenia" 
-                                    placeholder="Ingrese su contraseña" 
-                                    maxlength="16" 
-                                    required>
-                            </div>
-                            <!--Muestra un mensaje de error en caso que corresponda-->
 
                             <?php if(isset($_GET['error'])): ?>
                               <div id="errorMessage" class="text-danger mb-3">
                                 <? htmlspecialchars($_GET['error']) ?>
-                              </div>
+                            </div>
                             <?php endif;?>
                             <div class="align-items-center">
-                                <button type="submit" id="loginButton" class="btn-loggin-ingresar">Ingresar</button>
                                 <button type="button" id="recuperarContraseniaButton" class="btn btn-secondary mb-1" onclick="window.location.href='<?php echo BASE_URL?>components/Views/RecuperarContrasenia/RecuperarContrasenia.php'">Recuperar Contraseña</button>
                             </div>
                         </form>

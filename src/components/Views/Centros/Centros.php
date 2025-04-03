@@ -15,7 +15,7 @@
 <main class='mainSection'>
   
   <!-- {/* Tabla de centros */} -->
-  <section class="centros-container">
+  <section class="centros-container p-3">
     <section class="centros-header">
       <h2>Centro de Costos</h2>
     </section>

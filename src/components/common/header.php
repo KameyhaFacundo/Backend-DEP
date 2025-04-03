@@ -15,7 +15,7 @@
     <!-- Enlace dinamico al bootstrap -->
     <link rel="stylesheet" href="<?php echo BASE_URL?>styles/css/bootstrap.min.css">
     <!-- Enlace dinamico al css propio -->
-    <link rel="stylesheet" href="<?php echo RUTA_CSS?>">
+    <!--<link rel="stylesheet" href="<?php echo RUTA_CSS?>"> -->
     <!-- Enlace al css del footer  -->
     <link rel="stylesheet" href="<?php echo FOOTER_CSS_URL?>">
     <!-- Enlace a los iconos de bootstrap -->
