@@ -1,5 +1,5 @@
 <?php
-define('BASE_URL', 'http://localhost/depStock/src/');
+define('BASE_URL', 'http://localhost/Backend-DEP/src/');
 define('BASE_PATH', __DIR__);
 
 // Enlaces relativos

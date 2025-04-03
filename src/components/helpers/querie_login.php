@@ -9,7 +9,7 @@ if($_SERVER['REQUEST_METHOD']==='POST')
     $contrasenia=$_POST['contrasenia'];
     
     //URL del back
-    $url = 'http://localhost/depStock/src/Backend/login.php';
+    $url = 'http://localhost/Backend-DEP/src/Backend/login.php';
 
     //Crea los datos para mandarlos al back
     $data = json_encode([

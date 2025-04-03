@@ -1,4 +1,4 @@
-const API_BASE_URL="http://localhost/archivos/depStock";
+const API_BASE_URL="http://localhost/archivos/Backend-DEP";
 
 //Para traer las oficinas o centros
 export const fetchCentros = async () =>

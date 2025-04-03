@@ -13,10 +13,10 @@ $request = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 
 // Definir las rutas disponibles usando las variables de entorno
 $routes = [
-    'depStock/Movimientos' => $_ENV['MOVIMIENTOS_PATH'] ?? '',
-    'depStock/Centros' => $_ENV['CENTROS_PATH'] ?? '',
-    'depStock/Stock' => $_ENV['STOCK_PATH'] ?? '',
-    'depStock/Usuarios' => $_ENV['USUARIOS_PATH'] ?? '',
+    'Backend-DEP/Movimientos' => $_ENV['MOVIMIENTOS_PATH'] ?? '',
+    'Backend-DEP/Centros' => $_ENV['CENTROS_PATH'] ?? '',
+    'Backend-DEP/Stock' => $_ENV['STOCK_PATH'] ?? '',
+    'Backend-DEP/Usuarios' => $_ENV['USUARIOS_PATH'] ?? '',
 ];
 
 // Verificar si la ruta existe y cargar el archivo correspondiente
