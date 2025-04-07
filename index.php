@@ -102,9 +102,11 @@ if (isset($routes[$request]) && !empty($routes[$request])) {
                                 <? htmlspecialchars($_GET['error']) ?>
                               </div>
                             <?php endif;?>
+                            <div class="w-100 d-flex justify-content-start mb-1 ms-1">
+                                <a href="<?php echo BASE_URL?>components/Views/RecuperarContrasenia/RecuperarContrasenia.php" class="">Olvidaste tu contraseña?</a>
+                            </div>
                             <div class="align-items-center">
                                 <button type="submit" id="loginButton" class="btn-loggin-ingresar">Ingresar</button>
-                                <button type="button" id="recuperarContraseniaButton" class="btn btn-secondary mb-1" onclick="window.location.href='<?php echo BASE_URL?>components/Views/RecuperarContrasenia/RecuperarContrasenia.php'">Recuperar Contraseña</button>
                             </div>
                         </form>
                     </div>
