@@ -51,12 +51,12 @@ $request = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
                                 echo '<div class="alert alert-danger mt-2" role="alert">'.htmlspecialchars($_GET['error']).'</div>';
                             }
                         ?>
-                        <form id="loginForm" action="./src/components/helpers/querie_login.php" method="POST" name="formLogin">
+                        <form id="loginForm" action="<?php BASE_URL?>components/helpers/recuperarContrasenia.php" method="POST" name="formLogin">
                             <div class="mb-3">
                                 <input 
                                     type="text" 
                                     class="form-control" 
-                                    id="nombreUsuario" 
+                                    id="datoUsuarioContrasenia" 
                                     name="nombreUsuario" 
                                     placeholder="Ingrese su nombre de usuario/email" 
                                     maxlength="16" 
@@ -69,7 +69,7 @@ $request = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
                             </div>
                             <?php endif;?>
                             <div class="align-items-center">
-                                <button type="button" id="recuperarContraseniaButton" class="btn btn-secondary mb-1" onclick="window.location.href='<?php echo BASE_URL?>components/Views/RecuperarContrasenia/RecuperarContrasenia.php'">Recuperar Contraseña</button>
+                                <button type="submit" id="recuperarContraseniaButton" class="btn btn-secondary mb-1">Recuperar Contraseña</button>
                             </div>
                         </form>
                     </div>
