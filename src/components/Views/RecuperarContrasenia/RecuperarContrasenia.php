@@ -58,7 +58,7 @@ $request = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
                                     class="form-control" 
                                     id="nombreUsuario" 
                                     name="nombreUsuario" 
-                                    placeholder="Ingrese su nombre de usuario" 
+                                    placeholder="Ingrese su nombre de usuario/email" 
                                     maxlength="16" 
                                     required>
                             </div>
